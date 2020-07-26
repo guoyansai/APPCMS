@@ -25,14 +25,6 @@
 		{
 			"path": "pages/index/add/add-default",
 			"style": {}
-		},
-		{
-			"path": "pages/index/add/add-default",
-			"style": {}
-		},
-		{
-			"path": "pages/index/add/add-default",
-			"style": {}
 		}
 	],
 	"globalStyle": {
