@@ -1,0 +1,90 @@
+{
+	"pages": [
+		{
+			"path": "pages/index/main/index",
+			"style": {
+				"navigationBarTitleText": "uni-app"
+			}
+		},
+		{
+			"path": "pages/index/map/index",
+			"style": {}
+		},
+		{
+			"path": "pages/index/add/index",
+			"style": {}
+		},
+		{
+			"path": "pages/index/love/index",
+			"style": {}
+		},
+		{
+			"path": "pages/index/me/index",
+			"style": {}
+		},
+		{
+			"path": "pages/index/add/add-default",
+			"style": {}
+		},
+		{
+			"path": "pages/index/add/add-default",
+			"style": {}
+		},
+		{
+			"path": "pages/index/add/add-default",
+			"style": {}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "#FFFFFF",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#17a2b8",
+		"backgroundColor": "#17a2b8"
+	},
+	"tabBar": {
+		"borderStyle": "black",
+		"backgroundColor": "black",
+		"color": "#888888",
+		"selectedColor": "#DD0000",
+		"list": [{
+				"pagePath": "pages/index/main/index",
+				"iconPath": "static/index/image/tabbar/home.png",
+				"selectedIconPath": "static/index/image/tabbar/homeactive.png",
+				"text": "主页"
+			},
+			{
+				"pagePath": "pages/index/map/index",
+				"iconPath": "static/index/image/tabbar/map.png",
+				"selectedIconPath": "static/index/image/tabbar/mapactive.png",
+				"text": "导航"
+			},
+			//#ifdef MP-WEIXIN
+			{
+				"pagePath": "pages/index/add/index",
+				"iconPath": "static/index/image/tabbar/add.png",
+				"selectedIconPath": "static/index/image/tabbar/addactive.png",
+				"text": "发布"
+			},
+			//#endif
+			//#ifndef MP-WEIXIN
+			{
+				"pagePath": "pages/index/add/index",
+				"iconPath": "static/index/image/tabbar/add.png",
+				"selectedIconPath": "static/index/image/tabbar/addactive.png"
+			},
+			//#endif
+			{
+				"pagePath": "pages/index/love/index",
+				"iconPath": "static/index/image/tabbar/love.png",
+				"selectedIconPath": "static/index/image/tabbar/loveactive.png",
+				"text": "收藏"
+			},
+			{
+				"pagePath": "pages/index/me/index",
+				"iconPath": "static/index/image/tabbar/me.png",
+				"selectedIconPath": "static/index/image/tabbar/meactive.png",
+				"text": "会员"
+			}
+		]
+	}
+}
