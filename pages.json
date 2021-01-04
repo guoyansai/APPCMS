@@ -1,0 +1,79 @@
+{
+	"pages": [
+		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/home/index",
+			"style": {
+				"navigationBarTitleText": "asai-app"
+			}
+		},
+		{
+			"path": "pages/love/index",
+			"style": {}
+		},
+		{
+			"path": "pages/add/index",
+			"style": {}
+		},
+		{
+			"path": "pages/message/index",
+			"style": {}
+		},
+		{
+			"path": "pages/user/index",
+			"style": {}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"borderStyle": "black",
+		"backgroundColor": "#333",
+		"color": "#8F8F94",
+		"selectedColor": "#f33e54",
+		"list": [{
+				"pagePath": "pages/home/index",
+				"iconPath": "static/images/toolMenu/home.png",
+				"selectedIconPath": "static/images/toolMenu/home-active.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/love/index",
+				"iconPath": "static/images/toolMenu/love.png",
+				"selectedIconPath": "static/images/toolMenu/love-active.png",
+				"text": "喜欢"
+			},
+			//#ifdef MP-WEIXIN
+			{
+				"pagePath": "pages/add/index",
+				"iconPath": "static/images/toolMenu/add.png",
+				"selectedIconPath": "static/images/toolMenu/add-active.png",
+				"text": "发布"
+			},
+			//#endif
+			//#ifndef MP-WEIXIN
+			{
+				"pagePath": "pages/add/index",
+				"iconPath": "static/images/toolMenu/add.png",
+				"selectedIconPath": "static/images/toolMenu/add-active.png"
+			},
+			//#endif
+			{
+				"pagePath": "pages/message/index",
+				"iconPath": "static/images/toolMenu/message.png",
+				"selectedIconPath": "static/images/toolMenu/message-active.png",
+				"text": "消息"
+			},
+			{
+				"pagePath": "pages/user/index",
+				"iconPath": "static/images/toolMenu/user.png",
+				"selectedIconPath": "static/images/toolMenu/user-active.png",
+				"text": "我"
+			}
+		]
+	}
+}
