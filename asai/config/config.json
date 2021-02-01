@@ -1,0 +1,12 @@
+{
+	"name": {
+		"app": {
+			"startWith": "asai_",
+			"endWith": "_data"
+		},
+		"file": {
+			"startWith": "asai_",
+			"endWith": "_data"
+		}
+	}
+}

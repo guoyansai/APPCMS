@@ -1,8 +1,13 @@
 <script>
+import AsaiConstProvide from 'asai/const/const-provide.js';
+
 export default {
+	// globalData: Object.assign({}, AsaiConstProvide),
+	provide() {
+		return Object.assign({}, AsaiConstProvide);
+	},
 	onLaunch: function() {
 		console.log('App Launch');
-
 		setTimeout(() => {
 			uni.setTabBarBadge({
 				index: 1,
@@ -14,7 +19,7 @@ export default {
 		}, 1000);
 	},
 	onShow: function() {
-		console.log('App Show');
+		console.log('App Show', this.globalData);
 	},
 	onHide: function() {
 		console.log('App Hide');
@@ -23,5 +28,5 @@ export default {
 </script>
 
 <style>
-/*每个页面公共css */ 
+/*每个页面公共css */
 </style>
