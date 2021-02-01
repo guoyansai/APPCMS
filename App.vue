@@ -1,11 +1,5 @@
 <script>
-import AsaiConstProvide from 'asai/const/const-provide.js';
-
 export default {
-	// globalData: Object.assign({}, AsaiConstProvide),
-	provide() {
-		return Object.assign({}, AsaiConstProvide);
-	},
 	onLaunch: function() {
 		console.log('App Launch');
 		setTimeout(() => {

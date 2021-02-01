@@ -1,19 +1,18 @@
-import Vue from 'vue'
-import App from './App'
-import Config from './asai/config/config.json'
-import Common from './asai/common/common.js'
-import AsaiConstMixin from './asai/common/const-mixin.js'
+import Vue from 'vue';
+import App from './App';
 
-Vue.config.productionTip = false
+import AsaiConfig from './asai/config/config.js';
+import AsaiGlobal from './asai/global/global.js';
+import AsaiMixin from './asai/mixin/mixin.js';
 
-App.mpType = 'app'
+Vue.prototype.$config = AsaiConfig;
+Vue.prototype.$global = AsaiGlobal;
+Vue.mixin(AsaiMixin);
 
-Vue.prototype.$config = Config
-Vue.prototype.$common = Common
+Vue.config.productionTip = false;
 
-Vue.mixin(AsaiConstMixin)
-
+App.mpType = 'app';
 const app = new Vue({
 	...App
-})
-app.$mount()
+});
+app.$mount();

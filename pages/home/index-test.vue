@@ -1,7 +1,10 @@
 <template>
 	<div>
-		{{ dataLi.aaaa }}
+		{{ dataLi.aaaa }}--
+		{{ dataLi.bbbb }}--
+		{{ dataLi.cccc }}
 		<input type="text" v-model="dataLi.aaaa" />
+		<input type="text" v-model="dataLi.cccc" />
 	</div>
 </template>
 
