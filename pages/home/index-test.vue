@@ -1,9 +1,10 @@
 <template>
-	<div>aaaaaaaaaaaa</div>
+	<div>
+		{{ dataLi.aaaa }}
+		<input type="text" v-model="dataLi.aaaa" />
+	</div>
 </template>
 
-<script>
-</script>
+<script></script>
 
-<style>
-</style>
+<style></style>

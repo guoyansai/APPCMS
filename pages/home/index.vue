@@ -16,11 +16,7 @@
 </template>
 
 <script>
-// import AsaiConst from '../../asai/const/const.js';
-import AsaiConst from '../../asai/common/const-mixin.js';
-
 export default {
-	mixins: [AsaiConst],
 	data() {
 		return {
 			aa: '222',
