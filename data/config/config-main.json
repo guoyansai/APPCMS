@@ -1,0 +1,15 @@
+{
+	"ver": "20210217",
+	"name": {
+		"app": {
+			"startWith": "asai_",
+			"endWith": "_data",
+			"web": "guoyansaiweb",
+			"local": "guoyansailocal"
+		}
+	},
+	"baseURL": "/dev",
+	"auto": {
+		"saveLocal": true
+	}
+}
