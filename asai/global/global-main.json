@@ -1,8 +1,25 @@
 {
-	"dataLi": {
-		"aaaa": "789"
+	"netWork": "",
+	"dataSn": "",
+	"dataList": {},
+	"dataLi": "",
+	"dataIndex": {},
+	"dataBar": {
+		"index": {},
+		"list": {},
+		"show": {},
+		"tool": {}
 	},
-	"dataCo": {},
-	"dataRd": {},
-	"dataSs": "5558"
+	"listPage": {
+		"pc": 1,
+		"ps": 10,
+		"pa": 0
+	},
+	"listSearch": {
+		"dr": {},
+		"ds": [],
+		"ty": 0,
+		"ss": ""
+	},
+	"dataUser": {}
 }

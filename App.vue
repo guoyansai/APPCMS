@@ -4,11 +4,11 @@ export default {
 		console.log('App Launch');
 		setTimeout(() => {
 			uni.setTabBarBadge({
-				index: 1,
+				index: 2,
 				text: '31'
 			});
 			uni.showTabBarRedDot({
-				index: 3
+				index: 4
 			});
 		}, 1000);
 	},
@@ -23,4 +23,5 @@ export default {
 
 <style>
 /*每个页面公共css */
+@import url('/pages/css/global.css');
 </style>

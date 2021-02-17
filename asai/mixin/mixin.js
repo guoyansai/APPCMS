@@ -1,15 +1,13 @@
+import MixinAsai from './mixin-asai.js';
+import MixinApi from './mixin-api.js';
 import MixinData from './mixin-data.js';
+import MixinNet from './mixin-net.js';
+import MixinNav from './mixin-nav.js';
+import MixinComponents from './mixin-components.js';
+import MixinGlobal from '../global/mixin-global.js';
 
 export default {
-	mixins: [MixinData],
-	data() {
-		return {
-			dataLi: this.$global.dataLi,
-			dataCo: this.$global.dataCo,
-			dataRd: this.$global.dataRd,
-			dataSs: this.$global.dataSs,
-		};
-	},
+	mixins: [MixinAsai, MixinApi, MixinData, MixinNet, MixinNav, MixinComponents, MixinGlobal],
 	methods: {
 		isPage(file) {
 			let fileName = file;

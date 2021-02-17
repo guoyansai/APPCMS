@@ -2,77 +2,94 @@
 	"pages": [
 		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/home/index",
+			"path": "pages/web/index",
 			"style": {
-				"navigationBarTitleText": "asai-app"
+				"navigationBarTitleText": "官网"
 			}
 		},
 		{
-			"path": "pages/love/index",
-			"style": {}
+			"path": "pages/local/index",
+			"style": {
+				"navigationBarTitleText": "本地收藏"
+			}
 		},
 		{
-			"path": "pages/add/index",
-			"style": {}
+			"path": "pages/ok/index",
+			"style": {
+				"navigationBarTitleText": "聊天"
+			}
 		},
 		{
-			"path": "pages/message/index",
-			"style": {}
+			"path": "pages/exe/index",
+			"style": {
+				"navigationBarTitleText": "单机应用"
+			}
 		},
 		{
 			"path": "pages/user/index",
-			"style": {}
+			"style": {
+				"navigationBarTitleText": "用户中心"
+			}
+		},
+		{
+			"path": "components/bar/bar"
+		},
+		{
+			"path": "components/list/list"
+		},
+		{
+			"path": "components/list/page/page"
+		},
+		{
+			"path": "components/list/search/search"
+		},
+		{
+			"path": "components/show/show"
+		},
+		{
+			"path": "components/uni/rich-text/rich-text"
 		}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
+		"navigationBarTitleText": "909.pub",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},
 	"tabBar": {
-		"borderStyle": "black",
-		"backgroundColor": "#333",
-		"color": "#8F8F94",
-		"selectedColor": "#f33e54",
+		"borderStyle": "#D8D8D8",
+		"backgroundColor": "#F8F8F8",
+		"color": "#999999",
+		"selectedColor": "#1188DD",
 		"list": [{
-				"pagePath": "pages/home/index",
-				"iconPath": "static/images/toolMenu/home.png",
-				"selectedIconPath": "static/images/toolMenu/home-active.png",
-				"text": "首页"
+				"pagePath": "pages/web/index",
+				"iconPath": "static/ico/ico-web.png",
+				"selectedIconPath": "static/ico/ico-web-cur.png",
+				"text": "官网"
 			},
 			{
-				"pagePath": "pages/love/index",
-				"iconPath": "static/images/toolMenu/love.png",
-				"selectedIconPath": "static/images/toolMenu/love-active.png",
-				"text": "喜欢"
+				"pagePath": "pages/local/index",
+				"iconPath": "static/ico/ico-local.png",
+				"selectedIconPath": "static/ico/ico-local-cur.png",
+				"text": "本地"
 			},
-			//#ifdef MP-WEIXIN
 			{
-				"pagePath": "pages/add/index",
-				"iconPath": "static/images/toolMenu/add.png",
-				"selectedIconPath": "static/images/toolMenu/add-active.png",
-				"text": "发布"
+				"pagePath": "pages/ok/index",
+				"iconPath": "static/ico/ico-ok.png",
+				"selectedIconPath": "static/ico/ico-ok-cur.png",
+				"text": "聊天"
 			},
-			//#endif
-			//#ifndef MP-WEIXIN
 			{
-				"pagePath": "pages/add/index",
-				"iconPath": "static/images/toolMenu/add.png",
-				"selectedIconPath": "static/images/toolMenu/add-active.png"
-			},
-			//#endif
-			{
-				"pagePath": "pages/message/index",
-				"iconPath": "static/images/toolMenu/message.png",
-				"selectedIconPath": "static/images/toolMenu/message-active.png",
-				"text": "消息"
+				"pagePath": "pages/exe/index",
+				"iconPath": "static/ico/ico-exe.png",
+				"selectedIconPath": "static/ico/ico-exe-cur.png",
+				"text": "应用"
 			},
 			{
 				"pagePath": "pages/user/index",
-				"iconPath": "static/images/toolMenu/user.png",
-				"selectedIconPath": "static/images/toolMenu/user-active.png",
-				"text": "我"
+				"iconPath": "static/ico/ico-user.png",
+				"selectedIconPath": "static/ico/ico-user-cur.png",
+				"text": "用户"
 			}
 		]
 	}
