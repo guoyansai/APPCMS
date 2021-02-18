@@ -11,22 +11,25 @@ export default {
 		}
 	},
 	methods: {
-		saiRead(vLi = '') {
+		saiRead(vLi) {
 			let vVal = this.saiLocalRead(vLi);
+			console.log(666.456, vVal);
 			if (vVal) {
 				return vVal;
 			} else {
 				this.saiApi(vLi, 0).then(res => {
 					vVal = res[1].data;
+					console.log(666.789, vVal)
 					if (this.$config.auto.saveLocal) {
 						this.saiLocalSave(vVal, vLi);
 						this.reLocal(vLi, 0);
+						return this.saiLocalRead(vLi);
 					}
-					return vVal;
+					return vVal; // 有乱码问题
 				});
 			}
 		},
-		reLocal(vLi = '', vType = 0) {
+		reLocal(vLi, vType) {
 			if (vLi) {
 				let vVal = this.asaiLocalArr;
 				if (vType) {
@@ -39,7 +42,18 @@ export default {
 				this.saiLocalSave(vVal, this.$config.name.app.local);
 			}
 		},
-		saiLocalRead(vLi = '') {
+		saiDel() {
+			if (this.asaiLocalArr.length) {
+				this.asaiLocalArr.forEach(key => {
+					this.saiLocalDel(key);
+				});
+			}
+			this.saiLocalDel(this.$config.name.app.local);
+			this.saiLocalDel(this.$config.name.app.web);
+			this.dataList = {};
+			this.dataIndex = {};
+		},
+		saiLocalRead(vLi) {
 			try {
 				let vVal = uni.getStorageSync(this.saiLocalName(vLi))
 				if (vVal) {
@@ -52,28 +66,28 @@ export default {
 				return null;
 			}
 		},
-		saiLocalDel(vLi = '') {
+		saiLocalDel(vLi) {
 			try {
 				uni.removeStorageSync(this.saiLocalName(vLi));
 			} catch (e) {
 				console.error(e);
 			}
 		},
-		saiLocalSave(content, vLi = '') {
+		saiLocalSave(content, vLi) {
 			try {
 				uni.setStorageSync(this.saiLocalName(vLi), JSON.stringify(content));
 			} catch (e) {
 				console.error(e);
 			}
 		},
-		saiLocalName(vLi = '') {
+		saiLocalName(vLi) {
 			let vName = vLi;
 			if (!vName) {
 				vName = this.$config.name.app.web;
 			}
 			return this.$config.name.app.startWith + vName + this.$config.name.app.endWith;
 		},
-		saiApi(vLi = '', vType = 0) {
+		saiApi(vLi, vType) {
 			let vUrl = this.$config.baseURL;
 			if (vLi) {
 				vUrl += '/' + vLi;
@@ -91,12 +105,8 @@ export default {
 			}
 			console.log(666.234, vUrl)
 			return uni.request({
-				url: vUrl,
-				header: {
-					'custom-header': 'guoyansai',
-					'Cache-Control': 'no-cache'
-				},
-				data: {},
+				url: vUrl + '?' + Date.now(),
+				method: 'GET'
 			});
 		},
 	},

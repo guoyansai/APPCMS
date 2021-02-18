@@ -1,6 +1,6 @@
 export default {
 	methods: {
-		saiUser(type = 0) {
+		saiUser(type) {
 			if (!this.checkObj(this.dataUser || type === 1)) {
 				let tempData = require('../../data/template/user.json');
 				this.dataUser = { ...tempData
@@ -8,25 +8,23 @@ export default {
 				console.log(666.666, this.dataUser)
 			}
 		},
-		saiIndex(type = 0) {
+		saiIndex(type) {
 			if (!this.checkObj(this.dataIndex)) {
-				let tempData = this.saiRead();
+				let tempData = this.saiRead('');
 				this.dataIndex = { ...tempData
 				};
 				this.saiInitPage(this.dataIndex);
 				this.saiInitSearch(this.dataIndex);
-				console.log(666.999, this.dataIndex, this.listPage)
+				console.log(666.999, type, this.dataIndex, this.listPage)
 			}
 		},
-		saiList(vLi, type = 0) {
-			if (!this.checkObj(this.dataList)) {
-				let tempData = this.saiRead(vLi);
-				this.dataList = { ...tempData
-				};
-				this.saiInitPage(this.dataList);
-				this.saiInitSearch(this.dataList);
-				console.log(666.888, this.dataList)
-			}
+		saiList(vLi, type) {
+			let tempData = this.saiRead(vLi);
+			this.dataList = { ...tempData
+			};
+			this.saiInitPage(this.dataList);
+			this.saiInitSearch(this.dataList);
+			console.log(666.888, vLi, type, this.dataList)
 		},
 		saiInitPage(vData) {
 			if (this.saiCheckData(vData) && !vData.li.pg.pa) {
@@ -53,7 +51,7 @@ export default {
 		saiBar(vKey, vVal) {
 			this.dataBar[vKey] = vVal;
 		},
-		saiLoad(e, type = 0) {
+		saiLoad(e, type) {
 			this.saiIndex(type);
 			if (this.checkObj(this.dataIndex)) {
 				this.saiBar('index', {
@@ -167,7 +165,7 @@ export default {
 			let vVal = vData.li.dt[vKey][vIndex];
 			return vVal.indexOf(vSearch.ss) !== -1;
 		},
-		saiHtml2Txt(vHtml, len = 0) {
+		saiHtml2Txt(vHtml, len) {
 			let vTxt = vHtml;
 			vTxt = vTxt.replace(/<[^>]+>/g, "");
 			vTxt = vTxt.replace(/(^\s+)|(\s+$)/g, "");

@@ -10,7 +10,7 @@
 <script>
 export default {
 	onLoad(e) {
-		this.saiLoad(e);
+		this.saiLoad(e, 0);
 	}
 };
 </script>

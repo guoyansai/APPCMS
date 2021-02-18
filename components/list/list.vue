@@ -1,5 +1,5 @@
 <template>
-	<view class="s-area">
+	<view class="s-area" v-if="saiCheckData(item)">
 		<search :item="listSearch" :li="li"></search>
 		<page :item="listPage" :li="li"></page>
 		<view v-if="item.ty && item.ty.li.startsWith('list')" class="s-list">
@@ -58,6 +58,8 @@ export default {
 	computed: {
 		allList() {
 			if (this.listSearch.ss) {
+				return this.listSearch.dr[this.saiSearchKey()];
+			} else if (this.listSearch.cl) {
 				return this.listSearch.dr[this.saiSearchKey()];
 			} else {
 				return this.item.li.dr;

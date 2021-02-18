@@ -124,7 +124,7 @@ export default {
 		};
 	},
 	onLoad(e) {
-		this.saiUser();
+		this.saiUser(0);
 		if (e.type) {
 			this.userType = e.type;
 		}

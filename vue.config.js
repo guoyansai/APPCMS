@@ -3,7 +3,7 @@ module.exports = {
 	devServer: {
 		proxy: {
 			'/dev': {
-				target: 'http://localhost:9099/temp/data',
+				target: 'http://asaiapp.asai.cc/data',
 				ws: true,
 				changeOrigin: true,
 				pathRewrite: {

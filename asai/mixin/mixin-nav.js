@@ -8,15 +8,15 @@ export default {
 			uni.navigateTo({
 				url: goStr
 			});
-			uni.redirectTo({
-				url: goStr
-			});
-			uni.reLaunch({
-				url: goStr
-			});
-			uni.switchTab({
-				url: goStr
-			});
+			// uni.redirectTo({
+			// 	url: goStr
+			// });
+			// uni.reLaunch({
+			// 	url: goStr
+			// });
+			// uni.switchTab({
+			// 	url: goStr
+			// });
 		},
 		getDir() {
 			let routes = getCurrentPages();

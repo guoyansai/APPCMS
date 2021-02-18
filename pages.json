@@ -4,31 +4,36 @@
 		{
 			"path": "pages/web/index",
 			"style": {
-				"navigationBarTitleText": "官网"
+				"navigationBarTitleText": "官网",
+				"enablePullDownRefresh": true
 			}
 		},
 		{
 			"path": "pages/local/index",
 			"style": {
-				"navigationBarTitleText": "本地收藏"
+				"navigationBarTitleText": "本地收藏",
+				"enablePullDownRefresh": true
 			}
 		},
 		{
 			"path": "pages/ok/index",
 			"style": {
-				"navigationBarTitleText": "聊天"
+				"navigationBarTitleText": "聊天",
+				"enablePullDownRefresh": true
 			}
 		},
 		{
 			"path": "pages/exe/index",
 			"style": {
-				"navigationBarTitleText": "单机应用"
+				"navigationBarTitleText": "单机应用",
+				"enablePullDownRefresh": true
 			}
 		},
 		{
 			"path": "pages/user/index",
 			"style": {
-				"navigationBarTitleText": "用户中心"
+				"navigationBarTitleText": "用户中心",
+				"enablePullDownRefresh": true
 			}
 		},
 		{
@@ -45,9 +50,6 @@
 		},
 		{
 			"path": "components/show/show"
-		},
-		{
-			"path": "components/uni/rich-text/rich-text"
 		}
 	],
 	"globalStyle": {

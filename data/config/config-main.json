@@ -9,6 +9,7 @@
 		}
 	},
 	"baseURL": "/dev",
+	"baseURL1": "http://asaiapp.asai.cc/data",
 	"auto": {
 		"saveLocal": true
 	}
