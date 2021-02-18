@@ -59,8 +59,6 @@ export default {
 		allList() {
 			if (this.listSearch.ss) {
 				return this.listSearch.dr[this.saiSearchKey()];
-			} else if (this.listSearch.cl) {
-				return this.listSearch.dr[this.saiSearchKey()];
 			} else {
 				return this.item.li.dr;
 			}
@@ -78,6 +76,7 @@ export default {
 	},
 	methods: {
 		view(vSn) {
+			console.log(666.888, vSn, this.li);
 			if (this.li) {
 				this.go('?sn=' + vSn + '&li=' + this.li);
 			} else {

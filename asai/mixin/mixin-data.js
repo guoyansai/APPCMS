@@ -8,23 +8,9 @@ export default {
 				console.log(666.666, this.dataUser)
 			}
 		},
-		saiIndex(type) {
-			if (!this.checkObj(this.dataIndex)) {
-				let tempData = this.saiRead('');
-				this.dataIndex = { ...tempData
-				};
-				this.saiInitPage(this.dataIndex);
-				this.saiInitSearch(this.dataIndex);
-				console.log(666.999, type, this.dataIndex, this.listPage)
-			}
-		},
-		saiList(vLi, type) {
-			let tempData = this.saiRead(vLi);
-			this.dataList = { ...tempData
-			};
-			this.saiInitPage(this.dataList);
-			this.saiInitSearch(this.dataList);
-			console.log(666.888, vLi, type, this.dataList)
+		saiInit(vData) {
+			this.saiInitPage(vData);
+			this.saiInitSearch(vData);
 		},
 		saiInitPage(vData) {
 			if (this.saiCheckData(vData) && !vData.li.pg.pa) {
@@ -52,48 +38,57 @@ export default {
 			this.dataBar[vKey] = vVal;
 		},
 		saiLoad(e, type) {
-			this.saiIndex(type);
-			if (this.checkObj(this.dataIndex)) {
-				this.saiBar('index', {
-					tt: '主页',
-					ur: 'index'
-				});
-				if (e.li) {
-					this.dataLi = e.li;
-					this.saiList(this.dataLi, type);
-					if (this.checkObj(this.dataList)) {
-						this.saiBar('list', {
-							tt: '列表',
-							ur: '?li=' + this.dataLi
+			this.saiRead('').then(resIndex => {
+				console.log(666.20001, resIndex);
+				this.dataIndex = resIndex;
+				this.saiInit(this.dataIndex);
+				if (this.checkObj(this.dataIndex)) {
+					this.saiBar('index', {
+						tt: '主页',
+						ur: 'index'
+					});
+					if (e.li) {
+						this.dataLi = e.li;
+						this.saiRead(this.dataLi).then(resList => {
+							console.log(666.30001, resList);
+							this.dataList = resList;
+							this.saiInit(this.dataList);
+							if (this.checkObj(this.dataList)) {
+								this.saiBar('list', {
+									tt: '列表',
+									ur: '?li=' + this.dataLi
+								});
+								if (e.sn) {
+									this.dataSn = e.sn;
+									this.saiBar('show', {
+										tt: '详情',
+										ur: ''
+									});
+									this.saiBar('tool', {});
+								} else {
+									this.dataSn = '';
+									this.saiBar('tool', {
+										tt: '下载',
+										ur: '?li=' + this.dataLi
+									});
+									this.saiBar('show', {});
+									this.saiPage(this.dataList, e);
+									this.saiSearch(this.dataList, e);
+								}
+							}
+
 						});
-						if (e.sn) {
-							this.dataSn = e.sn;
-							this.saiBar('show', {
-								tt: '详情',
-								ur: ''
-							});
-							this.saiBar('tool', {});
-						} else {
-							this.dataSn = '';
-							this.saiBar('tool', {
-								tt: '下载',
-								ur: '?li=' + this.dataLi
-							});
-							this.saiBar('show', {});
-							this.saiPage(this.dataList, e);
-							this.saiSearch(this.dataList, e);
-						}
+					} else {
+						this.dataLi = '';
+						this.dataSn = '';
+						this.saiBar('list', {});
+						this.saiBar('show', {});
+						this.saiBar('tool', {});
+						this.saiPage(this.dataIndex, e);
+						this.saiSearch(this.dataIndex, e);
 					}
-				} else {
-					this.dataLi = '';
-					this.dataSn = '';
-					this.saiBar('list', {});
-					this.saiBar('show', {});
-					this.saiBar('tool', {});
-					this.saiPage(this.dataIndex, e);
-					this.saiSearch(this.dataIndex, e);
 				}
-			}
+			});
 		},
 		saiPage(vData, e) {
 			if (this.saiCheckData(vData)) {

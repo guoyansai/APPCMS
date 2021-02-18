@@ -12,24 +12,22 @@ export default {
 	},
 	methods: {
 		saiRead(vLi) {
-			let vVal = this.saiLocalRead(vLi);
-			console.log(666.456, vVal);
-			if (vVal) {
-				return vVal;
-			} else {
-				this.saiApi(vLi, 0).then(res => {
-					vVal = res[1].data;
-					console.log(666.789, vVal)
-					if (this.$config.auto.saveLocal) {
-						this.saiLocalSave(vVal, vLi);
-						this.reLocal(vLi, 0);
-						return this.saiLocalRead(vLi);
-					}
-					return vVal; // 有乱码问题
-				});
+			return new Promise((resolve, reject) => {
+				let vVal = this.saiLocalRead(vLi);
+				if (vVal && vVal.ver) {
+					resolve(vVal);
+				} else {
+					return this.saiApi(vLi, 0);
+				}
+			});
+		},
+		saiAutoLocal(vVal, vLi) {
+			if (vVal && vVal.ver && this.$config.auto.saveLocal) {
+				this.saiLocalSave(vVal, vLi);
+				this.saiReLocal(vLi, 0);
 			}
 		},
-		reLocal(vLi, vType) {
+		saiReLocal(vLi, vType) {
 			if (vLi) {
 				let vVal = this.asaiLocalArr;
 				if (vType) {
@@ -73,9 +71,10 @@ export default {
 				console.error(e);
 			}
 		},
-		saiLocalSave(content, vLi) {
+		saiLocalSave(vVal, vLi) {
 			try {
-				uni.setStorageSync(this.saiLocalName(vLi), JSON.stringify(content));
+				let vStr = JSON.stringify(vVal);
+				uni.setStorageSync(this.saiLocalName(vLi), vStr);
 			} catch (e) {
 				console.error(e);
 			}
@@ -104,9 +103,23 @@ export default {
 				}
 			}
 			console.log(666.234, vUrl)
-			return uni.request({
-				url: vUrl + '?' + Date.now(),
-				method: 'GET'
+			return new Promise((resolve, reject) => {
+				uni.request({
+					url: vUrl + '?' + Date.now(),
+					success: (res) => {
+						console.log(666.10001, res);
+						let vVal = res.data;
+						if (vVal && vVal.ver) {
+							this.saiAutoLocal(vVal, vLi);
+							resolve(vVal);
+						} else {
+							reject('err')
+						}
+					},
+					fail: (err) => {
+						reject(err)
+					}
+				});
 			});
 		},
 	},

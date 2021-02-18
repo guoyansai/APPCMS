@@ -2,21 +2,30 @@ export default {
 	methods: {
 		go(vUrl) {
 			let goStr = vUrl;
-			if (goStr.startsWith('?')) {
-				goStr = 'index' + goStr;
+			if (goStr && goStr.startsWith('?')) {
+				goStr = 'main' + goStr;
 			}
+			console.log(666.666, goStr)
 			uni.navigateTo({
-				url: goStr
+				url: goStr,
+				animationType: 'fade-in',
+				animationDuration: 200,
+				success: (res) => {
+					console.log(666.300, res)
+				},
+				fail: (err) => {
+					console.log(666.321, err)
+					uni.redirectTo({
+						url: goStr
+					});
+					uni.reLaunch({
+						url: goStr
+					});
+					uni.switchTab({
+						url: goStr
+					});
+				}
 			});
-			// uni.redirectTo({
-			// 	url: goStr
-			// });
-			// uni.reLaunch({
-			// 	url: goStr
-			// });
-			// uni.switchTab({
-			// 	url: goStr
-			// });
 		},
 		getDir() {
 			let routes = getCurrentPages();

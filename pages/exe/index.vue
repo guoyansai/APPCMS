@@ -19,7 +19,7 @@ export default {
 	methods: {
 		get() {
 			this.saiApi('', 0).then(data => {
-				this.testData = JSON.stringify(data[1].data);
+				this.testData = JSON.stringify(data);
 				console.log(666.111, data);
 			});
 		},
