@@ -50,11 +50,11 @@ export default {
 			if (this.li) {
 				vUrl = vUrl + '&li=' + this.li;
 			}
-			if (this.listSearch.ss) {
-				vUrl = vUrl + '&ss=' + this.listSearch.ss;
+			if (this.dataLi.listSearch.ss) {
+				vUrl = vUrl + '&ss=' + this.dataLi.listSearch.ss;
 			}
-			if (this.listSearch.ty) {
-				vUrl = vUrl + '&ty=' + this.listSearch.ty;
+			if (this.dataLi.listSearch.ty) {
+				vUrl = vUrl + '&ty=' + this.dataLi.listSearch.ty;
 			}
 			this.go(vUrl);
 		}

@@ -1,6 +1,6 @@
 <template>
 	<view class="index-exe">
-		<bar :item="dataBar"></bar>
+		<bar :item="dataLi.topBar"></bar>
 		<view>exe应用</view>
 		<button @tap="del()">清空缓存{{delTime}}</button>
 		<button @tap="get()">测试api</button>

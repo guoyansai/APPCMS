@@ -94,7 +94,7 @@
 			<view class="s-user-button"><button class="mini-btn" type="primary" size="mini" @tap="editUser()">编辑信息</button></view>
 		</view>
 		<view class="s-user-des">注意：以上信息仅限本地使用。</view>
-		<view class="s-user-des">App Ver {{ $config.ver }} & Data Ver {{ dataIndex.ver }}</view>
+		<view class="s-user-des">App Ver {{ $config.ver }} & Data Ver {{ dataLi.indexObj.ver }}</view>
 	</view>
 </template>
 

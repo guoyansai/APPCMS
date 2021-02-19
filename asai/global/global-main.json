@@ -1,26 +1,28 @@
 {
 	"netWork": "",
-	"dataSn": "",
-	"dataList": {},
-	"dataLi": "",
-	"dataIndex": {},
-	"dataBar": {
-		"index": {},
-		"list": {},
-		"show": {},
-		"tool": {}
-	},
-	"listPage": {
-		"pc": 1,
-		"ps": 10,
-		"pa": 0
-	},
-	"listSearch": {
-		"dr": {},
-		"ds": [],
-		"cl": "",
-		"ty": 0,
-		"ss": ""
+	"dataLi": {
+		"viewSn": "",
+		"listObj": {},
+		"listSn": "",
+		"indexObj": {},
+		"topBar": {
+			"index": {},
+			"list": {},
+			"show": {},
+			"tool": {}
+		},
+		"listPage": {
+			"pc": 1,
+			"ps": 10,
+			"pa": 0
+		},
+		"listSearch": {
+			"dr": {},
+			"ds": [],
+			"cl": "",
+			"ty": 0,
+			"ss": ""
+		}
 	},
 	"dataUser": {}
 }

@@ -1,7 +1,7 @@
 <template>
-	<view class="s-area" v-if="saiCheckData(item)">
-		<search :item="listSearch" :li="li"></search>
-		<page :item="listPage" :li="li"></page>
+	<view class="s-area" v-if="item && item.ver">
+		<search :item="dataLi.listSearch" :li="li"></search>
+		<page :item="dataLi.listPage" :li="li"></page>
 		<view v-if="item.ty && item.ty.li.startsWith('list')" class="s-list">
 			<view
 				:class="{ 's-listmin-li': item.ty.li === 'listmin', 's-list-local': !li && asaiLocal(key) }"
@@ -25,7 +25,7 @@
 				<view class="s-list-tit">{{ listVal('tt', value) }}</view>
 			</view>
 		</view>
-		<page :item="listPage" :li="li"></page>
+		<page :item="dataLi.listPage" :li="li"></page>
 	</view>
 </template>
 
@@ -57,8 +57,8 @@ export default {
 	},
 	computed: {
 		allList() {
-			if (this.listSearch.ss) {
-				return this.listSearch.dr[this.saiSearchKey()];
+			if (this.dataLi.listSearch.ss) {
+				return this.dataLi.listSearch.dr[this.saiSearchKey()];
 			} else {
 				return this.item.li.dr;
 			}
@@ -66,7 +66,7 @@ export default {
 		curList() {
 			const objList = {};
 			if (this.allList.length) {
-				let arrList = this.allList.slice((this.listPage.pc - 1) * this.listPage.ps, this.listPage.pc * this.listPage.ps);
+				let arrList = this.allList.slice((this.dataLi.listPage.pc - 1) * this.dataLi.listPage.ps, this.dataLi.listPage.pc * this.dataLi.listPage.ps);
 				arrList.forEach(key => {
 					objList[key] = this.item.li.dt[key];
 				});

@@ -13,13 +13,33 @@ export default {
 	methods: {
 		saiRead(vLi) {
 			return new Promise((resolve, reject) => {
-				let vVal = this.saiLocalRead(vLi);
-				if (vVal && vVal.ver) {
-					resolve(vVal);
+				if (!vLi && this.dataLi.indexObj.ver) {
+					resolve(this.dataLi.indexObj);
+				} else if (vLi && this.dataLi.listObj.ver && vLi === this.dataLi.listObj.sn) {
+					resolve(this.dataLi.listObj);
 				} else {
-					return this.saiApi(vLi, 0);
+					let vVal = this.saiLocalRead(vLi);
+					if (vVal && vVal.ver) {
+						resolve(vVal);
+					} else {
+						return this.saiApi(vLi, 0);
+					}
 				}
 			});
+		},
+		saiReadSync(vLi) {
+			if (!vLi && this.dataLi.indexObj.ver) {
+				return this.dataLi.indexObj;
+			} else if (vLi && this.dataLi.listObj.ver && vLi === this.dataLi.listObj.sn) {
+				return this.dataLi.listObj;
+			} else {
+				let vVal = this.saiLocalRead(vLi);
+				if (vVal && vVal.ver) {
+					return vVal;
+				} else {
+					return null;
+				}
+			}
 		},
 		saiAutoLocal(vVal, vLi) {
 			if (vVal && vVal.ver && this.$config.auto.saveLocal) {
@@ -48,8 +68,8 @@ export default {
 			}
 			this.saiLocalDel(this.$config.name.app.local);
 			this.saiLocalDel(this.$config.name.app.web);
-			this.dataList = {};
-			this.dataIndex = {};
+			this.dataLi.listObj = {};
+			this.dataLi.indexObj = {};
 		},
 		saiLocalRead(vLi) {
 			try {
@@ -60,7 +80,7 @@ export default {
 					return null;
 				}
 			} catch (e) {
-				console.error(e);
+				console.error(666.4041, e);
 				return null;
 			}
 		},
@@ -68,7 +88,7 @@ export default {
 			try {
 				uni.removeStorageSync(this.saiLocalName(vLi));
 			} catch (e) {
-				console.error(e);
+				console.error(666.4042, e);
 			}
 		},
 		saiLocalSave(vVal, vLi) {
@@ -76,7 +96,7 @@ export default {
 				let vStr = JSON.stringify(vVal);
 				uni.setStorageSync(this.saiLocalName(vLi), vStr);
 			} catch (e) {
-				console.error(e);
+				console.error(666.4043, e);
 			}
 		},
 		saiLocalName(vLi) {
@@ -107,7 +127,7 @@ export default {
 				uni.request({
 					url: vUrl + '?' + Date.now(),
 					success: (res) => {
-						console.log(666.10001, res);
+						console.log(666.10001, vUrl, res);
 						let vVal = res.data;
 						if (vVal && vVal.ver) {
 							this.saiAutoLocal(vVal, vLi);
