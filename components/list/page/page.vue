@@ -13,6 +13,19 @@ export default {
 			type: Object,
 			required: false
 		},
+		psearch: {
+			type: Object,
+			required: false,
+			default: function() {
+				return {
+					dr: {},
+					ds: [],
+					cl: '',
+					ty: 0,
+					ss: ''
+				};
+			}
+		},
 		li: {
 			type: String,
 			required: false
@@ -50,11 +63,11 @@ export default {
 			if (this.li) {
 				vUrl = vUrl + '&li=' + this.li;
 			}
-			if (this.dataLi.listSearch.ss) {
-				vUrl = vUrl + '&ss=' + this.dataLi.listSearch.ss;
+			if (this.psearch.ss) {
+				vUrl = vUrl + '&ss=' + this.psearch.ss;
 			}
-			if (this.dataLi.listSearch.ty) {
-				vUrl = vUrl + '&ty=' + this.dataLi.listSearch.ty;
+			if (this.psearch.ty) {
+				vUrl = vUrl + '&ty=' + this.psearch.ty;
 			}
 			this.go(vUrl);
 		}

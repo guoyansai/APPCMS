@@ -1,7 +1,7 @@
 <template>
 	<view class="s-area" v-if="item && item.ver">
 		<search :item="psearch" :li="li"></search>
-		<page :item="ppage" :li="li"></page>
+		<page :item="ppage" :psearch="psearch" :li="li"></page>
 		<view v-if="item.ty && item.ty.li.startsWith('list')" class="s-list">
 			<view
 				:class="{ 's-listmin-li': item.ty.li === 'listmin', 's-list-local': !li && asaiLocal(key) }"
@@ -25,7 +25,7 @@
 				<view class="s-list-tit">{{ listVal('tt', value) }}</view>
 			</view>
 		</view>
-		<page :item="ppage" :li="li"></page>
+		<page :item="ppage" :psearch="psearch" :li="li"></page>
 	</view>
 </template>
 
@@ -82,7 +82,7 @@ export default {
 	computed: {
 		allList() {
 			if (this.psearch.ss) {
-				return this.psearch.dr[this.saiSearchKey()];
+				return this.psearch.dr[this.saiSearchKey(this.item)] || [];
 			} else {
 				return this.item.li.dr;
 			}

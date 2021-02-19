@@ -1,8 +1,8 @@
 <template>
 	<view class="index-exe">
-		<bar :item="dataLi.topBar"></bar>
+		<bar :item="barData"></bar>
 		<view>exe应用</view>
-		<button @tap="del()">清空缓存{{delTime}}</button>
+		<button @tap="del()">清空缓存{{ delTime }}</button>
 		<button @tap="get()">测试api</button>
 		{{ testData }}
 	</view>
@@ -13,7 +13,8 @@ export default {
 	data() {
 		return {
 			testData: '',
-			delTime: ''
+			delTime: '',
+			barData: {}
 		};
 	},
 	methods: {
