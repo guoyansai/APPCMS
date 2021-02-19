@@ -3,7 +3,7 @@ export default {
 		go(vUrl) {
 			let goStr = vUrl;
 			if (goStr && goStr.startsWith('?')) {
-				goStr = 'main' + goStr;
+				goStr = 'index' + goStr;
 			}
 			console.log(666.666, goStr)
 			uni.navigateTo({

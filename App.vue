@@ -13,7 +13,7 @@ export default {
 		}, 1000);
 	},
 	onShow: function() {
-		console.log('App Show', this.globalData);
+		console.log('App Show');
 	},
 	onHide: function() {
 		console.log('App Hide');

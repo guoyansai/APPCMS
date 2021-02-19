@@ -37,7 +37,7 @@ export default {
 				if (vVal && vVal.ver) {
 					return vVal;
 				} else {
-					return null;
+					return {};
 				}
 			}
 		},
@@ -106,7 +106,7 @@ export default {
 			}
 			return this.$config.name.app.startWith + vName + this.$config.name.app.endWith;
 		},
-		saiApi(vLi, vType) {
+		saiUrl(vLi, vType) {
 			let vUrl = this.$config.baseURL;
 			if (vLi) {
 				vUrl += '/' + vLi;
@@ -122,10 +122,13 @@ export default {
 					vUrl += '/li.json';
 				}
 			}
-			console.log(666.234, vUrl)
+			return vUrl + '?' + Date.now();
+		},
+		saiApi(vLi, vType) {
 			return new Promise((resolve, reject) => {
+				let vUrl = this.saiUrl(vLi, vType);
 				uni.request({
-					url: vUrl + '?' + Date.now(),
+					url: vUrl,
 					success: (res) => {
 						console.log(666.10001, vUrl, res);
 						let vVal = res.data;

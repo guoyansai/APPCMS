@@ -50,12 +50,6 @@
 		},
 		{
 			"path": "components/show/show"
-		},
-		{
-			"path": "pages/web/main"
-		},
-		{
-			"path": "pages/local/main"
 		}
 	],
 	"globalStyle": {
