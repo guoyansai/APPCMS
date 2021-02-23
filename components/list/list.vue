@@ -1,15 +1,9 @@
 <template>
 	<view class="s-area" v-if="item && item.ver">
-		<search :item="psearch" :li="li"></search>
-		<page :item="ppage" :psearch="psearch" :li="li"></page>
+		<search :item="psearch" :gli="gli"></search>
+		<page :item="ppage" :psearch="psearch" :gli="gli"></page>
 		<view v-if="item.ty && item.ty.li.startsWith('list')" class="s-list">
-			<view
-				:class="{ 's-listmin-li': item.ty.li === 'listmin', 's-list-local': !li && asaiLocal(key) }"
-				class="s-list-li"
-				v-for="(value, key, index) in curList"
-				:key="key + index"
-				@tap="view(key)"
-			>
+			<view :class="{ 's-listmin-li': item.ty.li === 'listmin' }" class="s-list-li" v-for="(value, key, index) in curList" :key="key + index" @tap="viewGo(value, key)">
 				<view class="s-list-img" v-if="listVal('ic', value)"><img :src="listVal('ic', value)" /></view>
 				<view class="s-list-txt">
 					<view class="s-list-tit">{{ listVal('tt', value) }}</view>
@@ -18,14 +12,16 @@
 				</view>
 			</view>
 		</view>
-
 		<view v-else :class="'s-' + item.ty.li">
-			<view class="s-list-li" v-for="(value, key, index) in curList" :key="key + index" @tap="view(key)">
-				<view class="s-list-img"><img :src="listVal('ic', value)" /></view>
+			<view class="s-list-li" v-for="(value, key, index) in curList" :key="key + index" @tap="viewGo(value, key)">
+				<view class="s-list-img">
+					<img v-if="listVal('ic', value)" :src="listVal('ic', value)" />
+					<text>{{ listVal('tt', value) }}</text>
+				</view>
 				<view class="s-list-tit">{{ listVal('tt', value) }}</view>
 			</view>
 		</view>
-		<page :item="ppage" :psearch="psearch" :li="li"></page>
+		<page :item="ppage" :psearch="psearch" :gli="gli"></page>
 	</view>
 </template>
 
@@ -36,7 +32,21 @@ import search from './search/search.vue';
 export default {
 	components: { page, search },
 	props: {
-		item: {
+		gindex: {
+			type: Object,
+			required: false,
+			default: function() {
+				return {
+					tt: '',
+					db: {},
+					li: {
+						pg: {},
+						dt: {}
+					}
+				};
+			}
+		},
+		glist: {
 			type: Object,
 			required: false,
 			default: function() {
@@ -74,12 +84,19 @@ export default {
 				};
 			}
 		},
-		li: {
+		gli: {
 			type: String,
 			required: false
 		}
 	},
 	computed: {
+		item() {
+			if (this.gli) {
+				return this.glist;
+			} else {
+				return this.gindex;
+			}
+		},
 		allList() {
 			if (this.psearch.ss) {
 				return this.psearch.dr[this.saiSearchKey(this.item)] || [];
@@ -99,12 +116,20 @@ export default {
 		}
 	},
 	methods: {
-		view(vSn) {
-			console.log(666.888, vSn, this.li);
-			if (this.li) {
-				this.go('?sn=' + vSn + '&li=' + this.li);
+		viewGo(vValue, vSn) {
+			let vUrl = this.curView(vSn);
+			let vUr = this.listVal('ur', vValue);
+			if (vUr) {
+				vUrl += '&ur=' + vUr;
+			}
+			console.log(666.888, vUrl, vValue);
+			this.go(vUrl);
+		},
+		curView(vSn) {
+			if (this.gli) {
+				return '?sn=' + vSn + '&li=' + this.gli;
 			} else {
-				this.go('?li=' + vSn);
+				return '?li=' + vSn;
 			}
 		},
 		listVal(vKey, vValue) {

@@ -4,28 +4,28 @@
 		{
 			"path": "pages/web/index",
 			"style": {
-				"navigationBarTitleText": "官网",
+				"navigationBarTitleText": "手机导航",
 				"enablePullDownRefresh": true
 			}
 		},
 		{
 			"path": "pages/local/index",
 			"style": {
-				"navigationBarTitleText": "本地收藏",
+				"navigationBarTitleText": "专题与书库",
 				"enablePullDownRefresh": true
 			}
 		},
 		{
 			"path": "pages/ok/index",
 			"style": {
-				"navigationBarTitleText": "聊天",
+				"navigationBarTitleText": "聊天室",
 				"enablePullDownRefresh": true
 			}
 		},
 		{
 			"path": "pages/exe/index",
 			"style": {
-				"navigationBarTitleText": "单机应用",
+				"navigationBarTitleText": "应用软件与游戏",
 				"enablePullDownRefresh": true
 			}
 		},
@@ -40,6 +40,9 @@
 			"path": "components/bar/bar"
 		},
 		{
+			"path": "components/base/base"
+		},
+		{
 			"path": "components/list/list"
 		},
 		{
@@ -50,6 +53,21 @@
 		},
 		{
 			"path": "components/show/show"
+		},
+		{
+			"path": "pages/web/main"
+		},
+		{
+			"path": "pages/local/main"
+		},
+		{
+			"path": "pages/exe/main"
+		},
+		{
+			"path": "pages/user/main"
+		},
+		{
+			"path": "pages/ok/main"
 		}
 	],
 	"globalStyle": {
@@ -67,19 +85,19 @@
 				"pagePath": "pages/web/index",
 				"iconPath": "static/ico/ico-web.png",
 				"selectedIconPath": "static/ico/ico-web-cur.png",
-				"text": "官网"
+				"text": "网址"
 			},
 			{
 				"pagePath": "pages/local/index",
 				"iconPath": "static/ico/ico-local.png",
 				"selectedIconPath": "static/ico/ico-local-cur.png",
-				"text": "本地"
+				"text": "专题"
 			},
 			{
 				"pagePath": "pages/ok/index",
 				"iconPath": "static/ico/ico-ok.png",
 				"selectedIconPath": "static/ico/ico-ok-cur.png",
-				"text": "聊天"
+				"text": "聊吧"
 			},
 			{
 				"pagePath": "pages/exe/index",
@@ -91,7 +109,7 @@
 				"pagePath": "pages/user/index",
 				"iconPath": "static/ico/ico-user.png",
 				"selectedIconPath": "static/ico/ico-user-cur.png",
-				"text": "用户"
+				"text": "我的"
 			}
 		]
 	}

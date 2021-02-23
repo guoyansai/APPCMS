@@ -2,62 +2,62 @@
 	<view class="index-user">
 		<view class="s-user-edit" v-if="userType === 'edit'">
 			<view class="s-user-top">
-				<view class="s-user-ic"><img :src="dataUser.ic" /></view>
+				<view class="s-user-ic"><img :src="datauser.ic" /></view>
 				<view class="s-user-tt">
-					{{ dataUser.tt }}
-					<view class="s-user-to">{{ dataUser.to }}</view>
+					{{ datauser.tt }}
+					<view class="s-user-to">{{ datauser.to }}</view>
 				</view>
 			</view>
-			<view class="s-user-li">性别：{{ dataUser.sx === 1 ? '男' : '女' }}</view>
+			<view class="s-user-li">性别：{{ datauser.sx === 1 ? '男' : '女' }}</view>
 			<view class="s-user-li">
 				生日：
-				<input type="text" v-model="dataUser.cd" />
+				<input type="text" v-model="datauser.cd" />
 			</view>
 			<view class="s-user-li">
 				电话：
-				<input type="text" v-model="dataUser.dh" />
+				<input type="text" v-model="datauser.dh" />
 			</view>
 			<view class="s-user-li">
 				现居：
-				<input type="text" v-model="dataUser.jx" />
+				<input type="text" v-model="datauser.jx" />
 				<view class="s-user-lis">
 					老家：
-					<input type="text" v-model="dataUser.jj" />
+					<input type="text" v-model="datauser.jj" />
 				</view>
 			</view>
 			<view class="s-user-li">
 				学历：
-				<input type="text" v-model="dataUser.zl" />
+				<input type="text" v-model="datauser.zl" />
 				<view class="s-user-lis">
 					学校：
-					<input type="text" v-model="dataUser.zx" />
+					<input type="text" v-model="datauser.zx" />
 				</view>
 			</view>
 			<view class="s-user-li">
 				职业：
-				<input type="text" v-model="dataUser.zy" />
+				<input type="text" v-model="datauser.zy" />
 				<view class="s-user-lis">
 					经验：
-					<input type="text" v-model="dataUser.zj" />
+					<input type="text" v-model="datauser.zj" />
 					年
 				</view>
 			</view>
 			<view class="s-user-li">
 				公司：
-				<input type="text" v-model="dataUser.zg" />
+				<input type="text" v-model="datauser.zg" />
 			</view>
 			<view class="s-user-li">
 				月薪：
-				<input type="text" v-model="dataUser.zs" />
+				<input type="text" v-model="datauser.zs" />
 				元/月
 			</view>
 			<view class="s-user-li">
 				爱好：
-				<input type="text" v-model="dataUser.lv" />
+				<input type="text" v-model="datauser.lv" />
 			</view>
 			<view class="s-user-lim">
 				备注：
-				<textarea @blur="bindTextAreaBlur" v-model="dataUser.co" auto-height />
+				<textarea @blur="bindTextAreaBlur" v-model="datauser.co" auto-height />
 			</view>
 			<view class="s-user-button">
 				<button class="mini-btn" type="primary" size="mini" @tap="showUser()">更新信息</button>
@@ -66,35 +66,35 @@
 		</view>
 		<view class="s-user-show" v-else>
 			<view class="s-user-top">
-				<view class="s-user-ic"><img :src="dataUser.ic" /></view>
+				<view class="s-user-ic"><img :src="datauser.ic" /></view>
 				<view class="s-user-tt">
-					{{ dataUser.tt }}
-					<view class="s-user-to">{{ dataUser.to }}</view>
+					{{ datauser.tt }}
+					<view class="s-user-to">{{ datauser.to }}</view>
 				</view>
 			</view>
-			<view class="s-user-li">性别：{{ dataUser.sx === 1 ? '男' : '女' }}</view>
-			<view class="s-user-li">生日：{{ dataUser.cd }}</view>
-			<view class="s-user-li">电话：{{ dataUser.dh }}</view>
+			<view class="s-user-li">性别：{{ datauser.sx === 1 ? '男' : '女' }}</view>
+			<view class="s-user-li">生日：{{ datauser.cd }}</view>
+			<view class="s-user-li">电话：{{ datauser.dh }}</view>
 			<view class="s-user-li">
-				现居：{{ dataUser.jx }}
-				<view class="s-user-lis">老家：{{ dataUser.jj }}</view>
+				现居：{{ datauser.jx }}
+				<view class="s-user-lis">老家：{{ datauser.jj }}</view>
 			</view>
 			<view class="s-user-li">
-				学历：{{ dataUser.zl }}
-				<view class="s-user-lis">学校：{{ dataUser.zx }}</view>
+				学历：{{ datauser.zl }}
+				<view class="s-user-lis">学校：{{ datauser.zx }}</view>
 			</view>
 			<view class="s-user-li">
-				职业：{{ dataUser.zy }}
-				<view class="s-user-lis">经验：{{ dataUser.zj }}年</view>
+				职业：{{ datauser.zy }}
+				<view class="s-user-lis">经验：{{ datauser.zj }}年</view>
 			</view>
-			<view class="s-user-li">公司：{{ dataUser.zg }}</view>
-			<view class="s-user-li">月薪：{{ dataUser.zs }} 元/月</view>
-			<view class="s-user-li">爱好：{{ dataUser.lv }}</view>
-			<view class="s-user-lim">备注：{{ dataUser.co }}</view>
+			<view class="s-user-li">公司：{{ datauser.zg }}</view>
+			<view class="s-user-li">月薪：{{ datauser.zs }} 元/月</view>
+			<view class="s-user-li">爱好：{{ datauser.lv }}</view>
+			<view class="s-user-lim">备注：{{ datauser.co }}</view>
 			<view class="s-user-button"><button class="mini-btn" type="primary" size="mini" @tap="editUser()">编辑信息</button></view>
 		</view>
 		<view class="s-user-des">注意：以上信息仅限本地使用。</view>
-		<view class="s-user-des">App Ver {{ $config.ver }} & Data Ver {{ dataLi.indexObj.ver }}</view>
+		<view class="s-user-des">App Ver {{ $config.ver }}</view>
 	</view>
 </template>
 

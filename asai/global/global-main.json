@@ -1,28 +1,14 @@
 {
 	"netWork": "",
-	"dataLi": {
-		"viewSn": "",
+	"datalocal": {
 		"listObj": {},
-		"listSn": "",
-		"indexObj": {},
-		"topBar": {
-			"index": {},
-			"list": {},
-			"show": {},
-			"tool": {}
-		},
-		"listPage": {
-			"pc": 1,
-			"ps": 10,
-			"pa": 0
-		},
-		"listSearch": {
-			"dr": {},
-			"ds": [],
-			"cl": "",
-			"ty": 0,
-			"ss": ""
-		}
+		"indexObj": {}
 	},
-	"dataUser": {}
+	"dataweb": {
+		"indexObj": {}
+	},
+	"dataexe": {
+		"indexObj": {}
+	},
+	"datauser": {}
 }

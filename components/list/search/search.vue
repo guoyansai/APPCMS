@@ -2,7 +2,7 @@
 	<view class="s-search">
 		<view class="s-search-picker">
 			<picker @change="bindPickerChange" :value="index" :range="item.ds" range-key="tt">
-				<view class="uni-input">{{ item.ds.length&&item.ds[item.ty].tt }}</view>
+				<view class="uni-input">{{ item.ds.length && item.ds[item.ty].tt }}</view>
 			</picker>
 		</view>
 		<view class="s-search-input"><input placeholder="请输入关键词" v-model="item.ss" /></view>
@@ -17,7 +17,7 @@ export default {
 			type: Object,
 			required: false
 		},
-		li: {
+		gli: {
 			type: String,
 			required: false
 		}
@@ -40,8 +40,8 @@ export default {
 				if (this.item.ty) {
 					vUrl = vUrl + '&ty=' + this.item.ty;
 				}
-				if (this.li) {
-					vUrl = vUrl + '&li=' + this.li;
+				if (this.gli) {
+					vUrl = vUrl + '&li=' + this.gli;
 				}
 				this.go(vUrl);
 			}

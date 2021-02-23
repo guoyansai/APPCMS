@@ -26,7 +26,7 @@ export default {
 				};
 			}
 		},
-		li: {
+		gli: {
 			type: String,
 			required: false
 		}
@@ -60,8 +60,8 @@ export default {
 	methods: {
 		setPage(vPage) {
 			let vUrl = '?page=' + vPage;
-			if (this.li) {
-				vUrl = vUrl + '&li=' + this.li;
+			if (this.gli) {
+				vUrl = vUrl + '&li=' + this.gli;
 			}
 			if (this.psearch.ss) {
 				vUrl = vUrl + '&ss=' + this.psearch.ss;

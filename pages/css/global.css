@@ -15,7 +15,6 @@
 	padding-right: 28rpx;
 	padding-top: 12rpx;
 	padding-bottom: 12rpx;
-	font-size: small;
 }
 
 .s-bar-li {
@@ -159,19 +158,21 @@
 }
 
 .s-pic .s-list-img {
+	width: 202rpx;
 	height: 202rpx;
+	overflow: hidden;
 	display: flex;
 	align-items: center;
+	border-radius: 28rpx;
 	border-style: solid;
 	border-width: 1rpx;
 	border-color: #D8D8D8;
-	border-radius: 28rpx;
 	background-color: #F5F5F5;
 }
 
 .s-pic .s-list-img img {
-	max-width: 100%;
-	max-height: 100%;
+	min-width: 100%;
+	min-height: 100%;
 }
 
 .s-pic .s-list-tit {

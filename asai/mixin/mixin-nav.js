@@ -3,9 +3,8 @@ export default {
 		go(vUrl) {
 			let goStr = vUrl;
 			if (goStr && goStr.startsWith('?')) {
-				goStr = 'index' + goStr;
+				goStr = 'main' + goStr;
 			}
-			console.log(666.666, goStr)
 			uni.navigateTo({
 				url: goStr,
 				animationType: 'fade-in',

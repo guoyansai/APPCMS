@@ -4,8 +4,8 @@
 		"app": {
 			"startWith": "asai_",
 			"endWith": "_data",
-			"web": "guoyansaiweb",
-			"local": "guoyansailocal"
+			"index": "guoyansaiindex",
+			"list": "guoyansailist"
 		}
 	},
 	"baseURL": "/dev",

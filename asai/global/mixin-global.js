@@ -8,20 +8,36 @@ export default {
 				this.$global.netWork = newVal;
 			}
 		},
-		dataLi: {
+		datalocal: {
 			get() {
-				return this.$global.dataLi;
+				return this.$global.datalocal;
 			},
 			set(newVal) {
-				Object.assign(this.$global.dataLi, newVal);
+				Object.assign(this.$global.datalocal, newVal);
 			}
 		},
-		dataUser: {
+		dataweb: {
 			get() {
-				return this.$global.dataUser;
+				return this.$global.dataweb;
 			},
 			set(newVal) {
-				Object.assign(this.$global.dataUser, newVal);
+				Object.assign(this.$global.dataweb, newVal);
+			}
+		},
+		dataexe: {
+			get() {
+				return this.$global.dataexe;
+			},
+			set(newVal) {
+				Object.assign(this.$global.dataexe, newVal);
+			}
+		},
+		datauser: {
+			get() {
+				return this.$global.datauser;
+			},
+			set(newVal) {
+				Object.assign(this.$global.datauser, newVal);
 			}
 		},
 	}
