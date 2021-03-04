@@ -23,14 +23,16 @@ export default {
 		},
 		saiLocalDel(vLi, ixSn) {
 			try {
-				uni.removeStorageSync(this.saiLocalName(vLi, ixSn));
+				uni.removeStorageSync(vLi, ixSn, this.saiLocalName(vLi, ixSn));
 			} catch (e) {
 				console.error(666.4042, e);
 			}
 		},
 		saiLocalName(vLi, ixSn) {
-			let vName = ixSn + vLi;
-			if (!vLi) {
+			let vName = ixSn;
+			if (vLi && vLi !== 'undefined') {
+				vName += vLi;
+			} else {
 				vName = ixSn + this.$config.name.app.local;
 			}
 			return this.$config.name.app.startWith + vName + this.$config.name.app.endWith;

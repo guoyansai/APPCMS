@@ -40,5 +40,13 @@ export default {
 				Object.assign(this.$global.datauser, newVal);
 			}
 		},
+		clearOn: {
+			get() {
+				return this.$global.clearOn;
+			},
+			set(newVal) {
+				this.$global.clearOn = newVal;
+			}
+		},
 	}
 }

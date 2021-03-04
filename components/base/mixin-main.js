@@ -57,16 +57,16 @@ export default {
 			if (e.sn || e.ur) {
 				this.viewSn = '';
 				this.viewUr = '';
-				if (e.sn) {
-					this.viewSn = e.sn;
-					this.setTopBar('show', {
-						tt: '详情',
-						ur: ''
-					});
-				} else {
+				if (e.ur) {
 					this.viewUr = e.ur;
 					this.setTopBar('show', {
 						tt: '网页',
+						ur: ''
+					});
+				} else {
+					this.viewSn = e.sn;
+					this.setTopBar('show', {
+						tt: '详情',
 						ur: ''
 					});
 				}
@@ -80,18 +80,17 @@ export default {
 			}
 		},
 		initData(vLi) {
-			if (!this.indexObj.ver) {
-				this.initApi('');
-			} else {
-				this.initIndex(this.indexObj);
-			}
 			if (vLi) {
 				this.listSn = vLi;
-				if (!this.listObj.ver) {
-					this.initApi(vLi);
-				} else {
+				if (this.listObj.ver) {
 					this.initList(this.listObj, vLi);
+				} else {
+					this.initApi(vLi);
 				}
+			} else if (this.indexObj.ver) {
+				this.initIndex(this.indexObj);
+			} else {
+				this.initApi('');
 			}
 		},
 		saiUrl(vLi, vType) {
@@ -169,8 +168,8 @@ export default {
 			if (this.saiCheckData(vData) && !vData.li.pg.pa) {
 				vData.li.dr = Object.keys(vData.li.dt);
 				vData.li.pg.pa = vData.li.dr.length;
-				this.listPage.pa = vData.li.pg.pa;
 			}
+			this.listPage.pa = vData.li.pg.pa;
 		},
 		initSearch(vData) {
 			if (this.saiCheckData(vData) && vData.db.ds.length) {
@@ -205,44 +204,17 @@ export default {
 				}
 			}
 		},
-		saiSearch(vData, e) {
-			if (this.saiCheckData(vData)) {
-				if (e.ty) {
-					this.listSearch.ty = +e.ty;
-				} else {
-					this.listSearch.ty = 0;
-				}
-				if (e.ss) {
-					this.listSearch.ss = e.ss;
-					let curKey = this.saiSearchKey(vData);
-					if (!this.listSearch.dr[curKey]) {
-						let curLists = [];
-						Object.keys(vData.li.dt).forEach(key => {
-							if (this.saiSearchCheck(vData, this.listSearch, key)) {
-								curLists.push(key);
-							}
-						});
-						this.listSearch.dr = {};
-						this.listSearch.dr[curKey] = curLists;
-						this.listPage.pa = curLists.length;
-					}
-				} else {
-					this.listSearch.ss = '';
-					this.listSearch.dr = {};
-					this.listPage.pa = vData.li.pg.pa;
-				}
-			}
-		},
 		clear() {
 			this.saiLocalClear(this.indexSn);
-			this['data' + this.indexSn].listObj = {};
-			this['data' + this.indexSn].indexObj = {};
+			this.$global['data' + this.indexSn].listObj = {};
+			this.$global['data' + this.indexSn].indexObj = {};
 			this.listObj = {};
 			this.indexObj = {};
 			this.viewUr = '';
 			this.viewSn = '';
 			this.listSn = '';
 			this.indexSn = '';
+			this.go('index');
 		},
 	}
 };

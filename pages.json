@@ -4,36 +4,31 @@
 		{
 			"path": "pages/web/index",
 			"style": {
-				"navigationBarTitleText": "手机导航",
-				"enablePullDownRefresh": true
+				"navigationBarTitleText": "手机导航"
 			}
 		},
 		{
 			"path": "pages/local/index",
 			"style": {
-				"navigationBarTitleText": "专题与书库",
-				"enablePullDownRefresh": true
+				"navigationBarTitleText": "专题与书库"
 			}
 		},
 		{
 			"path": "pages/ok/index",
 			"style": {
-				"navigationBarTitleText": "聊天室",
-				"enablePullDownRefresh": true
+				"navigationBarTitleText": "聊天室"
 			}
 		},
 		{
 			"path": "pages/exe/index",
 			"style": {
-				"navigationBarTitleText": "应用软件与游戏",
-				"enablePullDownRefresh": true
+				"navigationBarTitleText": "应用软件与游戏"
 			}
 		},
 		{
 			"path": "pages/user/index",
 			"style": {
-				"navigationBarTitleText": "用户中心",
-				"enablePullDownRefresh": true
+				"navigationBarTitleText": "用户中心"
 			}
 		},
 		{
@@ -69,7 +64,16 @@
 		{
 			"path": "pages/ok/main"
 		}
-	],
+	    ,{
+            "path" : "components/list/type/type",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "909.pub",

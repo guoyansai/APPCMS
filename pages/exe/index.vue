@@ -1,17 +1,21 @@
 <template>
-	<g-base :ref="sn"></g-base>
+	<view :class="'index-' + indexSn">
+		<bar :item="topBar"></bar>
+		<web-view v-if="viewUr" :src="viewUr"></web-view>
+		<show v-else-if="viewSn" :gsn="viewSn" :gli="listSn" :gindex="indexObj" :glist="listObj"></show>
+		<list v-else-if="listSn" :ppage="listPage" :psearch="listSearch" :gli="listSn" :gindex="indexObj" :glist="listObj"></list>
+		<list v-else :ppage="listPage" :psearch="listSearch" :gindex="indexObj" :glist="listObj"></list>
+		<view v-if="clearOn"><button @tap="clear()">清空</button></view>
+	</view>
 </template>
+
 <script>
+import mixinMain from '../../components/base/mixin-main.js';
+
 export default {
-	data() {
-		return {
-			sn: 'exe'
-		};
-	},
+	mixins: [mixinMain],
 	onLoad(e) {
-		this.$nextTick(function() {
-			this.$refs[this.sn].initStart(e, this.sn);
-		});
+		this.initStart(e, 'exe');
 	}
 };
 </script>

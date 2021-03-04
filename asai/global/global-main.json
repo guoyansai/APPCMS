@@ -10,5 +10,6 @@
 	"dataexe": {
 		"indexObj": {}
 	},
-	"datauser": {}
+	"datauser": {},
+	"clearOn": true
 }

@@ -2,35 +2,45 @@
 	<view class="s-area" v-if="item && item.ver">
 		<search :item="psearch" :gli="gli"></search>
 		<page :item="ppage" :psearch="psearch" :gli="gli"></page>
-		<view v-if="item.ty && item.ty.li.startsWith('list')" class="s-list">
-			<view :class="{ 's-listmin-li': item.ty.li === 'listmin' }" class="s-list-li" v-for="(value, key, index) in curList" :key="key + index" @tap="viewGo(value, key)">
-				<view class="s-list-img" v-if="listVal('ic', value)"><img :src="listVal('ic', value)" /></view>
-				<view class="s-list-txt">
-					<view class="s-list-tit">{{ listVal('tt', value) }}</view>
-					<view class="s-list-tag">时间: {{ listVal('cd', value) }} 作者: {{ listVal('us', value) }}</view>
-					<view class="s-list-des">{{ saiHtml2Txt(listVal('co', value), 200) }}</view>
+		<view v-if="item.ty && item.ty.li.startsWith('pic')" class="s-pic">
+			<view class="s-list-li" v-for="(showItem, key, index) in curList" :key="key + index" @tap="viewGo(showItem, key)">
+				<view class="s-v-img">
+					<img v-if="viewImg(item, showItem)" :src="viewImg(item, showItem)" />
+					<text v-if="viewDes(item, showItem)">{{ viewDes(item, showItem) }}</text>
 				</view>
+				<view class="s-v-tit" v-if="viewTit(item, showItem)">{{ viewTit(item, showItem) }}</view>
 			</view>
 		</view>
-		<view v-else :class="'s-' + item.ty.li">
-			<view class="s-list-li" v-for="(value, key, index) in curList" :key="key + index" @tap="viewGo(value, key)">
-				<view class="s-list-img">
-					<img v-if="listVal('ic', value)" :src="listVal('ic', value)" />
-					<text>{{ listVal('tt', value) }}</text>
+		<view v-else-if="item.ty && item.ty.li.startsWith('txt')" class="s-txt">
+			<view class="s-list-li" v-for="(showItem, key, index) in curList" :key="key + index" @tap="viewGo(showItem, key)" :title="viewTit(item, showItem)">
+				{{ viewTit(item, showItem) }}
+			</view>
+		</view>
+		<view v-else class="s-list">
+			<view :class="{ 's-listmin-li': item.ty.li === 'listmin' }" class="s-list-li" v-for="(showItem, key, index) in curList" :key="key + index" @tap="viewGo(showItem, key)">
+				<view class="s-v-img" v-if="viewImg(item, showItem)"><img :src="viewImg(item, showItem)" /></view>
+				<view class="s-list-txt">
+					<view class="s-v-tit" v-if="viewTit(item, showItem)">{{ viewTit(item, showItem) }}</view>
+					<view class="s-v-tag" v-if="viewTag(item, showItem)">{{ viewTag(item, showItem) }}</view>
+					<view class="s-v-des" v-if="viewDes(item, showItem)">{{ saiHtml2Txt(viewDes(item, showItem), 200) }}</view>
 				</view>
-				<view class="s-list-tit">{{ listVal('tt', value) }}</view>
 			</view>
 		</view>
 		<page :item="ppage" :psearch="psearch" :gli="gli"></page>
+		<type :item="item"></type>
 	</view>
 </template>
 
 <script>
 import page from './page/page.vue';
 import search from './search/search.vue';
+import type from './type/type.vue';
+import mixinComponent from '../base/mixin-component.js';
+import mixinMainList from '../base/mixin-main-list.js';
 
 export default {
-	components: { page, search },
+	mixins: [mixinComponent, mixinMainList],
+	components: { page, search, type },
 	props: {
 		gindex: {
 			type: Object,
@@ -118,11 +128,10 @@ export default {
 	methods: {
 		viewGo(vValue, vSn) {
 			let vUrl = this.curView(vSn);
-			let vUr = this.listVal('ur', vValue);
+			let vUr = this.getValue(this.item, vValue, 'ur');
 			if (vUr) {
-				vUrl += '&ur=' + vUr;
+				vUrl = vUrl + '&ur=' + vUr;
 			}
-			console.log(666.888, vUrl, vValue);
 			this.go(vUrl);
 		},
 		curView(vSn) {
@@ -131,10 +140,6 @@ export default {
 			} else {
 				return '?li=' + vSn;
 			}
-		},
-		listVal(vKey, vValue) {
-			let vIndex = this.item.db.dn.findIndex(itemVal => itemVal === vKey);
-			return vValue && vValue[vIndex];
 		}
 	}
 };

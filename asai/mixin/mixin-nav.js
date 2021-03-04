@@ -10,7 +10,7 @@ export default {
 				animationType: 'fade-in',
 				animationDuration: 200,
 				success: (res) => {
-					console.log(666.300, res)
+					
 				},
 				fail: (err) => {
 					console.log(666.321, err)

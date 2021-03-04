@@ -3,7 +3,7 @@
 	"sn": "web",
 	"ver": "20210208",
 	"ty": {
-		"li": "list",
+		"li": "txt",
 		"co": "show"
 	},
 	"db": {
@@ -36,7 +36,7 @@
 	"li": {
 		"pg": {
 			"pc": 1,
-			"ps": 2,
+			"ps": 12,
 			"pa": 0
 		},
 		"dr": [],
@@ -44,11 +44,11 @@
 			"shici": [
 				"1",
 				"shici",
-				"webwebwebwebweb",
+				"阿赛采集器",
 				"该款防爆服采取全面防护，<b>掷的大型二踢脚所产生的冲</b>击波，破片，热浪，全套由防爆头盔，<span style=\"color:#dd0000\">高性能防护面罩</span>，排爆上衣，排爆裤，颈部，胸部，腹部护板，排爆鞋套组成。",
 				"static/img/mo.jpg",
 				"asai",
-				"http://eesai.com/i.htm",
+				"http://780.pub/_caiji/",
 				"20210102",
 				"20210108",
 				"1"

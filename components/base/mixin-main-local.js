@@ -12,14 +12,14 @@ export default {
 			let localArr = this.asaiLocalArr(ixSn);
 			if (localArr.length) {
 				localArr.forEach(key => {
-					this.saiLocalDel(key);
+					this.saiLocalDel(key, ixSn);
 				});
 			}
 			this.saiLocalDel(this.$config.name.app.web, ixSn);
 			this.saiLocalDel(this.$config.name.app.local, ixSn);
 		},
 		asaiLocalArr(ixSn) {
-			return this.saiLocalRead(this.$config.name.app.local, ixSn) || []
+			return this.saiLocalRead(this.$config.name.app.local, ixSn).li.dr || []
 		},
 		saiLocalAuto(vVal, vLi, ixSn) {
 			if (vVal && vVal.ver && this.$config.auto.saveLocal) {

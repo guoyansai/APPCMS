@@ -5,11 +5,12 @@
 			"startWith": "asai_",
 			"endWith": "_data",
 			"index": "guoyansaiindex",
-			"list": "guoyansailist"
+			"list": "guoyansailist",
+			"local": "guoyansailocal"
 		}
 	},
-	"baseURL": "/dev",
-	"baseURL1": "http://asaiapp.asai.cc/data",
+	"baseURL1": "/dev",
+	"baseURL": "http://asaiapp.asai.cc/data",
 	"auto": {
 		"saveLocal": true
 	}
