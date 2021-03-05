@@ -58,7 +58,6 @@ export default {
 					}
 				} else if (bugType === 'clear') {
 					this.clearOn = !this.clearOn;
-					debugger
 				}
 			}
 		}

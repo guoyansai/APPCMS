@@ -7,6 +7,10 @@
 	margin: 0 auto 0 auto;
 }
 
+.s-tap {
+	color: #336699;
+}
+
 /*------------bar*/
 .s-bar {
 	background-color: #F5F5F5;
@@ -69,7 +73,7 @@
 	overflow: hidden;
 }
 
-.s-list .s-v-img img {
+.s-list .s-v-img-show {
 	width: 100%;
 }
 
@@ -112,7 +116,7 @@
 	overflow: hidden;
 }
 
-.s-listmin-li .s-v-img img {
+.s-listmin-li .s-v-img-show {
 	height: 100%;
 	width: auto;
 }
@@ -176,7 +180,7 @@
 	box-shadow: 2rpx 2rpx 18rpx #F5F5F5;
 }
 
-.s-pic .s-v-img img {
+.s-pic .s-v-img-show {
 	max-width: 200rpx;
 	max-height: 200rpx;
 }
@@ -297,7 +301,7 @@
 	text-align: center;
 }
 
-.s-show .s-v-img img {
+.s-show .s-v-img-show {
 	max-width: 100%;
 }
 
@@ -311,6 +315,8 @@
 
 /*------------user*/
 .s-fast {
+	margin-top: 28rpx;
+	margin-bottom: 28rpx;
 	display: flex;
 	justify-content: space-between;
 }

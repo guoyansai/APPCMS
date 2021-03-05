@@ -3,12 +3,12 @@
 		<view class="s-show">
 			<view class="s-v-tit" v-if="viewTit(item, showItem)">{{ viewTit(item, showItem) }}</view>
 			<view class="s-v-tag" v-if="viewTag(item, showItem)">{{ viewTag(item, showItem) }}</view>
-			<view class="s-v-img" v-if="viewImg(item, showItem)"><img :src="viewImg(item, showItem)" /></view>
+			<view class="s-v-img" v-if="viewImg(item, showItem)"><img class="s-v-img-show" :src="viewImg(item, showItem)" /></view>
 			<rich-text class="s-v-des" v-if="viewDes(item, showItem)" :nodes="viewDes(item, showItem)"></rich-text>
 		</view>
 		<view class="s-fast">
-			<view class="s-fast-left" v-if="fastData.left.url" @tap="go(fastData.left.url)">{{ fastData.left.tit }}</view>
-			<view class="s-fast-right" v-if="fastData.right.url" @tap="go(fastData.right.url)">{{ fastData.right.tit }}</view>
+			<view class="s-fast-left s-tap" v-if="fastData.left.url" @tap="go(fastData.left.url)">{{ fastData.left.tit }}</view>
+			<view class="s-fast-right s-tap" v-if="fastData.right.url" @tap="go(fastData.right.url)">{{ fastData.right.tit }}</view>
 		</view>
 	</view>
 </template>
