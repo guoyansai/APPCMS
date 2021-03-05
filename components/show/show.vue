@@ -8,7 +8,9 @@
 		</view>
 		<view class="s-fast">
 			<view class="s-fast-left s-tap" v-if="fastData.left.url" @tap="go(fastData.left.url)">{{ fastData.left.tit }}</view>
+			<view class="s-fast-left" v-else>...</view>
 			<view class="s-fast-right s-tap" v-if="fastData.right.url" @tap="go(fastData.right.url)">{{ fastData.right.tit }}</view>
+			<view class="s-fast-left" v-else>...</view>
 		</view>
 	</view>
 </template>
@@ -18,44 +20,6 @@ import mixinComponent from '../base/mixin-component.js';
 
 export default {
 	mixins: [mixinComponent],
-	props: {
-		gindex: {
-			type: Object,
-			required: false,
-			default: function() {
-				return {
-					tt: '',
-					db: {},
-					li: {
-						pg: {},
-						dt: {}
-					}
-				};
-			}
-		},
-		glist: {
-			type: Object,
-			required: false,
-			default: function() {
-				return {
-					tt: '',
-					db: {},
-					li: {
-						pg: {},
-						dt: {}
-					}
-				};
-			}
-		},
-		gli: {
-			type: String,
-			required: false
-		},
-		gsn: {
-			type: String,
-			required: false
-		}
-	},
 	data() {
 		return {
 			fastData: {
@@ -71,13 +35,6 @@ export default {
 		};
 	},
 	computed: {
-		item() {
-			if (this.gli) {
-				return this.glist;
-			} else {
-				return this.gindex;
-			}
-		},
 		showItem() {
 			if (this.gsn) {
 				return this.item.li.dt[this.gsn];
@@ -87,26 +44,22 @@ export default {
 		}
 	},
 	created() {
-		let newUrl = '?';
-		if (this.gli) {
-			newUrl += 'li=' + this.gli + '&';
-		}
 		if (this.gsn) {
 			let vSn = '';
-			let vArr = this.item.li.dr;
+			let vArr = this.allList;
 			let vLen = vArr.length;
 			let vIndex = vArr.findIndex(itemVal => itemVal === this.gsn);
 			if (vIndex > 0) {
 				vSn = vArr[vIndex - 1];
 				if (vSn) {
-					this.fastData.left.url = newUrl + 'sn=' + vSn;
+					this.fastData.left.url = this.curView(vSn);
 					this.fastData.left.tit = this.viewTit(this.item, this.item.li.dt[vSn]);
 				}
 			}
 			if (vIndex + 1 < vLen) {
 				vSn = vArr[vIndex + 1];
 				if (vSn) {
-					this.fastData.right.url = newUrl + 'sn=' + vSn;
+					this.fastData.right.url = this.curView(vSn);
 					this.fastData.right.tit = this.viewTit(this.item, this.item.li.dt[vSn]);
 				}
 			}

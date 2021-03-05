@@ -53,5 +53,22 @@ export default {
 				}
 			}
 		},
+		saiPage(vData, e) {
+			if (this.saiCheckData(vData)) {
+				if (e.page) {
+					this.listPage.pc = e.page;
+				} else {
+					this.listPage.pc = 1;
+				}
+				if (e.pagesize) {
+					this.listPage.ps = e.pagesize;
+				} else {
+					this.listPage.ps = vData.li.pg.ps;
+				}
+				if (!this.listPage.pa && vData.li.pg.pa) {
+					this.listPage.pa = vData.li.pg.pa;
+				}
+			}
+		},
 	},
 };

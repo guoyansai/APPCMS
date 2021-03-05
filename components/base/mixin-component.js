@@ -1,5 +1,106 @@
+import mixinMainList from './mixin-main-list.js';
+
 export default {
+	mixins: [mixinMainList],
+	props: {
+		gindex: {
+			type: Object,
+			required: false,
+			default: function() {
+				return {
+					tt: '',
+					db: {},
+					li: {
+						pg: {},
+						dt: {}
+					}
+				};
+			}
+		},
+		glist: {
+			type: Object,
+			required: false,
+			default: function() {
+				return {
+					tt: '',
+					db: {},
+					li: {
+						pg: {},
+						dt: {}
+					}
+				};
+			}
+		},
+		ppage: {
+			type: Object,
+			required: false,
+			default: function() {
+				return {
+					pc: 1,
+					ps: 10,
+					pa: 0
+				};
+			}
+		},
+		psearch: {
+			type: Object,
+			required: false,
+			default: function() {
+				return {
+					dr: {},
+					ds: [],
+					cl: '',
+					ty: 0,
+					ss: ''
+				};
+			}
+		},
+		gli: {
+			type: String,
+			required: false
+		},
+		gsn: {
+			type: String,
+			required: false
+		}
+	},
+	data() {
+		return {
+			allList: []
+		};
+	},
+	computed: {
+		item() {
+			if (this.gli) {
+				return this.glist;
+			} else {
+				return this.gindex;
+			}
+		},
+	},
+	created() {
+		if (this.psearch.ss) {
+			this.allList = this.psearch.dr[this.saiSearchKey(this.item)] || [];
+		} else {
+			this.allList = this.item.li.dr;
+		}
+	},
 	methods: {
+		curView(vSn) {
+			let vUrl = '';
+			if (this.gli) {
+				vUrl = '?sn=' + vSn + '&li=' + this.gli;
+			} else {
+				vUrl = '?li=' + vSn;
+			}
+			if (this.psearch.ss) {
+				vUrl += '&ss=' + this.psearch.ss;
+			}
+			if (this.psearch.ty) {
+				vUrl += '&ty=' + this.psearch.ty;
+			}
+			return vUrl;
+		},
 		viewTit(listItem, showItem) {
 			// const dnArr = [
 			// 	"id",
