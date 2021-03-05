@@ -99,19 +99,24 @@ export default {
 			required: false
 		}
 	},
+	data() {
+		return {
+			allList: []
+		};
+	},
+	created() {
+		if (this.psearch.ss) {
+			this.allList = this.psearch.dr[this.saiSearchKey(this.item)] || [];
+		} else {
+			this.allList = this.item.li.dr;
+		}
+	},
 	computed: {
 		item() {
 			if (this.gli) {
 				return this.glist;
 			} else {
 				return this.gindex;
-			}
-		},
-		allList() {
-			if (this.psearch.ss) {
-				return this.psearch.dr[this.saiSearchKey(this.item)] || [];
-			} else {
-				return this.item.li.dr;
 			}
 		},
 		curList() {
