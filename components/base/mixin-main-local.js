@@ -1,7 +1,7 @@
 export default {
 	methods: {
 		saiLocalInit(vLi, ixSn) {
-			let vVal = this.saiLocalRead(vLi, ixSn);
+			let vVal = this.saiLocalRead(vLi, ixSn, '');
 			if (vVal && vVal.ver) {
 				return vVal;
 			} else {
@@ -12,24 +12,25 @@ export default {
 			let localArr = this.asaiLocalArr(ixSn);
 			if (localArr.length) {
 				localArr.forEach(key => {
-					this.saiLocalDel(key, ixSn);
+					this.saiLocalDel(key, ixSn, 'list');
 				});
 			}
-			this.saiLocalDel(this.$config.name.app.web, ixSn);
-			this.saiLocalDel(this.$config.name.app.local, ixSn);
+			this.saiLocalDel('', ixSn, 'index');
+			this.saiLocalDel('', ixSn, 'local');
 		},
 		asaiLocalArr(ixSn) {
-			return this.saiLocalRead(this.$config.name.app.local, ixSn).li.dr || []
+			let vVal = this.saiLocalRead('', ixSn, 'local') || [];
+			return vVal;
 		},
 		saiLocalAuto(vVal, vLi, ixSn) {
 			if (vVal && vVal.ver && this.$config.auto.saveLocal) {
-				this.saiLocalSave(vVal, vLi, ixSn);
+				this.saiLocalSave(vVal, vLi, ixSn, '');
 				this.saiLocalRefresh(vLi, ixSn, 0);
 			}
 		},
 		saiLocalRefresh(vLi, ixSn, vType) {
 			if (vLi) {
-				let vVal = this.asaiLocalArr(ixSn) || [];
+				let vVal = this.asaiLocalArr(ixSn);
 				if (vType) {
 					vVal = vVal.filter(val => val !== vLi);
 				} else {
@@ -37,7 +38,7 @@ export default {
 						vVal.push(vLi);
 					}
 				}
-				this.saiLocalSave(vVal, this.$config.name.app.local, ixSn);
+				this.saiLocalSave(vVal, '', ixSn, 'local');
 			}
 		},
 	},

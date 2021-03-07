@@ -1,5 +1,5 @@
 <template>
-	<view :class="'index-' + indexSn">
+	<view :class="'index-' + indexSn" v-if="canShow">
 		<bar :item="topBar"></bar>
 		<web-view v-if="viewUr" :src="viewUr"></web-view>
 		<show v-else-if="viewSn" :gsn="viewSn" :gli="listSn" :psearch="listSearch" :gindex="indexObj" :glist="listObj"></show>
@@ -16,6 +16,9 @@ export default {
 	mixins: [mixinMain],
 	onLoad(e) {
 		this.initStart(e, 'exe');
+	},
+	onNavigationBarButtonTap(e) {
+		console.log('success');
 	}
 };
 </script>

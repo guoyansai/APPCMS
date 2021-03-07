@@ -9,8 +9,8 @@
 			"local": "guoyansailocal"
 		}
 	},
-	"baseURL1": "/dev",
-	"baseURL": "http://asaiapp.asai.cc/data",
+	"baseURL": "/dev",
+	"baseURL1": "http://asaiapp.asai.cc/data",
 	"auto": {
 		"saveLocal": true
 	}

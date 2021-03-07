@@ -4,31 +4,46 @@
 		{
 			"path": "pages/web/index",
 			"style": {
-				"navigationBarTitleText": "手机导航"
+				"navigationBarTitleText": "手机导航",
+				"app-plus": {
+					"titleNView": false
+				}
 			}
 		},
 		{
 			"path": "pages/local/index",
 			"style": {
-				"navigationBarTitleText": "专题与书库"
+				"navigationBarTitleText": "专题与书库",
+				"app-plus": {
+					"titleNView": false
+				}
 			}
 		},
 		{
 			"path": "pages/ok/index",
 			"style": {
-				"navigationBarTitleText": "聊天室"
+				"navigationBarTitleText": "聊天室",
+				"app-plus": {
+					"titleNView": false
+				}
 			}
 		},
 		{
 			"path": "pages/exe/index",
 			"style": {
-				"navigationBarTitleText": "应用软件与游戏"
+				"navigationBarTitleText": "应用软件与游戏",
+				"app-plus": {
+					"titleNView": false
+				}
 			}
 		},
 		{
 			"path": "pages/user/index",
 			"style": {
-				"navigationBarTitleText": "用户中心"
+				"navigationBarTitleText": "用户中心",
+				"app-plus": {
+					"titleNView": false
+				}
 			}
 		},
 		{
@@ -50,35 +65,78 @@
 			"path": "components/show/show"
 		},
 		{
-			"path": "pages/web/main"
+			"path": "pages/web/main",
+			"style": {
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"type": "home"
+						}]
+					}
+				}
+			}
 		},
 		{
-			"path": "pages/local/main"
+			"path": "pages/local/main",
+			"style": {
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"type": "home"
+						}]
+					}
+				}
+			}
 		},
 		{
-			"path": "pages/exe/main"
+			"path": "pages/exe/main",
+			"style": {
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"type": "home"
+						}]
+					}
+				}
+			}
 		},
 		{
-			"path": "pages/user/main"
+			"path": "pages/user/main",
+			"style": {
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"type": "home"
+						}]
+					}
+				}
+			}
 		},
 		{
 			"path": "pages/ok/main"
+		},
+		{
+			"path": "components/list/type/type"
 		}
-	    ,{
-            "path" : "components/list/type/type",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "909.pub",
 		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"backgroundColor": "#F8F8F8",
+		"backgroundColorTop": "#F4F5F6",
+		"backgroundColorBottom": "#F4F5F6",
+		"mp-360": {
+			"navigationStyle": "custom"
+		},
+		"h5": {
+			"maxWidth": 1190,
+			"navigationBarTextStyle": "black",
+			"navigationBarBackgroundColor": "#F1F1F1"
+		},
+		"enablePullDownRefresh": false,
+		"pageOrientation": "auto",
+		"animationType": "zoom-fade-out"
 	},
 	"tabBar": {
 		"borderStyle": "#D8D8D8",

@@ -1,6 +1,6 @@
 <template>
-	<view v-if="checkObj(item.index)" class="s-bar">
-		<view class="s-bar-li s-tap" @tap="go(item.index.ur)">{{ item.index.tt }}</view>
+	<view v-if="checkObj(item.list)" class="s-bar">
+		<view class="s-bar-li s-tap" open-type="switchTab" @tap="goTab()">{{ item.index.tt }}</view>
 		<view v-if="checkObj(item.list)" class="s-bar-li s-tap" @tap="go(item.list.ur)">{{ item.list.tt }}</view>
 		<view v-if="checkObj(item.show)" class="s-bar-li s-tap" @tap="go(item.show.ur)">{{ item.show.tt }}</view>
 		<view v-if="checkObj(item.tool)" class="s-bar-lis s-tap" @tap="go(item.tool.ur)">{{ item.tool.tt }}</view>

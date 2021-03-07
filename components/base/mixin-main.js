@@ -32,6 +32,18 @@ export default {
 			}
 		};
 	},
+	computed: {
+		canShow() {
+			if (this.listSn) {
+				return this.listObj.ver;
+			} else {
+				return this.indexObj.ver;
+			}
+		}
+	},
+	onNavigationBarButtonTap(e) {
+		this.goTab();
+	},
 	methods: {
 		initStart(e, sn) {
 			this.indexSn = sn || 'local';
@@ -117,6 +129,7 @@ export default {
 			uni.request({
 				url: vUrl,
 				success: res => {
+					console.log(666.444, res)
 					let vVal = res.data;
 					if (vVal && vVal.ver) {
 						this.saiLocalAuto(vVal, vLi, this.indexSn);

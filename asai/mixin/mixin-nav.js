@@ -7,10 +7,10 @@ export default {
 			}
 			uni.navigateTo({
 				url: goStr,
-				animationType: 'fade-in',
+				animationType: 'zoom-fade-out',
 				animationDuration: 200,
 				success: (res) => {
-					
+
 				},
 				fail: (err) => {
 					console.log(666.321, err)
@@ -20,10 +20,13 @@ export default {
 					uni.reLaunch({
 						url: goStr
 					});
-					uni.switchTab({
-						url: goStr
-					});
 				}
+			});
+		},
+		goTab() {
+			console.log(666.234)
+			uni.switchTab({
+				url: 'index'
 			});
 		},
 		getDir() {
