@@ -5,28 +5,32 @@ export default {
 			if (goStr && goStr.startsWith('?')) {
 				goStr = 'main' + goStr;
 			}
-			uni.navigateTo({
-				url: goStr,
-				animationType: 'zoom-fade-out',
-				animationDuration: 200,
-				success: (res) => {
-
-				},
-				fail: (err) => {
-					console.log(666.321, err)
-					uni.redirectTo({
-						url: goStr
-					});
-					uni.reLaunch({
-						url: goStr
-					});
-				}
-			});
+			this.goUrl(goStr);
 		},
 		goTab() {
-			console.log(666.234)
-			uni.switchTab({
-				url: 'index'
+			this.goUrl('index');
+		},
+		goUrl(goStr) {
+			uni.navigateTo({
+				url: goStr,
+				animationType: 'fade-in',
+				animationDuration: 180,
+				fail: (err) => {
+					uni.reLaunch({
+						url: goStr,
+						fail: (err2) => {
+							uni.switchTab({
+								url: goStr,
+								fail: (err3) => {
+									uni.redirectTo({
+										url: goStr
+									});
+								}
+							});
+
+						}
+					});
+				}
 			});
 		},
 		getDir() {
@@ -37,5 +41,10 @@ export default {
 			}
 			return curRoute;
 		},
+		doClearOn() {
+			this.bomb = {
+				clearOn: !this.bomb.clearOn
+			};
+		}
 	},
 };

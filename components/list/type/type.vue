@@ -1,18 +1,14 @@
 <template>
 	<view class="s-type">
-		<view class="s-type-area">
-			<view class="s-type-picker">
+		<view class="s-fast">
+			<view class="s-fast-left">
 				<picker @change="bindPickerChange" :value="index" :range="typeArr" range-key="label">
-					<view class="uni-input">{{ typeArr[index].label }}</view>
+					<view :key="'ctype' + index" class="uni-input">{{ typeArr[index].label }}</view>
 				</picker>
 			</view>
-			<view class="s-type-bugger">
-				<picker @change="bindPickerChangeBugArr" :value="indexBug" :range="bugArr" range-key="label">
-					<view class="uni-input">{{ bugArr[indexBug].label }}</view>
-				</picker>
-			</view>
+			<view class="s-fast-right"><input class="s-fast-input" type="text" placeholder-style="text-align:right" placeholder="输入命令" v-model="cmdStr" @confirm="doCmd" /></view>
 		</view>
-		<view v-if="listStr">{{ listStr }}</view>
+		<view v-if="reportStr">{{ reportStr }}</view>
 	</view>
 </template>
 
@@ -33,10 +29,9 @@ export default {
 				{ label: '图片列表', value: 'pic' },
 				{ label: '文本列表', value: 'txt' }
 			],
-			bugArr: [{ label: '默认调试', value: '' }, { label: '显示list', value: 'list' }, { label: '清空缓存', value: 'clear' }],
 			index: 0,
-			indexBug: 0,
-			listStr: ''
+			reportStr: '',
+			cmdStr: ''
 		};
 	},
 	methods: {
@@ -46,18 +41,15 @@ export default {
 				this.item.ty.li = this.typeArr[this.index].value;
 			}
 		},
-		bindPickerChangeBugArr(e) {
+		doCmd(e) {
 			if (e.detail.value) {
-				this.index = e.detail.value;
-				let bugType = this.bugArr[this.index].value;
-				if (bugType === 'list') {
-					if (this.listStr) {
-						this.listStr = '';
-					} else {
-						this.listStr = JSON.stringify(this.item);
-					}
+				let bugType = e.detail.value;
+				if (bugType === 'show') {
+					this.reportStr = JSON.stringify(this.item);
+				} else if (bugType === 'close') {
+					this.reportStr = '';
 				} else if (bugType === 'clear') {
-					this.clearOn = !this.clearOn;
+					uni.$emit('clear', 'doing');
 				}
 			}
 		}

@@ -4,46 +4,31 @@
 		{
 			"path": "pages/web/index",
 			"style": {
-				"navigationBarTitleText": "手机导航",
-				"app-plus": {
-					"titleNView": false
-				}
+				"navigationBarTitleText": "手机导航"
 			}
 		},
 		{
 			"path": "pages/local/index",
 			"style": {
-				"navigationBarTitleText": "专题与书库",
-				"app-plus": {
-					"titleNView": false
-				}
+				"navigationBarTitleText": "专题与书库"
 			}
 		},
 		{
 			"path": "pages/ok/index",
 			"style": {
-				"navigationBarTitleText": "聊天室",
-				"app-plus": {
-					"titleNView": false
-				}
+				"navigationBarTitleText": "聊天室"
 			}
 		},
 		{
 			"path": "pages/exe/index",
 			"style": {
-				"navigationBarTitleText": "应用软件与游戏",
-				"app-plus": {
-					"titleNView": false
-				}
+				"navigationBarTitleText": "应用软件与游戏"
 			}
 		},
 		{
 			"path": "pages/user/index",
 			"style": {
-				"navigationBarTitleText": "用户中心",
-				"app-plus": {
-					"titleNView": false
-				}
+				"navigationBarTitleText": "用户中心"
 			}
 		},
 		{
@@ -124,19 +109,9 @@
 		"navigationBarTitleText": "909.pub",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8",
-		"backgroundColorTop": "#F4F5F6",
-		"backgroundColorBottom": "#F4F5F6",
-		"mp-360": {
-			"navigationStyle": "custom"
-		},
-		"h5": {
-			"maxWidth": 1190,
-			"navigationBarTextStyle": "black",
-			"navigationBarBackgroundColor": "#F1F1F1"
-		},
-		"enablePullDownRefresh": false,
 		"pageOrientation": "auto",
-		"animationType": "zoom-fade-out"
+		"animationType": "fade-in",
+		"animationDuration": 120
 	},
 	"tabBar": {
 		"borderStyle": "#D8D8D8",

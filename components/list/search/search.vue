@@ -5,7 +5,7 @@
 				<view class="uni-input">{{ item.ds.length && item.ds[item.ty].tt }}</view>
 			</picker>
 		</view>
-		<view class="s-search-input"><input placeholder="请输入关键词" v-model="item.ss" /></view>
+		<view class="s-search-input"><input placeholder="请输入关键词" v-model="item.ss" @confirm="goSearch()" /></view>
 		<view class="s-search-button"><button class="mini-btn" type="primary" size="mini" @tap="goSearch()">搜索</button></view>
 	</view>
 </template>

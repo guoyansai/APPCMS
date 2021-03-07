@@ -218,13 +218,16 @@
 /*------------page*/
 .s-page {
 	cursor: pointer;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
 }
 
 .s-page-start,
 .s-page-end,
 .s-page-li,
-.s-page-cur {
-	display: inline;
+.s-page-cur,
+.s-page-input {
 	background-color: #F5F5F5;
 	color: #888888;
 	border-color: #D8D8D8;
@@ -234,8 +237,17 @@
 	padding-bottom: 3rpx;
 	padding-left: 6rpx;
 	padding-right: 6rpx;
+	margin-top: 5rpx;
+	margin-bottom: 5rpx;
 	margin-left: 1rpx;
 	margin-right: 1rpx;
+}
+
+.s-page-input {
+	margin-left: auto;
+	width: 68rpx;
+	text-align: center;
+	background-color: #FFFFFF;
 }
 
 .s-page-start {
@@ -335,6 +347,10 @@
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
+}
+
+.s-fast-input {
+	text-align: left;
 }
 
 /*------------user*/

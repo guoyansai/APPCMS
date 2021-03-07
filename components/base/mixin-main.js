@@ -34,12 +34,22 @@ export default {
 	},
 	computed: {
 		canShow() {
-			if (this.listSn) {
+			if (this.viewUr) {
+				return true;
+			} else if (this.listSn) {
 				return this.listObj.ver;
 			} else {
 				return this.indexObj.ver;
 			}
 		}
+	},
+	onLoad() {
+		uni.$on('clear', res => {
+			this.clear();
+		});
+	},
+	onUnload() {
+		uni.$off('clear');
 	},
 	onNavigationBarButtonTap(e) {
 		this.goTab();
@@ -65,25 +75,23 @@ export default {
 			this.init(e);
 		},
 		init(e) {
-			this.initData(e.li);
-			if (e.sn || e.ur) {
+			this.initData(e);
+			if (e.ur) {
 				this.viewSn = '';
+				this.viewUr = e.ur;
+				this.setTopBar('show', {
+					tt: '网页',
+					ur: ''
+				});
+			} else if (e.sn) {
 				this.viewUr = '';
-				if (e.ur) {
-					this.viewUr = e.ur;
-					this.setTopBar('show', {
-						tt: '网页',
-						ur: ''
-					});
-				} else {
-					this.viewSn = e.sn;
-					this.setTopBar('show', {
-						tt: '详情',
-						ur: ''
-					});
-				}
-				this.setTopBar('tool', {});
+				this.viewSn = e.sn;
+				this.setTopBar('show', {
+					tt: '详情',
+					ur: ''
+				});
 			}
+			this.setTopBar('tool', {});
 			if (e.li) {
 				this.saiPage(this.listObj, e);
 				this.saiSearch(this.listObj, e);
@@ -92,13 +100,15 @@ export default {
 				this.saiSearch(this.indexObj, e);
 			}
 		},
-		initData(vLi) {
-			if (vLi) {
-				this.listSn = vLi;
+		initData(e) {
+			if (e.ur) {
+
+			} else if (e.li) {
+				this.listSn = e.li;
 				if (this.listObj.ver) {
-					this.initList(this.listObj, vLi);
+					this.initList(this.listObj, this.listSn);
 				} else {
-					this.initApi(vLi);
+					this.initApi(this.listSn);
 				}
 			} else if (this.indexObj.ver) {
 				this.initIndex(this.indexObj);
@@ -129,7 +139,6 @@ export default {
 			uni.request({
 				url: vUrl,
 				success: res => {
-					console.log(666.444, res)
 					let vVal = res.data;
 					if (vVal && vVal.ver) {
 						this.saiLocalAuto(vVal, vLi, this.indexSn);
@@ -140,12 +149,7 @@ export default {
 							this.indexObj = vVal;
 							this.initIndex(this.indexObj);
 						}
-					} else {
-						console.log(666.10007, 'err');
 					}
-				},
-				fail: err => {
-					console.log(666.10006, err);
 				}
 			});
 		},
@@ -211,7 +215,7 @@ export default {
 			this.viewSn = '';
 			this.listSn = '';
 			this.indexSn = '';
-			this.go('index');
+			this.goTab();
 		},
 	}
 };

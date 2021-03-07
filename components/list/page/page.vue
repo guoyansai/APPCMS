@@ -3,6 +3,7 @@
 		<view class="s-page-start" v-if="pgl > 7 && pgc > 4" @tap="setPage(1)">1</view>
 		<view v-for="i in pgList" :key="'page' + i" :class="i + pgs - 1 === pgc ? 's-page-cur' : 's-page-li'" @tap="setPage(i + pgs - 1)">{{ i + pgs - 1 }}</view>
 		<view class="s-page-end" v-if="pgc + 3 < pgl" @tap="setPage(pgl)">{{ pgl }}</view>
+		<input class="s-page-input" type="text" placeholder="数量" :value="item.ps" @confirm="setPs" />
 	</view>
 </template>
 
@@ -58,7 +59,18 @@ export default {
 		}
 	},
 	methods: {
+		setPs(e) {
+			this.item.ps = e.detail.value;
+			let vUrl = this.getPageUrl(1);
+			if (this.item.ps) {
+				vUrl = vUrl + '&pagesize=' + this.item.ps;
+			}
+			this.go(vUrl);
+		},
 		setPage(vPage) {
+			this.go(this.getPageUrl(vPage));
+		},
+		getPageUrl(vPage) {
 			let vUrl = '?page=' + vPage;
 			if (this.gli) {
 				vUrl = vUrl + '&li=' + this.gli;
@@ -69,7 +81,7 @@ export default {
 			if (this.psearch.ty) {
 				vUrl = vUrl + '&ty=' + this.psearch.ty;
 			}
-			this.go(vUrl);
+			return vUrl;
 		}
 	}
 };

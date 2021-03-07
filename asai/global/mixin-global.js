@@ -40,12 +40,12 @@ export default {
 				Object.assign(this.$global.datauser, newVal);
 			}
 		},
-		clearOn: {
+		bomb: {
 			get() {
-				return this.$global.clearOn;
+				return this.$global.bomb;
 			},
 			set(newVal) {
-				this.$global.clearOn = newVal;
+				Object.assign(this.$global.bomb, newVal);
 			}
 		},
 	}

@@ -8,9 +8,9 @@
 		</view>
 		<view class="s-fast">
 			<view class="s-fast-left s-tap" v-if="fastData.left.url" @tap="go(fastData.left.url)">{{ fastData.left.tit }}</view>
-			<view class="s-fast-left" v-else>...</view>
+			<view class="s-fast-left" v-else>　</view>
 			<view class="s-fast-right s-tap" v-if="fastData.right.url" @tap="go(fastData.right.url)">{{ fastData.right.tit }}</view>
-			<view class="s-fast-left" v-else>...</view>
+			<view class="s-fast-left" v-else>　</view>
 		</view>
 	</view>
 </template>

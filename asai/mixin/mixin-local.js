@@ -9,7 +9,6 @@ export default {
 					return null;
 				}
 			} catch (e) {
-				console.error(666.4041, e);
 				return null;
 			}
 		},
@@ -18,14 +17,12 @@ export default {
 				let vStr = JSON.stringify(vVal);
 				uni.setStorageSync(this.saiLocalName(vLi, ixSn, vType), vStr);
 			} catch (e) {
-				console.error(666.4043, e);
 			}
 		},
 		saiLocalDel(vLi, ixSn, vType) {
 			try {
 				uni.removeStorageSync(this.saiLocalName(vLi, ixSn, vType));
 			} catch (e) {
-				console.error(666.4042, e);
 			}
 		},
 		saiLocalName(vLi, ixSn, vType = 'sai') {

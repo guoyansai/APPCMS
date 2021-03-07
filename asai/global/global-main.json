@@ -11,5 +11,7 @@
 		"indexObj": {}
 	},
 	"datauser": {},
-	"clearOn": true
+	"bomb": {
+		"clearOn": true
+	}
 }
