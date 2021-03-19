@@ -127,29 +127,17 @@ export default {
 			return this.getValue(listItem, showItem, 'co');
 		},
 		getValue(listItem, showItem, vKey) {
-			return this.getVal(listItem, showItem, vKey, 0);
+			return this.saiGetVal(listItem, showItem, vKey, 0);
 		},
 		getValArr(listItem, showItem, vArr, vType) {
 			let vVal = '';
 			vArr.forEach(val => {
-				let tempVal = this.getVal(listItem, showItem, val, vType);
+				let tempVal = this.saiGetVal(listItem, showItem, val, vType);
 				if (tempVal) {
 					vVal = vVal + tempVal + ' ';
 				}
 			});
 			return vVal;
-		},
-		getVal(listItem, showItem, vKey, vType = 0) {
-			let vIndex = listItem.db.dn.findIndex(itemVal => itemVal === vKey);
-			if (vIndex > -1 && showItem[vIndex]) {
-				if (vType === 1) {
-					return listItem.db.dc[vIndex] + '：' + showItem[vIndex];
-				} else {
-					return showItem[vIndex];
-				}
-			} else {
-				return '';
-			}
 		},
 	},
 };

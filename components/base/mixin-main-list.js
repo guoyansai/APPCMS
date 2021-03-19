@@ -70,5 +70,17 @@ export default {
 				}
 			}
 		},
+		saiGetVal(listItem, showItem, vKey, vType = 0) {
+			let vIndex = listItem.db.dn.findIndex(itemVal => itemVal === vKey);
+			if (vIndex > -1 && showItem[vIndex]) {
+				if (vType === 1) {
+					return listItem.db.dc[vIndex] + '：' + showItem[vIndex];
+				} else {
+					return showItem[vIndex];
+				}
+			} else {
+				return '';
+			}
+		},
 	},
 };

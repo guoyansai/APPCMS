@@ -69,23 +69,25 @@ export default {
 				this.indexSn = sn || 'local';
 				let Vli = e.li;
 				let gData = this['data' + this.indexSn];
+				this.initIndexObj(gData);
 				if (Vli) {
 					if (gData.listObj && gData.listObj.ver && gData.listObj.sn === Vli) {
 						this.listObj = gData.listObj;
 					} else {
 						gData.listObj = this.listObj = this.saiLocalInit(Vli, this.indexSn);
 					}
-				} else {
-					if (gData.indexObj && gData.indexObj.ver) {
-						this.indexObj = gData.indexObj;
-					} else {
-						gData.indexObj = this.indexObj = this.saiLocalInit('', this.indexSn);
-					}
 				}
 				this.init(e);
 			} catch (err) {
 				console.log(666.111, err);
 				this.goTab();
+			}
+		},
+		initIndexObj(gData) {
+			if (gData.indexObj && gData.indexObj.ver) {
+				this.indexObj = gData.indexObj;
+			} else {
+				gData.indexObj = this.indexObj = this.saiLocalInit('', this.indexSn);
 			}
 		},
 		init(e) {
@@ -115,31 +117,32 @@ export default {
 			}
 		},
 		initData(e) {
-			if (e.ur) {
-
-			} else if (e.li) {
-				this.listSn = e.li;
-				if (this.listObj.ver) {
-					this.initList(this.listObj, this.listSn);
-				} else {
-					this.initApi(this.listSn, this.indexObj);
-				}
+			this.listSn = e.li || '';
+			if (e.ur) {} else if (this.listSn) {
+				this.initLi();
 			} else if (this.indexObj.ver) {
 				this.initIndex(this.indexObj);
 			} else {
-				this.initApi('', {});
+				this.initApi(this.listSn, this.indexObj);
+			}
+		},
+		initLi() {
+			if (this.listObj.ver) {
+				this.initList(this.listObj, this.listSn);
+			} else {
+				this.initApi(this.listSn, this.indexObj);
 			}
 		},
 		initApi(vLi, listItem) {
-			if (vLi && listItem.li) {
+			if (vLi && listItem && listItem.li) {
 				let showItem = listItem.li.dt[vLi];
-				let vUr = this.getValue(listItem, showItem, 'ur');
+				let vUr = this.saiGetVal(listItem, showItem, 'ur');
 				if (vUr === '_') {
 					vUr = vUr + vLi;
 					this.apiData(vLi, vUr);
 				} else if (vUr.startsWith('_')) {
 					this.apiData(vLi, vUr);
-				} else if (!vUr.startsWith('http')) {
+				} else if (vUr.startsWith('http')) {
 
 				} else {
 					this.apiInit(vLi);
