@@ -9,8 +9,8 @@
 			"local": "guoyansailocal"
 		}
 	},
-	"baseURL": "/dev",
-	"baseURL1": "http://asaiapp.asai.cc/data",
+	"baseURL1": "/dev",
+	"baseURL": "http://asaiapp.asai.cc/data",
 	"auto": {
 		"saveLocal": true
 	},
@@ -19,5 +19,8 @@
 		"clear": 3000,
 		"refresh": 1000,
 		"api": 120000
+	},
+	"ids": {
+		"search": "asaiSearchDom"
 	}
 }

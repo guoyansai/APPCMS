@@ -1,6 +1,6 @@
 <template>
 	<view class="s-area">
-		<view class="s-show">
+		<view :id="$config.ids.search" class="s-show">
 			<view class="s-v-tit" v-if="viewTit(item, showItem)">{{ viewTit(item, showItem) }}</view>
 			<view class="s-v-tag" v-if="viewTag(item, showItem)">{{ viewTag(item, showItem) }}</view>
 			<view class="s-v-img" v-if="viewImg(item, showItem)"><img class="s-v-img-show" :src="viewImg(item, showItem)" /></view>

@@ -1,5 +1,8 @@
 import mixinMainList from './mixin-main-list.js';
 import mixinMainLocal from './mixin-main-local.js';
+import {
+	SearchColor
+} from '../../asai/js/search-color.js';
 
 export default {
 	mixins: [mixinMainList, mixinMainLocal],
@@ -53,6 +56,11 @@ export default {
 	},
 	onUnload() {
 		uni.$off('clear');
+	},
+	mounted() {
+		if (this.listSearch.ss) {
+			SearchColor(this.listSearch.ss, document.getElementById(this.$config.ids.search));
+		}
 	},
 	onNavigationBarButtonTap(e) {
 		this.goTab();
@@ -285,6 +293,13 @@ export default {
 				title: '正在清理...'
 			});
 			this.saiLocalClear(this.indexSn);
+			// this.listObj = {};
+			// this.indexObj = {};
+
+			// this.indexSn = '';
+			// this.listSn = '';
+			// this.viewSn = '';
+			// this.viewUr = '';
 			clearTimeout(this.Timer);
 			this.Timer = setTimeout(() => {
 				this.loadClose();

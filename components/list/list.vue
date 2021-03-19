@@ -2,7 +2,7 @@
 	<view class="s-area" v-if="item && item.ver">
 		<search :item="psearch" :gli="gli"></search>
 		<page :item="ppage" :psearch="psearch" :gli="gli"></page>
-		<view v-if="item.ty && item.ty.li.startsWith('pic')" class="s-pic">
+		<view :id="$config.ids.search" v-if="item.ty && item.ty.li.startsWith('pic')" class="s-pic">
 			<view class="s-list-li" v-for="(showItem, key, index) in curList" :key="index" @tap="viewGo(showItem, key)">
 				<view class="s-v-img">
 					<img class="s-v-img-show" v-if="viewImg(item, showItem)" :src="viewImg(item, showItem)" />
@@ -17,7 +17,7 @@
 				{{ viewTit(item, showItem) }}
 			</view>
 		</view>
-		<view v-else class="s-list">
+		<view :id="$config.ids.search" v-else class="s-list">
 			<view :class="{ 's-listmin-li': item.ty.li === 'listmin' }" class="s-list-li"
 				v-for="(showItem, key, index) in curList" :key="index" @tap="viewGo(showItem, key)">
 				<view class="s-v-img" v-if="viewImg(item, showItem)"><img class="s-v-img-show"
