@@ -1,4 +1,4 @@
-import ConfigMain from '../../data/config/config-main.json'
+import ConfigMain from '../../config/main/config-main.json'
 
 export default {
 	...ConfigMain,

@@ -5,6 +5,9 @@ export default {
 	mixins: [mixinMainList, mixinMainLocal],
 	data() {
 		return {
+			Timer: null,
+			Loader: false,
+
 			listObj: {},
 			indexObj: {},
 
@@ -54,25 +57,36 @@ export default {
 	onNavigationBarButtonTap(e) {
 		this.goTab();
 	},
+	onPullDownRefresh() {
+		this.goFresh();
+		setTimeout(function() {
+			uni.stopPullDownRefresh();
+		}, this.$config.time.refresh);
+	},
 	methods: {
 		initStart(e, sn) {
-			this.indexSn = sn || 'local';
-			let Vli = e.li;
-			let gData = this['data' + this.indexSn];
-			if (Vli) {
-				if (gData.listObj && gData.listObj.ver && gData.listObj.sn === Vli) {
-					this.listObj = gData.listObj;
+			try {
+				this.indexSn = sn || 'local';
+				let Vli = e.li;
+				let gData = this['data' + this.indexSn];
+				if (Vli) {
+					if (gData.listObj && gData.listObj.ver && gData.listObj.sn === Vli) {
+						this.listObj = gData.listObj;
+					} else {
+						gData.listObj = this.listObj = this.saiLocalInit(Vli, this.indexSn);
+					}
 				} else {
-					gData.listObj = this.listObj = this.saiLocalInit(Vli, this.indexSn);
+					if (gData.indexObj && gData.indexObj.ver) {
+						this.indexObj = gData.indexObj;
+					} else {
+						gData.indexObj = this.indexObj = this.saiLocalInit('', this.indexSn);
+					}
 				}
-			} else {
-				if (gData.indexObj && gData.indexObj.ver) {
-					this.indexObj = gData.indexObj;
-				} else {
-					gData.indexObj = this.indexObj = this.saiLocalInit('', this.indexSn);
-				}
+				this.init(e);
+			} catch (err) {
+				console.log(666.111, err);
+				this.goTab();
 			}
-			this.init(e);
 		},
 		init(e) {
 			this.initData(e);
@@ -108,15 +122,33 @@ export default {
 				if (this.listObj.ver) {
 					this.initList(this.listObj, this.listSn);
 				} else {
-					this.initApi(this.listSn);
+					this.initApi(this.listSn, this.indexObj);
 				}
 			} else if (this.indexObj.ver) {
 				this.initIndex(this.indexObj);
 			} else {
-				this.initApi('');
+				this.initApi('', {});
 			}
 		},
-		saiUrl(vLi, vType) {
+		initApi(vLi, listItem) {
+			if (vLi && listItem.li) {
+				let showItem = listItem.li.dt[vLi];
+				let vUr = this.getValue(listItem, showItem, 'ur');
+				if (vUr === '_') {
+					vUr = vUr + vLi;
+					this.apiData(vLi, vUr);
+				} else if (vUr.startsWith('_')) {
+					this.apiData(vLi, vUr);
+				} else if (!vUr.startsWith('http')) {
+
+				} else {
+					this.apiInit(vLi);
+				}
+			} else {
+				this.apiInit(vLi);
+			}
+		},
+		liToUrl(vLi, vType) {
 			let vUrl = this.$config.baseURL + '/' + this.indexSn;
 			if (vLi) {
 				vUrl += '/' + vLi;
@@ -134,10 +166,47 @@ export default {
 			}
 			return vUrl + '?' + Date.now();
 		},
-		initApi(vLi) {
-			let vUrl = this.saiUrl(vLi, 0);
+		apiData(vLi, vUr) {
+			if (vLi) {
+				this.listObj = require('../../data/co/' + vUr + '/co.json');
+				this.initList(this.listObj, vLi);
+			} else {
+				this.indexObj = require('../../data/' + vUr + '/li.json');
+				this.initIndex(this.indexObj);
+			}
+		},
+		apiInit(vLi) {
+			let vUrl = this.liToUrl(vLi, 0);
+			if (this.$config.apiType === 'down') {
+				this.apiDown(vLi, vUrl);
+			} else {
+				this.apiHttp(vLi, vUrl);
+			}
+		},
+		apiDown(vLi, vUrl) {
+			this.loadShow({
+				title: '加载数据...'
+			});
+			uni.downloadFile({
+				url: vUrl,
+				timeout: this.$config.time.api,
+				success: (res) => {
+					if (res.statusCode === 200) {
+						this.apiHttp(vLi, res.tempFilePath);
+					}
+				},
+				complete: () => {
+					this.loadClose();
+				}
+			});
+		},
+		apiHttp(vLi, vUrl) {
+			this.loadShow({
+				title: '正在缓存...'
+			});
 			uni.request({
 				url: vUrl,
+				timeout: this.$config.time.api,
 				success: res => {
 					let vVal = res.data;
 					if (vVal && vVal.ver) {
@@ -150,7 +219,10 @@ export default {
 							this.initIndex(this.indexObj);
 						}
 					}
-				}
+				},
+				complete: () => {
+					this.loadClose();
+				},
 			});
 		},
 		setTopBar(vKey, vVal) {
@@ -206,16 +278,16 @@ export default {
 			}
 		},
 		clear() {
+			this.loadShow({
+				title: '正在清理...'
+			});
 			this.saiLocalClear(this.indexSn);
-			this.$global['data' + this.indexSn].listObj = {};
-			this.$global['data' + this.indexSn].indexObj = {};
-			this.listObj = {};
-			this.indexObj = {};
-			this.viewUr = '';
-			this.viewSn = '';
-			this.listSn = '';
-			this.indexSn = '';
-			this.goTab();
+			clearTimeout(this.Timer);
+			this.Timer = setTimeout(() => {
+				this.loadClose();
+				this.goTab();
+				clearTimeout(this.Timer);
+			}, this.$config.time.clear);
 		},
 	}
 };

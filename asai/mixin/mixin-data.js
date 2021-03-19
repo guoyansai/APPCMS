@@ -2,7 +2,7 @@ export default {
 	methods: {
 		saiUser(type) {
 			if (!this.checkObj(this.datauser || type === 1)) {
-				let tempData = require('../../data/template/user.json');
+				let tempData = require('../../config/template/user.json');
 				this.datauser = { ...tempData
 				};
 			}

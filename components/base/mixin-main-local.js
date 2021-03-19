@@ -19,7 +19,10 @@ export default {
 			this.saiLocalDel('', ixSn, 'local');
 		},
 		asaiLocalArr(ixSn) {
-			let vVal = this.saiLocalRead('', ixSn, 'local') || [];
+			let vVal = this.saiLocalRead('', ixSn, 'local');
+			if (!vVal || vVal.length || !JSON.stringify(vVal).startsWith('[')) {
+				vVal = [];
+			}
 			return vVal;
 		},
 		saiLocalAuto(vVal, vLi, ixSn) {

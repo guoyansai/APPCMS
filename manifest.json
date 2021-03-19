@@ -48,5 +48,8 @@
             "urlCheck" : true
         },
         "usingComponents" : true
+    },
+    "networkTimeout" : {
+        "request" : 120000 //多长时间算超时(单位毫秒)
     }
 }

@@ -1,5 +1,19 @@
 export default {
 	methods: {
+		loadShow(obj) {
+			if (!this.Loader) {
+				this.Loader = true;
+				uni.showLoading({
+					title: obj.title
+				});
+			}
+		},
+		loadClose() {
+			if (this.Loader) {
+				this.Loader = false;
+				uni.hideLoading();
+			}
+		},
 		go(vUrl) {
 			let goStr = vUrl;
 			if (goStr && goStr.startsWith('?')) {
@@ -7,8 +21,33 @@ export default {
 			}
 			this.goUrl(goStr);
 		},
-		goTab() {
-			this.goUrl('index');
+		goFresh() {
+			uni.reLaunch({
+				url: this.$route.fullPath,
+				fail: (err) => {
+					this.goTab();
+				}
+			});
+		},
+		goTab(vUrl = '') {
+			let urls = vUrl || 'index'
+			uni.switchTab({
+				url: urls,
+				fail: (err7) => {
+					uni.reLaunch({
+						url: this.$route.fullPath,
+						fail: (err8) => {
+							uni.switchTab({
+								url: this.$route.fullPath,
+								fail: (err9) => {
+									debugger
+									this.goTab();
+								}
+							});
+						}
+					});
+				}
+			});
 		},
 		goUrl(goStr) {
 			uni.navigateTo({
@@ -27,7 +66,6 @@ export default {
 									});
 								}
 							});
-
 						}
 					});
 				}

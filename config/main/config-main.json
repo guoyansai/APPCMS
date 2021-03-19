@@ -1,0 +1,23 @@
+{
+	"ver": "20210217",
+	"name": {
+		"app": {
+			"startsWith": "asai_",
+			"endsWith": "_data",
+			"index": "guoyansaiindex",
+			"list": "guoyansailist",
+			"local": "guoyansailocal"
+		}
+	},
+	"baseURL": "/dev",
+	"baseURL1": "http://asaiapp.asai.cc/data",
+	"auto": {
+		"saveLocal": true
+	},
+	"apiType": "list",
+	"time": {
+		"clear": 3000,
+		"refresh": 1000,
+		"api": 120000
+	}
+}

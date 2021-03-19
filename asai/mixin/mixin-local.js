@@ -16,14 +16,22 @@ export default {
 			try {
 				let vStr = JSON.stringify(vVal);
 				uni.setStorageSync(this.saiLocalName(vLi, ixSn, vType), vStr);
-			} catch (e) {
-			}
+			} catch (e) {}
 		},
 		saiLocalDel(vLi, ixSn, vType) {
 			try {
-				uni.removeStorageSync(this.saiLocalName(vLi, ixSn, vType));
-			} catch (e) {
-			}
+				// uni.removeStorageSync(this.saiLocalName(vLi, ixSn, vType));
+			} catch (e) {}
+			// let vKey = this.saiLocalName(vLi, ixSn, vType);
+			// this.loadShow({
+			// 	title: '正在清空' + vKey + '...'
+			// });
+			// return uni.removeStorage({
+			// 	key: vKey,
+			// 	success: res => {
+			// 		this.loadClose();
+			// 	}
+			// });
 		},
 		saiLocalName(vLi, ixSn, vType = 'sai') {
 			let tTy = vType;
@@ -36,7 +44,7 @@ export default {
 			}
 			let vName = this.$config.name.app[tTy];
 			vName = (ixSn || '') + vName + (vLi || '');
-			return this.$config.name.app.startWith + vName + this.$config.name.app.endWith;
+			return this.$config.name.app.startsWith + vName + this.$config.name.app.endsWith;
 		},
 	},
 };

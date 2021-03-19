@@ -9,12 +9,12 @@
 </template>
 
 <script>
-import mixinMain from '../../components/base/mixin-main.js';
+	import mixinMain from '../../components/base/mixin-main.js';
 
-export default {
-	mixins: [mixinMain],
-	onLoad(e) {
-		this.initStart(e, 'local');
-	}
-};
+	export default {
+		mixins: [mixinMain],
+		onLoad(e) {
+			this.initStart(e, 'local');
+		},
+	};
 </script>

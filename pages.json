@@ -1,6 +1,5 @@
 {
 	"pages": [
-		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
 			"path": "pages/web/index",
 			"style": {
@@ -30,24 +29,6 @@
 			"style": {
 				"navigationBarTitleText": "用户中心"
 			}
-		},
-		{
-			"path": "components/bar/bar"
-		},
-		{
-			"path": "components/base/base"
-		},
-		{
-			"path": "components/list/list"
-		},
-		{
-			"path": "components/list/page/page"
-		},
-		{
-			"path": "components/list/search/search"
-		},
-		{
-			"path": "components/show/show"
 		},
 		{
 			"path": "pages/web/main",
@@ -109,6 +90,7 @@
 		"navigationBarTitleText": "909.pub",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8",
+		"enablePullDownRefresh": true, 
 		"pageOrientation": "auto",
 		"animationType": "fade-in",
 		"animationDuration": 120

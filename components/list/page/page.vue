@@ -1,7 +1,7 @@
 <template>
 	<view class="s-page">
 		<view class="s-page-start" v-if="pgl > 7 && pgc > 4" @tap="setPage(1)">1</view>
-		<view v-for="i in pgList" :key="'page' + i" :class="i + pgs - 1 === pgc ? 's-page-cur' : 's-page-li'" @tap="setPage(i + pgs - 1)">{{ i + pgs - 1 }}</view>
+		<view v-for="i in pgList" :key="i" :class="i + pgs - 1 === pgc ? 's-page-cur' : 's-page-li'" @tap="setPage(i + pgs - 1)">{{ i + pgs - 1 }}</view>
 		<view class="s-page-end" v-if="pgc + 3 < pgl" @tap="setPage(pgl)">{{ pgl }}</view>
 		<input class="s-page-input" type="text" placeholder="数量" :value="item.ps" @confirm="setPs" />
 	</view>

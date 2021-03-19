@@ -91,56 +91,60 @@
 			<view class="s-user-li">月薪：{{ datauser.zs }} 元/月</view>
 			<view class="s-user-li">爱好：{{ datauser.lv }}</view>
 			<view class="s-user-lim">备注：{{ datauser.co }}</view>
-			<view class="s-user-button"><button class="mini-btn" type="primary" size="mini" @tap="editUser()">编辑信息</button></view>
+			<view class="s-user-button"><button class="mini-btn" type="primary" size="mini"
+					@tap="editUser()">编辑信息</button></view>
 		</view>
-		<view class="s-user-des">注意：以上信息仅限本地使用。</view>
-		<view class="s-user-des">App Ver {{ $config.ver }}</view>
+		<view class="s-user-des">
+			注意：以上信息仅限本地使用。
+		</view>
+		<view class="s-user-des">{{ jsonTemp }}App Ver {{ $config.ver }}</view>
 	</view>
 </template>
 
 <script>
-export default {
-	data() {
-		return {
-			userType: 'show',
-			user: {
-				ic: 'static/img/mo.jpg',
-				tt: '我的名字',
-				to: '我的签名是什么',
-				sx: 1,
-				cd: 19840718,
-				dh: 18800000000,
-				jx: '江苏南京',
-				jj: '江苏泗洪',
-				zl: '本科',
-				zx: '江苏师范大学',
-				zy: '自由职业者',
-				zj: 9,
-				zg: '阿赛工作室',
-				zs: 20000,
-				lv: '电视,漫画,游戏,写作',
-				co: '我的长文本内容编辑中。我的长文本内容编辑中。我的长文本内容编辑中。我的长文本内容编辑中。我的长文本内容编辑中。我的长文本内容编辑中。我的长文本内容编辑中。。。'
+	export default {
+		data() {
+			return {
+				jsonTemp: '',
+				userType: 'show',
+				user: {
+					ic: 'static/img/mo.jpg',
+					tt: '我的名字',
+					to: '我的签名是什么',
+					sx: 1,
+					cd: 19840718,
+					dh: 18800000000,
+					jx: '江苏南京',
+					jj: '江苏泗洪',
+					zl: '本科',
+					zx: '江苏师范大学',
+					zy: '自由职业者',
+					zj: 9,
+					zg: '阿赛工作室',
+					zs: 20000,
+					lv: '电视,漫画,游戏,写作',
+					co: '我的长文本内容编辑中。我的长文本内容编辑中。我的长文本内容编辑中。我的长文本内容编辑中。我的长文本内容编辑中。我的长文本内容编辑中。我的长文本内容编辑中。。。'
+				}
+			};
+		},
+		onLoad(e) {
+			this.saiUser(0);
+			if (e.type) {
+				this.userType = e.type;
 			}
-		};
-	},
-	onLoad(e) {
-		this.saiUser(0);
-		if (e.type) {
-			this.userType = e.type;
-		}
-	},
-	methods: {
-		editUser() {
-			this.go('?type=edit');
 		},
-		showUser() {
-			this.go('?type=show');
-		},
-		resetUser() {
-			this.saiUser(1);
+		methods: {
+			editUser() {
+				this.go('?type=edit');
+			},
+			showUser() {
+				this.go('?type=show');
+			},
+			resetUser() {
+				this.saiUser(1);
+			}
 		}
-	}
-};
+	};
 </script>
 
 <style></style>
