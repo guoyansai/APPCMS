@@ -325,6 +325,23 @@
 	line-height: 180%;
 }
 
+.s-show .s-v-more {
+	font-size: small;
+	line-height: 180%;
+	color: #9D9D9D;
+	padding-top: 12rpx;
+	padding-bottom: 22rpx;
+	padding-left: 22rpx;
+	padding-right: 22rpx;
+}
+
+.s-show .s-v-more>div {
+	background-color: #F9F9F9;
+	padding-top: 12rpx;
+	padding-bottom: 12rpx;
+	padding-left: 22rpx;
+	padding-right: 22rpx;
+}
 /*------------user*/
 .s-fast {
 	margin-top: 28rpx;

@@ -126,6 +126,9 @@ export default {
 		viewDes(listItem, showItem) {
 			return this.getValue(listItem, showItem, 'co');
 		},
+		viewMore(listItem, showItem) {
+			return this.getValue(listItem, showItem, 'mo');
+		},
 		getValue(listItem, showItem, vKey) {
 			return this.saiGetVal(listItem, showItem, vKey, 0);
 		},

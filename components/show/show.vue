@@ -5,6 +5,7 @@
 			<view class="s-v-tag" v-if="viewTag(item, showItem)">{{ viewTag(item, showItem) }}</view>
 			<view class="s-v-img" v-if="viewImg(item, showItem)"><img class="s-v-img-show" :src="viewImg(item, showItem)" /></view>
 			<rich-text class="s-v-des" v-if="viewDes(item, showItem)" :nodes="viewDes(item, showItem)"></rich-text>
+			<rich-text class="s-v-more" v-if="viewMore(item, showItem)" :nodes="viewMore(item, showItem)"></rich-text>
 		</view>
 		<view class="s-fast">
 			<view class="s-fast-left s-tap" v-if="fastData.left.url" @tap="go(fastData.left.url)">{{ fastData.left.tit }}</view>
