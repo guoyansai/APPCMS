@@ -65,24 +65,6 @@
 					}
 				}
 			}
-		},
-		{
-			"path": "pages/user/main",
-			"style": {
-				"app-plus": {
-					"titleNView": {
-						"buttons": [{
-							"type": "home"
-						}]
-					}
-				}
-			}
-		},
-		{
-			"path": "pages/ok/main"
-		},
-		{
-			"path": "components/list/type/type"
 		}
 	],
 	"globalStyle": {

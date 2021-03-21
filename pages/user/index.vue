@@ -135,10 +135,10 @@
 		},
 		methods: {
 			editUser() {
-				this.go('?type=edit');
+				this.go('index?type=edit');
 			},
 			showUser() {
-				this.go('?type=show');
+				this.go('index?type=show');
 			},
 			resetUser() {
 				this.saiUser(1);

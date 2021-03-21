@@ -40,7 +40,7 @@ export default {
 	},
 	computed: {
 		canShow() {
-			if (this.viewUr) {
+			if (this.viewUr && !this.viewUr.startsWith('_')) {
 				return true;
 			} else if (this.listSn) {
 				return this.listObj.ver;
@@ -67,7 +67,7 @@ export default {
 	},
 	onPullDownRefresh() {
 		this.goFresh();
-		setTimeout(function() {
+		setTimeout(() => {
 			uni.stopPullDownRefresh();
 		}, this.$config.time.refresh);
 	},
