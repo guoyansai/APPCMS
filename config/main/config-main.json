@@ -14,7 +14,7 @@
 	"auto": {
 		"saveLocal": true
 	},
-	"apiType": "list",
+	"apiType": "api",
 	"time": {
 		"clear": 3000,
 		"refresh": 1000,
