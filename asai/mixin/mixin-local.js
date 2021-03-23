@@ -20,18 +20,8 @@ export default {
 		},
 		saiLocalDel(vLi, ixSn, vType) {
 			try {
-				// uni.removeStorageSync(this.saiLocalName(vLi, ixSn, vType));
+				uni.removeStorageSync(this.saiLocalName(vLi, ixSn, vType));
 			} catch (e) {}
-			// let vKey = this.saiLocalName(vLi, ixSn, vType);
-			// this.loadShow({
-			// 	title: '正在清空' + vKey + '...'
-			// });
-			// return uni.removeStorage({
-			// 	key: vKey,
-			// 	success: res => {
-			// 		this.loadClose();
-			// 	}
-			// });
 		},
 		saiLocalName(vLi, ixSn, vType = 'sai') {
 			let tTy = vType;
