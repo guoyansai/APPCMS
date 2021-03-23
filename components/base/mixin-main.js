@@ -6,7 +6,7 @@ import {
 } from '../../asai/js/search-color.js';
 
 export default {
-	mixins: [mixinMainList, mixinMainLocal],
+	mixins: [mixinMainList, mixinMainLocal, mixinMainApi],
 	data() {
 		return {
 			Timer: null,
