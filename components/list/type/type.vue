@@ -36,6 +36,10 @@
 						value: 'list'
 					},
 					{
+						label: '全部显示',
+						value: 'listmax'
+					},
+					{
 						label: '小图列表',
 						value: 'listmin'
 					},

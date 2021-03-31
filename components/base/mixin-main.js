@@ -1,9 +1,6 @@
 import mixinMainList from './mixin-main-list.js';
 import mixinMainLocal from './mixin-main-local.js';
 import mixinMainApi from './mixin-main-api.js';
-import {
-	SearchColor
-} from '../../asai/js/search-color.js';
 
 export default {
 	mixins: [mixinMainList, mixinMainLocal, mixinMainApi],
@@ -58,11 +55,6 @@ export default {
 	onUnload() {
 		uni.$off('clear');
 	},
-	mounted() {
-		if (this.listSearch.ss) {
-			SearchColor(this.listSearch.ss, document.getElementById(this.$config.ids.search));
-		}
-	},
 	onNavigationBarButtonTap(e) {
 		this.goTab();
 	},
@@ -96,7 +88,8 @@ export default {
 			if (gData.indexObj && gData.indexObj.ver) {
 				this.indexObj = gData.indexObj;
 			} else {
-				gData.indexObj = this.indexObj = this.saiLocalInit('', this.indexSn);
+				gData.indexObj = this.saiLocalInit('', this.indexSn);
+				this.indexObj = this.saiLocalInit('', this.indexSn);
 			}
 		},
 		init(e) {
@@ -199,13 +192,13 @@ export default {
 				title: '正在清理...'
 			});
 			this.saiLocalClear(this.indexSn);
-			// this.listObj = {};
-			// this.indexObj = {};
+			this.listObj && (this.listObj = {});
+			this.indexObj && (this.indexObj = {});
 
-			// this.indexSn = '';
-			// this.listSn = '';
-			// this.viewSn = '';
-			// this.viewUr = '';
+			this.indexSn && (this.indexSn = '');
+			this.listSn && (this.listSn = '');
+			this.viewSn && (this.viewSn = '');
+			this.viewUr && (this.viewUr = '');
 			clearTimeout(this.Timer);
 			this.Timer = setTimeout(() => {
 				this.loadClose();

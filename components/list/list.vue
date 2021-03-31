@@ -4,9 +4,9 @@
 		<page :item="ppage" :psearch="psearch" :gli="gli"></page>
 		<view :id="$config.ids.search" v-if="item.ty && item.ty.li.startsWith('pic')" class="s-pic">
 			<view class="s-list-li" v-for="(showItem, key, index) in curList" :key="index" @tap="viewGo(showItem, key)">
-				<view class="s-v-img">
+				<view class="s-v-img" :style="ranColor()">
 					<img class="s-v-img-show" v-if="viewImg(item, showItem)" :src="viewImg(item, showItem)" />
-					<text v-if="viewDes(item, showItem)">{{ viewDes(item, showItem) }}</text>
+					<text v-else-if="viewDes(item, showItem)">{{ viewDes(item, showItem).substr(0,1) }}</text>
 				</view>
 				<view class="s-v-tit" v-if="viewTit(item, showItem)">{{ viewTit(item, showItem) }}</view>
 			</view>
@@ -25,7 +25,10 @@
 				<view class="s-list-txt">
 					<view class="s-v-tit" v-if="viewTit(item, showItem)">{{ viewTit(item, showItem) }}</view>
 					<view class="s-v-tag" v-if="viewTag(item, showItem)">{{ viewTag(item, showItem) }}</view>
-					<view class="s-v-des" v-if="viewDes(item, showItem)">{{ saiHtml2Txt(viewDes(item, showItem), 200) }}
+					<rich-text class="s-v-des" v-if="viewDes(item, showItem)&&item.ty.li === 'listmax'"
+						:nodes="viewDes(item, showItem)"></rich-text>
+					<view class="s-v-des" v-else-if="viewDes(item, showItem)">
+						{{ saiHtml2Txt(viewDes(item, showItem), 200) }}
 					</view>
 				</view>
 			</view>

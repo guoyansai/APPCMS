@@ -1,4 +1,7 @@
 import mixinMainList from './mixin-main-list.js';
+import {
+	RandomColor
+} from '../../asai/js/random-color.js';
 
 export default {
 	mixins: [mixinMainList],
@@ -86,6 +89,9 @@ export default {
 		}
 	},
 	methods: {
+		ranColor() {
+			return 'background-color:' + RandomColor() + '';
+		},
 		curView(vSn) {
 			let vUrl = '';
 			if (this.gli) {
@@ -102,12 +108,6 @@ export default {
 			return vUrl;
 		},
 		viewTit(listItem, showItem) {
-			// const dnArr = [
-			// 	"id",
-			// 	"sn",
-			// 	"tt",
-			// ];
-			// return this.getValArr(listItem, showItem, dnArr, 0);
 			return this.getValue(listItem, showItem, 'tt');
 		},
 		viewTag(listItem, showItem) {
@@ -123,11 +123,19 @@ export default {
 		viewImg(listItem, showItem) {
 			return this.getValue(listItem, showItem, 'ic');
 		},
+		richColor(val) {
+			let vVal = val;
+			if (this.psearch.ss) {
+				let aorekey = new RegExp('(' + this.psearch.ss + ')', 'gi');
+				vVal = vVal.replace(aorekey, '<span style="' + this.ranColor() + '">$1</span>');
+			}
+			return vVal;
+		},
 		viewDes(listItem, showItem) {
-			return this.getValue(listItem, showItem, 'co');
+			return this.richColor(this.getValue(listItem, showItem, 'co'));
 		},
 		viewMore(listItem, showItem) {
-			return this.getValue(listItem, showItem, 'mo');
+			return this.richColor(this.getValue(listItem, showItem, 'mo'));
 		},
 		getValue(listItem, showItem, vKey) {
 			return this.saiGetVal(listItem, showItem, vKey, 0);

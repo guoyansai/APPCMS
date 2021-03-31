@@ -157,7 +157,7 @@
 }
 
 .s-pic .s-list-li {
-	width: 202rpx;
+	width: 106rpx;
 	cursor: pointer;
 	margin-bottom: 28rpx;
 }
@@ -168,31 +168,28 @@
 }
 
 .s-pic .s-v-img {
-	width: 202rpx;
-	height: 202rpx;
+	width: 106rpx;
+	height: 106rpx;
 	overflow: hidden;
 	display: flex;
 	align-items: center;
-	border-radius: 28rpx;
-	border-style: solid;
-	border-width: 1rpx;
-	border-color: #D8D8D8;
-	box-shadow: 2rpx 2rpx 18rpx #F5F5F5;
+	justify-content: center;
+	font-weight: bold;
+	font-size: larger;
 }
 
 .s-pic .s-v-img-show {
-	max-width: 200rpx;
-	max-height: 200rpx;
+	max-width: 106rpx;
+	max-height: 106rpx;
 }
 
 .s-pic .s-v-tit {
 	padding-top: 12rpx;
-	padding-left: 12rpx;
-	padding-right: 12rpx;
 	text-align: center;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
+	font-size: smaller;
 }
 
 /*------------list------------txt*/
@@ -204,7 +201,8 @@
 }
 
 .s-txt .s-list-li {
-	width: 202rpx;
+	font-size: small;
+	width: 138rpx;
 	line-height: 28rpx;
 	height: 28rpx;
 	overflow: hidden;
