@@ -1,11 +1,12 @@
 export default {
 	methods: {
-		saiUser(type) {
-			if (!this.checkObj(this.datauser || type === 1)) {
-				let tempData = require('../../config/template/user.json');
-				this.datauser = { ...tempData
-				};
+		saiCheckObj(obj) {
+			if (typeof(obj) === 'object') {
+				for (let key in obj) {
+					return true;
+				}
 			}
+			return false;
 		},
 		saiHtml2Txt(vHtml, len) {
 			let vTxt = vHtml;

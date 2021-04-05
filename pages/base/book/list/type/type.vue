@@ -10,7 +10,6 @@
 				<picker @change="doCmd" :value="indexBug" :range="bugArr" range-key="label">
 					<view :key="indexBug" class="uni-input">{{ bugArr[indexBug].label }}</view>
 				</picker>
-				<!-- <input class="s-fast-input" type="text" placeholder-style="text-align:right" placeholder="输入命令" v-model="cmdStr" @confirm="doCmd" /> -->
 			</view>
 		</view>
 		<view v-if="reportStr">{{ reportStr }}</view>
@@ -64,9 +63,13 @@
 						value: 'close'
 					},
 					{
+						label: '网络状态',
+						value: 'checknet'
+					},
+					{
 						label: '清空数据',
 						value: 'clear'
-					}
+					},
 				],
 				index: 0,
 				indexBug: 0,
@@ -89,6 +92,8 @@
 						this.reportStr = JSON.stringify(this.item);
 					} else if (bugType === 'close') {
 						this.reportStr = '';
+					} else if (bugType === 'checknet') {
+						this.reportStr = this.$global.G.ver;
 					} else if (bugType === 'clear') {
 						this.indexBug = 0;
 						uni.$emit('clear', 'doing');

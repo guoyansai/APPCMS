@@ -1,6 +1,5 @@
 {
-	"pages": [
-		{
+	"pages": [{
 			"path": "pages/web/index",
 			"style": {
 				"navigationBarTitleText": "手机导航"
@@ -72,10 +71,17 @@
 		"navigationBarTitleText": "909.pub",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8",
-		"enablePullDownRefresh": true, 
 		"pageOrientation": "auto",
 		"animationType": "fade-in",
-		"animationDuration": 120
+		"animationDuration": 120,
+		"enablePullDownRefresh": true,
+		"app-plus": {
+			"pullToRefresh": {
+				"support": true,
+				"color": "#000000",
+				"style": "circle"
+			}
+		}
 	},
 	"tabBar": {
 		"borderStyle": "#D8D8D8",

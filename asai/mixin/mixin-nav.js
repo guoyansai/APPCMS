@@ -40,7 +40,6 @@ export default {
 							uni.switchTab({
 								url: this.$route.fullPath,
 								fail: (err9) => {
-									debugger
 									this.goTab();
 								}
 							});
@@ -80,8 +79,8 @@ export default {
 			return curRoute;
 		},
 		doClearOn() {
-			this.bomb = {
-				clearOn: !this.bomb.clearOn
+			this.$global.G.bomb = {
+				clearOn: !this.$global.G.bomb.clearOn
 			};
 		}
 	},

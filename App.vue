@@ -1,27 +1,33 @@
 <script>
-export default {
-	onLaunch: function() {
-		console.log('App Launch');
-		setTimeout(() => {
-			uni.setTabBarBadge({
-				index: 2,
-				text: '31'
+	export default {
+		onLaunch: function() {
+			console.log('App Launch');
+			setTimeout(() => {
+				uni.setTabBarBadge({
+					index: 2,
+					text: '31'
+				});
+				uni.showTabBarRedDot({
+					index: 4
+				});
+			}, 1000);
+		},
+		onShow: function() {
+			uni.request({
+				url: this.$config.baseURL + '/ver.json',
+				success: (res) => {
+					this.$global.G.ver = res.data.ver;
+				}
 			});
-			uni.showTabBarRedDot({
-				index: 4
-			});
-		}, 1000);
-	},
-	onShow: function() {
-		console.log('App Show');
-	},
-	onHide: function() {
-		console.log('App Hide');
-	}
-};
+			console.log('App Show');
+		},
+		onHide: function() {
+			console.log('App Hide');
+		}
+	};
 </script>
 
 <style>
-/*每个页面公共css */
-@import url('/pages/css/global.css');
+	/*每个页面公共css */
+	@import url('/pages/base/css/global.css');
 </style>

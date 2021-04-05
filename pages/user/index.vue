@@ -97,7 +97,7 @@
 		<view class="s-user-des">
 			注意：以上信息仅限本地使用。
 		</view>
-		<view class="s-user-des">{{ jsonTemp }}App Ver {{ $config.ver }}</view>
+		<view class="s-user-des">{{ jsonTemp }}App Ver {{ $config.ver }}(最新：{{ $global.G.ver }})</view>
 	</view>
 </template>
 
@@ -127,6 +127,16 @@
 				}
 			};
 		},
+		computed: {
+			datauser: {
+				get() {
+					return this.$global.G.datauser;
+				},
+				set(newVal) {
+					Object.assign(this.$global.G.datauser, newVal);
+				}
+			}
+		},
 		onLoad(e) {
 			this.saiUser(0);
 			if (e.type) {
@@ -134,6 +144,14 @@
 			}
 		},
 		methods: {
+			saiUser(type) {
+				if (!this.saiCheckObj(this.$global.G.datauser) || type === 1) {
+					let tempData = require('../../data/user.json');
+					this.$global.G.datauser = {
+						...tempData
+					};
+				}
+			},
 			editUser() {
 				this.go('index?type=edit');
 			},

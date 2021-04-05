@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import App from './App';
 
-import AsaiConfig from './asai/config/config.js';
-import AsaiGlobal from './asai/global/global.js';
+import Config from './asai/config/config.js';
+import Global from './asai/global/global.js';
 import AsaiMixin from './asai/mixin/mixin.js';
 
-Vue.prototype.$config = AsaiConfig;
-Vue.prototype.$global = AsaiGlobal;
+Vue.prototype.$config = Config;
+Vue.prototype.$global = Global;
 Vue.mixin(AsaiMixin);
 
 Vue.config.productionTip = false;

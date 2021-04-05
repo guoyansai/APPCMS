@@ -38,11 +38,11 @@ export default {
 		},
 		apiData(vLi, vUr) {
 			if (vLi) {
-				this.listObj = require('../../data/co/' + vUr + '/co.json');
-				this.initList(this.listObj, vLi);
+				this.listCur = require('../../../../data/co/' + vUr + '/co.json');
+				this.initList(vLi, this.listCur);
 			} else {
-				this.indexObj = require('../../data/' + vUr + '/li.json');
-				this.initIndex(this.indexObj);
+				this.indexCur = require('../../../../data/' + vUr + '/li.json');
+				this.initIndex(this.indexCur);
 			}
 		},
 		apiInit(vLi) {
@@ -82,11 +82,11 @@ export default {
 					if (vVal && vVal.ver) {
 						this.saiLocalAuto(vVal, vLi, this.indexSn);
 						if (vLi) {
-							this.listObj = vVal;
-							this.initList(this.listObj, vLi);
+							this.listCur = vVal;
+							this.initList(vLi, this.listCur);
 						} else {
-							this.indexObj = vVal;
-							this.initIndex(this.indexObj);
+							this.indexCur = vVal;
+							this.initIndex(this.indexCur);
 						}
 					}
 				},

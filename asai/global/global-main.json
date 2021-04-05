@@ -1,17 +1,21 @@
 {
-	"netWork": "",
-	"datalocal": {
-		"listObj": {},
-		"indexObj": {}
-	},
-	"dataweb": {
-		"indexObj": {}
-	},
-	"dataexe": {
-		"indexObj": {}
-	},
-	"datauser": {},
-	"bomb": {
-		"clearOn": true
+	"G": {
+		"ver": "",
+		"datalocal": {
+			"listObj": {},
+			"indexObj": {}
+		},
+		"dataweb": {
+			"listObj": {},
+			"indexObj": {}
+		},
+		"dataexe": {
+			"listObj": {},
+			"indexObj": {}
+		},
+		"datauser": {},
+		"bomb": {
+			"clearOn": true
+		}
 	}
 }

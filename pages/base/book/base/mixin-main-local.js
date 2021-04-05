@@ -1,7 +1,7 @@
 export default {
 	methods: {
 		saiLocalInit(vLi, ixSn) {
-			let vVal = this.saiLocalRead(vLi, ixSn, '');
+			let vVal = this.saiLocalRead(this.saiLocalName(vLi, ixSn, ''));
 			if (vVal && vVal.ver) {
 				return vVal;
 			} else {
@@ -12,14 +12,14 @@ export default {
 			let localArr = this.asaiLocalArr(ixSn);
 			if (localArr.length) {
 				localArr.forEach(key => {
-					this.saiLocalDel(key, ixSn, 'list');
+					this.saiLocalDel(this.saiLocalName(key, ixSn, 'list'));
 				});
 			}
-			this.saiLocalDel('', ixSn, 'index');
-			this.saiLocalDel('', ixSn, 'local');
+			this.saiLocalDel(this.saiLocalName('', ixSn, 'index'));
+			this.saiLocalDel(this.saiLocalName('', ixSn, 'local'));
 		},
 		asaiLocalArr(ixSn) {
-			let vVal = this.saiLocalRead('', ixSn, 'local');
+			let vVal = this.saiLocalRead(this.saiLocalName('', ixSn, 'local'));
 			if (!vVal || vVal.length || !JSON.stringify(vVal).startsWith('[')) {
 				vVal = [];
 			}
@@ -27,7 +27,7 @@ export default {
 		},
 		saiLocalAuto(vVal, vLi, ixSn) {
 			if (vVal && vVal.ver && this.$config.auto.saveLocal) {
-				this.saiLocalSave(vVal, vLi, ixSn, '');
+				this.saiLocalSave(this.saiLocalName(vLi, ixSn, ''), vVal);
 				this.saiLocalRefresh(vLi, ixSn, 0);
 			}
 		},
@@ -41,7 +41,7 @@ export default {
 						vVal.push(vLi);
 					}
 				}
-				this.saiLocalSave(vVal, '', ixSn, 'local');
+				this.saiLocalSave(this.saiLocalName('', ixSn, 'local'), vVal);
 			}
 		},
 	},

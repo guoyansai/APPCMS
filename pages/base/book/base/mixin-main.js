@@ -1,16 +1,24 @@
 import mixinMainList from './mixin-main-list.js';
 import mixinMainLocal from './mixin-main-local.js';
 import mixinMainApi from './mixin-main-api.js';
+import bar from '../bar/bar.vue';
+import list from '../list/list.vue';
+import show from '../show/show.vue';
 
 export default {
 	mixins: [mixinMainList, mixinMainLocal, mixinMainApi],
+	components: {
+		bar,
+		list,
+		show,
+	},
 	data() {
 		return {
 			Timer: null,
 			Loader: false,
 
-			listObj: {},
-			indexObj: {},
+			listCur: {},
+			indexCur: {},
 
 			indexSn: '',
 			listSn: '',
@@ -41,9 +49,9 @@ export default {
 			if (this.viewUr && !this.viewUr.startsWith('_')) {
 				return true;
 			} else if (this.listSn) {
-				return this.listObj.ver;
+				return this.listCur.ver;
 			} else {
-				return this.indexObj.ver;
+				return this.indexCur.ver;
 			}
 		}
 	},
@@ -59,8 +67,12 @@ export default {
 		this.goTab();
 	},
 	onPullDownRefresh() {
+		this.clear();
 		this.goFresh();
-		setTimeout(() => {
+		this.initStart({
+			li: this.listSn
+		}, this.indexSn);
+		setTimeout(function() {
 			uni.stopPullDownRefresh();
 		}, this.$config.time.refresh);
 	},
@@ -68,14 +80,14 @@ export default {
 		initStart(e, sn) {
 			try {
 				this.indexSn = sn || 'local';
-				let Vli = e.li;
-				let gData = this['data' + this.indexSn];
+				this.listSn = e.li;
+				let gData = this.$global.G['data' + this.indexSn];
 				this.initIndexObj(gData);
-				if (Vli) {
-					if (gData.listObj && gData.listObj.ver && gData.listObj.sn === Vli) {
-						this.listObj = gData.listObj;
+				if (this.listSn) {
+					if (gData.listObj && gData.listObj.ver && gData.listObj.sn === this.listSn) {
+						this.listCur = gData.listObj;
 					} else {
-						gData.listObj = this.listObj = this.saiLocalInit(Vli, this.indexSn);
+						this.setListObj(gData, this.saiLocalInit(this.listSn, this.indexSn));
 					}
 				}
 				this.init(e);
@@ -86,11 +98,20 @@ export default {
 		},
 		initIndexObj(gData) {
 			if (gData.indexObj && gData.indexObj.ver) {
-				this.indexObj = gData.indexObj;
+				this.indexCur = gData.indexObj;
 			} else {
-				gData.indexObj = this.saiLocalInit('', this.indexSn);
-				this.indexObj = this.saiLocalInit('', this.indexSn);
+				this.setIndexObj(gData, this.saiLocalInit('', this.indexSn));
 			}
+		},
+		setListObj(gData, vObj) {
+			this.listCur = this.listCur || {};
+			Object.assign(this.listCur, vObj);
+			gData.listObj = this.listCur;
+		},
+		setIndexObj(gData, vObj) {
+			this.indexCur = this.indexCur || {};
+			Object.assign(this.indexCur, vObj);
+			gData.indexObj = this.indexCur;
 		},
 		init(e) {
 			this.initData(e);
@@ -111,28 +132,28 @@ export default {
 			}
 			this.setTopBar('tool', {});
 			if (e.li) {
-				this.saiPage(this.listObj, e);
-				this.saiSearch(this.listObj, e);
+				this.saiPage(this.listCur, e);
+				this.saiSearch(this.listCur, e);
 			} else {
-				this.saiPage(this.indexObj, e);
-				this.saiSearch(this.indexObj, e);
+				this.saiPage(this.indexCur, e);
+				this.saiSearch(this.indexCur, e);
 			}
 		},
 		initData(e) {
 			this.listSn = e.li || '';
 			if (e.ur) {} else if (this.listSn) {
 				this.initLi();
-			} else if (this.indexObj.ver) {
-				this.initIndex(this.indexObj);
+			} else if (this.indexCur.ver) {
+				this.initIndex(this.indexCur);
 			} else {
-				this.initApi(this.listSn, this.indexObj);
+				this.initApi(this.listSn, this.indexCur);
 			}
 		},
 		initLi() {
-			if (this.listObj.ver) {
-				this.initList(this.listObj, this.listSn);
+			if (this.listCur.ver) {
+				this.initList(this.listSn, this.listCur);
 			} else {
-				this.initApi(this.listSn, this.indexObj);
+				this.initApi(this.listSn, this.indexCur);
 			}
 		},
 		setTopBar(vKey, vVal) {
@@ -145,7 +166,7 @@ export default {
 				ur: 'index'
 			});
 		},
-		initList(vData, vLi) {
+		initList(vLi, vData) {
 			this.saiInit(vData);
 			this.setTopBar('index', {
 				tt: '主页',
@@ -192,10 +213,10 @@ export default {
 				title: '正在清理...'
 			});
 			this.saiLocalClear(this.indexSn);
-			this.listObj && (this.listObj = {});
-			this.indexObj && (this.indexObj = {});
 
-			this.indexSn && (this.indexSn = '');
+			this.$global.G['data' + this.indexSn].listObj = {};
+			this.$global.G['data' + this.indexSn].indexObj = {};
+
 			this.listSn && (this.listSn = '');
 			this.viewSn && (this.viewSn = '');
 			this.viewUr && (this.viewUr = '');

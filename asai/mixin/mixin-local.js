@@ -1,8 +1,8 @@
 export default {
 	methods: {
-		saiLocalRead(vLi, ixSn, vType) {
+		saiLocalRead(localName) {
 			try {
-				let vVal = uni.getStorageSync(this.saiLocalName(vLi, ixSn, vType));
+				let vVal = uni.getStorageSync(localName);
 				if (vVal) {
 					return JSON.parse(vVal);
 				} else {
@@ -12,15 +12,15 @@ export default {
 				return null;
 			}
 		},
-		saiLocalSave(vVal, vLi, ixSn, vType) {
+		saiLocalSave(localName, vVal) {
 			try {
 				let vStr = JSON.stringify(vVal);
-				uni.setStorageSync(this.saiLocalName(vLi, ixSn, vType), vStr);
+				uni.setStorageSync(localName, vStr);
 			} catch (e) {}
 		},
-		saiLocalDel(vLi, ixSn, vType) {
+		saiLocalDel(localName) {
 			try {
-				uni.removeStorageSync(this.saiLocalName(vLi, ixSn, vType));
+				uni.removeStorageSync(localName);
 			} catch (e) {}
 		},
 		saiLocalName(vLi, ixSn, vType = 'sai') {
