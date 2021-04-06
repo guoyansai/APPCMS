@@ -67,6 +67,14 @@
 						value: 'checknet'
 					},
 					{
+						label: '全局变量',
+						value: 'showglobal'
+					},
+					{
+						label: '清空变量',
+						value: 'cleanglobal'
+					},
+					{
 						label: '清空数据',
 						value: 'clear'
 					},
@@ -94,6 +102,10 @@
 						this.reportStr = '';
 					} else if (bugType === 'checknet') {
 						this.reportStr = this.$global.G.ver;
+					} else if (bugType === 'showglobal') {
+						this.reportStr = JSON.stringify(this.$global);
+					} else if (bugType === 'cleanglobal') {
+						this.$global.G = JSON.parse(JSON.stringify(this.$global.IG));
 					} else if (bugType === 'clear') {
 						this.indexBug = 0;
 						uni.$emit('clear', 'doing');

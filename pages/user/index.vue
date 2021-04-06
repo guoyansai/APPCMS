@@ -19,26 +19,26 @@
 			</view>
 			<view class="s-user-li">
 				现居：
-				<input type="text" v-model="datauser.jx" />
+				<input type="text" class="s-user-input" v-model="datauser.jx" />
 				<view class="s-user-lis">
 					老家：
-					<input type="text" v-model="datauser.jj" />
+					<input type="text" class="s-user-input" v-model="datauser.jj" />
 				</view>
 			</view>
 			<view class="s-user-li">
 				学历：
-				<input type="text" v-model="datauser.zl" />
+				<input type="text" class="s-user-input" v-model="datauser.zl" />
 				<view class="s-user-lis">
 					学校：
-					<input type="text" v-model="datauser.zx" />
+					<input type="text" class="s-user-input" v-model="datauser.zx" />
 				</view>
 			</view>
 			<view class="s-user-li">
 				职业：
-				<input type="text" v-model="datauser.zy" />
+				<input type="text" class="s-user-input" v-model="datauser.zy" />
 				<view class="s-user-lis">
 					经验：
-					<input type="text" v-model="datauser.zj" />
+					<input type="text" class="s-user-input" v-model="datauser.zj" />
 					年
 				</view>
 			</view>
@@ -137,7 +137,7 @@
 				}
 			}
 		},
-		onLoad(e) {
+		onLoad: function(e) {
 			this.saiUser(0);
 			if (e.type) {
 				this.userType = e.type;

@@ -74,14 +74,7 @@
 		"pageOrientation": "auto",
 		"animationType": "fade-in",
 		"animationDuration": 120,
-		"enablePullDownRefresh": true,
-		"app-plus": {
-			"pullToRefresh": {
-				"support": true,
-				"color": "#000000",
-				"style": "circle"
-			}
-		}
+		"enablePullDownRefresh": false
 	},
 	"tabBar": {
 		"borderStyle": "#D8D8D8",

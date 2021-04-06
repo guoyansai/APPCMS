@@ -13,7 +13,7 @@
 
 	export default {
 		mixins: [mixinMain],
-		onLoad(e) {
+		onLoad: function(e) {
 			this.initStart(e, 'local');
 		},
 	};

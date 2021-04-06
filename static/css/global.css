@@ -340,6 +340,7 @@
 	padding-left: 22rpx;
 	padding-right: 22rpx;
 }
+
 /*------------user*/
 .s-fast {
 	margin-top: 28rpx;
@@ -431,6 +432,10 @@
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
+}
+
+.s-user-input {
+	width: 200rpx;
 }
 
 .s-user-lis {

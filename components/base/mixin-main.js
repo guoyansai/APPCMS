@@ -55,26 +55,16 @@ export default {
 			}
 		}
 	},
-	onLoad() {
+	onShow: function() {
 		uni.$on('clear', res => {
 			this.clear();
 		});
 	},
-	onUnload() {
+	onUnload: function() {
 		uni.$off('clear');
 	},
 	onNavigationBarButtonTap(e) {
 		this.goTab();
-	},
-	onPullDownRefresh() {
-		this.clear();
-		this.goFresh();
-		this.initStart({
-			li: this.listSn
-		}, this.indexSn);
-		setTimeout(function() {
-			uni.stopPullDownRefresh();
-		}, this.$config.time.refresh);
 	},
 	methods: {
 		initStart(e, sn) {
