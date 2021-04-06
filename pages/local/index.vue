@@ -11,7 +11,7 @@
 </template>
 
 <script>
-	import mixinMain from '../base/book/base/mixin-main.js';
+	import mixinMain from '../../components/base/mixin-main.js';
 
 	export default {
 		mixins: [mixinMain],

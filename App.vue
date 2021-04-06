@@ -29,5 +29,5 @@
 
 <style>
 	/*每个页面公共css */
-	@import url('/pages/base/css/global.css');
+	@import url('/static/css/global.css');
 </style>

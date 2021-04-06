@@ -1,7 +1,7 @@
 import mixinMainList from './mixin-main-list.js';
 import {
 	RandomColor
-} from '../../../../asai/js/random-color.js';
+} from '../../asai/js/random-color.js';
 
 export default {
 	mixins: [mixinMainList],

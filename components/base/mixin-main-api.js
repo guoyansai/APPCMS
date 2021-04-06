@@ -38,10 +38,10 @@ export default {
 		},
 		apiData(vLi, vUr) {
 			if (vLi) {
-				this.listCur = require('../../../../data/co/' + vUr + '/co.json');
+				this.listCur = require('../../data/co/' + vUr + '/co.json');
 				this.initList(vLi, this.listCur);
 			} else {
-				this.indexCur = require('../../../../data/' + vUr + '/li.json');
+				this.indexCur = require('../../data/' + vUr + '/li.json');
 				this.initIndex(this.indexCur);
 			}
 		},
