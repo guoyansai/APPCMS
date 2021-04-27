@@ -2,31 +2,66 @@
 	"pages": [{
 			"path": "pages/web/index",
 			"style": {
-				"navigationBarTitleText": "手机导航"
+				"navigationBarTitleText": "手机导航",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"type": "menu"
+						}]
+					}
+				}
 			}
 		},
 		{
 			"path": "pages/local/index",
 			"style": {
-				"navigationBarTitleText": "专题与书库"
+				"navigationBarTitleText": "专题与书库",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"type": "menu"
+						}]
+					}
+				}
 			}
 		},
 		{
 			"path": "pages/ok/index",
 			"style": {
-				"navigationBarTitleText": "聊天室"
+				"navigationBarTitleText": "聊天室",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"type": "menu"
+						}]
+					}
+				}
 			}
 		},
 		{
 			"path": "pages/exe/index",
 			"style": {
-				"navigationBarTitleText": "应用软件与游戏"
+				"navigationBarTitleText": "应用软件与游戏",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"type": "menu"
+						}]
+					}
+				}
 			}
 		},
 		{
 			"path": "pages/user/index",
 			"style": {
-				"navigationBarTitleText": "用户中心"
+				"navigationBarTitleText": "用户中心",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"type": "menu"
+						}]
+					}
+				}
 			}
 		},
 		{
@@ -35,6 +70,8 @@
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
+							"type": "menu"
+						}, {
 							"type": "home"
 						}]
 					}
@@ -47,6 +84,8 @@
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
+							"type": "menu"
+						}, {
 							"type": "home"
 						}]
 					}
@@ -59,6 +98,8 @@
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
+							"type": "menu"
+						}, {
 							"type": "home"
 						}]
 					}

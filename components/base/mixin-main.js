@@ -4,6 +4,7 @@ import mixinMainApi from './mixin-main-api.js';
 import bar from '../bar/bar.vue';
 import list from '../list/list.vue';
 import show from '../show/show.vue';
+import guide from '../guide/guide.vue';
 
 export default {
 	mixins: [mixinMainList, mixinMainLocal, mixinMainApi],
@@ -11,9 +12,11 @@ export default {
 		bar,
 		list,
 		show,
+		guide,
 	},
 	data() {
 		return {
+			quickMenu: false,
 			Timer: null,
 			Loader: false,
 
@@ -64,7 +67,12 @@ export default {
 		uni.$off('clear');
 	},
 	onNavigationBarButtonTap(e) {
-		this.goTab();
+		console.log(666.11223, 'menu', e)
+		if (e.type === 'home') {
+			this.goTab();
+		} else if (e.type === 'menu') {
+			this.quickMenu = !this.quickMenu;
+		}
 	},
 	methods: {
 		initStart(e, sn) {
@@ -204,8 +212,7 @@ export default {
 			});
 			this.saiLocalClear(this.indexSn);
 
-			this.$global.G['data' + this.indexSn].listObj = {};
-			this.$global.G['data' + this.indexSn].indexObj = {};
+			this.$global.G = JSON.parse(JSON.stringify(this.$global.IG));
 
 			this.listSn && (this.listSn = '');
 			this.viewSn && (this.viewSn = '');

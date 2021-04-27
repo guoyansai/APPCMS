@@ -11,6 +11,17 @@
 	color: #336699;
 }
 
+/*------------menu*/
+.s-menu {
+	background-color: #DD0000;
+	position: fixed;
+	left: 25%;
+	top: 40%;
+	height: 20%;
+	width: 50%;
+	z-index: 1;
+}
+
 /*------------bar*/
 .s-bar {
 	background-color: #F5F5F5;
@@ -39,7 +50,6 @@
 .s-list {
 	display: flex;
 	flex-direction: column;
-	margin-top: 28rpx;
 }
 
 .s-list-local {
@@ -272,11 +282,51 @@
 
 /*------------search*/
 .s-search {
+	position: relative;
+}
+
+.s-search-off,
+.s-search-on {
+	position: absolute;
+	top: -32rpx;
+	left: -27rpx;
+	width: 24rpx;
+	z-index: 888;
+	font-size: small;
+	color: #888888;
+	text-align: center;
+	background-color: #F8F8F8;
+	border-color: #D8D8D8;
+	border-width: 1rpx;
+	border-style: solid;
+	cursor: pointer;
+	opacity: 0.2;
+}
+
+.s-search-off:hover,
+.s-search-on:hover {
+	opacity: 0.8;
+}
+
+.s-search-show {
 	display: flex;
+	height: 44rpx;
 	padding-bottom: 28rpx;
 }
 
-.s-search-picker {}
+.s-search-picker *,
+.s-search-input *,
+.s-search-button * {
+	font-size: small;
+}
+
+.s-search-picker {
+	border-color: #D8D8D8;
+	border-width: 1rpx;
+	border-style: solid;
+	color: #888888;
+	padding: 0rpx 12rpx 0rpx 12rpx;
+}
 
 .s-search-input {
 	flex-grow: 1;
@@ -459,4 +509,9 @@
 	text-align: center;
 	padding-top: 28rpx;
 	padding-bottom: 28rpx;
+}
+
+.s-user-app {
+	text-align: center;
+	color: #888888;
 }

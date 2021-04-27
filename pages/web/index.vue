@@ -1,5 +1,6 @@
 <template>
 	<view :class="'index-' + indexSn" v-if="canShow">
+		<guide v-if="quickMenu"></guide>
 		<bar :item="topBar"></bar>
 		<web-view v-if="viewUr" :src="viewUr"></web-view>
 		<show v-else-if="viewSn" :gsn="viewSn" :gli="listSn" :psearch="listSearch" :gindex="indexCur" :glist="listCur">

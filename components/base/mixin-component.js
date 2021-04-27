@@ -39,8 +39,8 @@ export default {
 			required: false,
 			default: function() {
 				return {
-					pc: 1,
-					ps: 10,
+					pc: 0,
+					ps: 0,
 					pa: 0
 				};
 			}

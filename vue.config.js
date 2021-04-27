@@ -1,9 +1,11 @@
+const ConfigMain = require('./asai/config/config-main.json');
+
 module.exports = {
 	publicPath: './',
 	devServer: {
 		proxy: {
 			'/dev': {
-				target: 'http://asaiapp.asai.cc/data',
+				target: ConfigMain.webURL,
 				ws: true,
 				changeOrigin: true,
 				pathRewrite: {
@@ -21,7 +23,7 @@ module.exports = {
 			maxAssetSize: 300000000,
 			//只给出 js 文件的性能提示
 			assetFilter: function(assetFilename) {
-				return assetFilename.endsWith('.css') || assetFilename.endsWith('.js');
+				return assetFilename.endsWith('.css') || assetFilename.endsWith('.js') || assetFilename.endsWith('.json');
 			}
 		}
 	}

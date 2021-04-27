@@ -97,7 +97,9 @@
 		<view class="s-user-des">
 			注意：以上信息仅限本地使用。
 		</view>
-		<view class="s-user-des">{{ jsonTemp }}App Ver {{ $config.ver }}(最新：{{ $global.G.ver }})</view>
+		<view class="s-user-des">{{ jsonTemp }}App Ver {{ $config.ver }}</view>
+		<view class="s-user-des" v-if="hasNewVer" @tap="downNewVer()">点击下载最新版本：{{ $global.G.ver }}</view>
+		<view class="s-user-app"><input type="text" v-model="$config.verNewUrl" /></view>
 	</view>
 </template>
 
@@ -105,6 +107,7 @@
 	export default {
 		data() {
 			return {
+				hasNewVer: false,
 				jsonTemp: '',
 				userType: 'show',
 				user: {
@@ -135,10 +138,13 @@
 				set(newVal) {
 					Object.assign(this.$global.G.datauser, newVal);
 				}
-			}
+			},
 		},
 		onLoad: function(e) {
 			this.saiUser(0);
+			if (this.$global.G.ver !== this.$config.ver) {
+				this.hasNewVer = true;
+			}
 			if (e.type) {
 				this.userType = e.type;
 			}
@@ -160,7 +166,13 @@
 			},
 			resetUser() {
 				this.saiUser(1);
-			}
+			},
+			downNewVer() {
+				// window.location.href = this.$config.verNewUrl;
+				plus.runtime.openURL(this.$config.verNewUrl, function(res) {
+					console.log(res);
+				});
+			},
 		}
 	};
 </script>

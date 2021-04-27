@@ -18,39 +18,68 @@ export default {
 				this.apiInit(vLi);
 			}
 		},
-		liToUrl(vLi, vType) {
-			let vUrl = this.$config.baseURL + '/' + this.indexSn;
+		liToFile(vLi, vType) {
+			let vFile = '/' + this.indexSn;
 			if (vLi) {
-				vUrl += '/' + vLi;
+				vFile += '/' + vLi;
 				if (vType) {
-					vUrl += '/ver.json';
+					vFile += '/ver.json';
 				} else {
-					vUrl += '/co.json';
+					vFile += '/co.json';
 				}
 			} else {
 				if (vType) {
-					vUrl += '/ver.json';
+					vFile += '/ver.json';
 				} else {
-					vUrl += '/li.json';
+					vFile += '/li.json';
 				}
 			}
-			return vUrl + '?' + Date.now();
+			return vFile;
+		},
+		liToUrl(vLi, vType) {
+			return this.$config.baseURL + this.liToFile(vLi, vType) + '?' + Date.now();
 		},
 		apiData(vLi, vUr) {
 			if (vLi) {
-				this.listCur = require('../../data/co/' + vUr + '/co.json');
+				this.requireData(vLi, '../../data/co/' + vUr + '/co.json');
+			} else {
+				this.requireData(vLi, '../../data/' + vUr + '/li.json');
+			}
+		},
+		loadFile(vFile) {
+			return require('../../' + vFile.replace('.json','').replace('../../','') + '.json');
+		},
+		requireData(vLi, vFile) {
+			if (vLi) {
+				this.listCur = this.loadFile(vFile);
 				this.initList(vLi, this.listCur);
 			} else {
-				this.indexCur = require('../../data/' + vUr + '/li.json');
+				this.indexCur = this.loadFile(vFile);
 				this.initIndex(this.indexCur);
 			}
 		},
+		initVal(vLi, vVal) {
+			if (vVal && vVal.ver) {
+				this.saiLocalAuto(vVal, vLi, this.indexSn);
+				if (vLi) {
+					this.listCur = vVal;
+					this.initList(vLi, this.listCur);
+				} else {
+					this.indexCur = vVal;
+					this.initIndex(this.indexCur);
+				}
+			}
+		},
 		apiInit(vLi) {
-			let vUrl = this.liToUrl(vLi, 0);
-			if (this.$config.apiType === 'down') {
-				this.apiDown(vLi, vUrl);
+			if (this.$config.baseURL.startsWith("/data")) {
+				this.requireData(vLi, '../..' + this.$config.baseURL + this.liToFile(vLi, 0))
 			} else {
-				this.apiHttp(vLi, vUrl);
+				let vUrl = this.liToUrl(vLi, 0);
+				if (this.$config.apiType === 'down') {
+					this.apiDown(vLi, vUrl);
+				} else {
+					this.apiHttp(vLi, vUrl);
+				}
 			}
 		},
 		apiDown(vLi, vUrl) {
@@ -79,16 +108,10 @@ export default {
 				timeout: this.$config.time.api,
 				success: res => {
 					let vVal = res.data;
-					if (vVal && vVal.ver) {
-						this.saiLocalAuto(vVal, vLi, this.indexSn);
-						if (vLi) {
-							this.listCur = vVal;
-							this.initList(vLi, this.listCur);
-						} else {
-							this.indexCur = vVal;
-							this.initIndex(this.indexCur);
-						}
+					if (vVal && typeof vVal === 'string') {
+						vVal = JSON.parse(vVal);
 					}
+					this.initVal(vLi, vVal);
 				},
 				complete: () => {
 					this.loadClose();
