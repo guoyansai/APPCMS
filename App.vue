@@ -13,11 +13,8 @@
 			}, 1000);
 		},
 		onShow: function() {
-			uni.request({
-				url: this.$config.webURL + "/ver.json",
-				success: (res) => {
-					this.$global.G.ver = res.data.ver;
-				},
+			this.saiApi(this.$config.webURL + "/ver.json").then((res) => {
+				this.$global.G.ver = res.data.ver;
 			});
 			console.log("App Show");
 		},

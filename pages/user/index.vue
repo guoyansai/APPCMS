@@ -1,5 +1,6 @@
 <template>
 	<view class="index-user">
+		<quick-menu v-if="quickMenu" @closemenu="closeMenu()"></quick-menu>
 		<view class="s-user-edit" v-if="userType === 'edit'">
 			<view class="s-user-top">
 				<view class="s-user-ic"><img :src="datauser.ic" /></view>
@@ -104,7 +105,10 @@
 </template>
 
 <script>
+	import mixinMain from '../../components/base/mixin-main.js';
+
 	export default {
+		mixins: [mixinMain],
 		data() {
 			return {
 				hasNewVer: false,
@@ -168,10 +172,7 @@
 				this.saiUser(1);
 			},
 			downNewVer() {
-				// window.location.href = this.$config.verNewUrl;
-				plus.runtime.openURL(this.$config.verNewUrl, function(res) {
-					console.log(res);
-				});
+				this.goHttp(this.$config.verNewUrl);
 			},
 		}
 	};

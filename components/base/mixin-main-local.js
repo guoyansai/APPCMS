@@ -3,10 +3,12 @@ export default {
 		saiLocalInit(vLi, ixSn) {
 			let vVal = this.saiLocalRead(this.saiLocalName(vLi, ixSn, ''));
 			if (vVal && vVal.ver) {
+				if (this.$config.auto.saveLocal) {
+
+				}
 				return vVal;
-			} else {
-				return {};
 			}
+			return {};
 		},
 		saiLocalClear(ixSn) {
 			let localArr = this.asaiLocalArr(ixSn);

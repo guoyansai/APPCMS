@@ -1,5 +1,6 @@
 <template>
 	<view :class="'index-' + indexSn" v-if="canShow">
+		<quick-menu v-if="quickMenu" @closemenu="closeMenu()"></quick-menu>
 		<bar :item="topBar"></bar>
 		<web-view v-if="viewUr" :src="viewUr"></web-view>
 		<show v-else-if="viewSn" :gsn="viewSn" :gli="listSn" :psearch="listSearch" :gindex="indexCur" :glist="listCur">
@@ -16,7 +17,7 @@
 	export default {
 		mixins: [mixinMain],
 		onLoad: function(e) {
-			this.initStart(e, 'web');
+			this.initOnLoad(e, 'web');
 		}
 	};
 </script>

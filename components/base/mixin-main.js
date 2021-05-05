@@ -4,7 +4,7 @@ import mixinMainApi from './mixin-main-api.js';
 import bar from '../bar/bar.vue';
 import list from '../list/list.vue';
 import show from '../show/show.vue';
-import guide from '../guide/guide.vue';
+import quickMenu from '../quick-menu/quick-menu.vue';
 
 export default {
 	mixins: [mixinMainList, mixinMainLocal, mixinMainApi],
@@ -12,7 +12,7 @@ export default {
 		bar,
 		list,
 		show,
-		guide,
+		quickMenu,
 	},
 	data() {
 		return {
@@ -75,85 +75,71 @@ export default {
 		}
 	},
 	methods: {
-		initStart(e, sn) {
+		initOnLoad(e, sn) {
 			try {
-				this.indexSn = sn || 'local';
-				this.listSn = e.li;
-				let gData = this.$global.G['data' + this.indexSn];
-				this.initIndexObj(gData);
-				if (this.listSn) {
-					if (gData.listObj && gData.listObj.ver && gData.listObj.sn === this.listSn) {
-						this.listCur = gData.listObj;
+				if (e.ur) {
+					this.viewSn = '';
+					this.viewUr = e.ur;
+					this.setTopBar('show', {
+						tt: '网页',
+						ur: ''
+					});
+				} else {
+					this.viewUr = '';
+					this.indexSn = sn || 'local';
+					let gData = this.$global.G['data' + this.indexSn];
+
+					// 获取index信息
+					if (gData.indexObj && gData.indexObj.ver) {
+						this.indexCur = gData.indexObj;
 					} else {
-						this.setListObj(gData, this.saiLocalInit(this.listSn, this.indexSn));
+						this.indexCur = this.saiLocalInit('', this.indexSn);
+						gData.indexObj = this.indexCur;
 					}
+					if (this.indexCur.ver) {
+						this.initIndex(this.indexCur);
+					} else {
+						this.initApi();
+					}
+
+					// 获取index=>list信息
+					this.listSn = e.li || '';
+					if (this.listSn) {
+						if (gData.listObj && gData.listObj.ver && gData.listObj.sn === this.listSn) {
+							this.listCur = gData.listObj;
+						} else {
+							this.listCur = this.saiLocalInit(this.listSn, this.indexSn);
+							gData.listObj = this.listCur;
+						}
+						if (this.listCur.ver) {
+							this.initList(this.listSn, this.listCur);
+						} else {
+							this.initApi(this.listSn, this.indexCur);
+						}
+						this.saiPage(this.listCur, e);
+						this.saiSearch(this.listCur, e);
+					} else {
+						this.saiPage(this.indexCur, e);
+						this.saiSearch(this.indexCur, e);
+					}
+
+					// 获取index=>list=>view信息
+					if (e.sn) {
+						this.viewSn = e.sn;
+						this.setTopBar('show', {
+							tt: '详情',
+							ur: ''
+						});
+					}
+
+					this.setTopBar('tool', {});
 				}
-				this.init(e);
 			} catch (err) {
 				console.log(666.111, err);
 				this.goTab();
 			}
 		},
-		initIndexObj(gData) {
-			if (gData.indexObj && gData.indexObj.ver) {
-				this.indexCur = gData.indexObj;
-			} else {
-				this.setIndexObj(gData, this.saiLocalInit('', this.indexSn));
-			}
-		},
-		setListObj(gData, vObj) {
-			this.listCur = this.listCur || {};
-			Object.assign(this.listCur, vObj);
-			gData.listObj = this.listCur;
-		},
-		setIndexObj(gData, vObj) {
-			this.indexCur = this.indexCur || {};
-			Object.assign(this.indexCur, vObj);
-			gData.indexObj = this.indexCur;
-		},
-		init(e) {
-			this.initData(e);
-			if (e.ur) {
-				this.viewSn = '';
-				this.viewUr = e.ur;
-				this.setTopBar('show', {
-					tt: '网页',
-					ur: ''
-				});
-			} else if (e.sn) {
-				this.viewUr = '';
-				this.viewSn = e.sn;
-				this.setTopBar('show', {
-					tt: '详情',
-					ur: ''
-				});
-			}
-			this.setTopBar('tool', {});
-			if (e.li) {
-				this.saiPage(this.listCur, e);
-				this.saiSearch(this.listCur, e);
-			} else {
-				this.saiPage(this.indexCur, e);
-				this.saiSearch(this.indexCur, e);
-			}
-		},
-		initData(e) {
-			this.listSn = e.li || '';
-			if (e.ur) {} else if (this.listSn) {
-				this.initLi();
-			} else if (this.indexCur.ver) {
-				this.initIndex(this.indexCur);
-			} else {
-				this.initApi(this.listSn, this.indexCur);
-			}
-		},
-		initLi() {
-			if (this.listCur.ver) {
-				this.initList(this.listSn, this.listCur);
-			} else {
-				this.initApi(this.listSn, this.indexCur);
-			}
-		},
+
 		setTopBar(vKey, vVal) {
 			this.topBar[vKey] = vVal;
 		},
@@ -205,6 +191,9 @@ export default {
 				});
 				this.listSearch.ds = searchData;
 			}
+		},
+		closeMenu() {
+			this.quickMenu = false;
 		},
 		clear() {
 			this.loadShow({

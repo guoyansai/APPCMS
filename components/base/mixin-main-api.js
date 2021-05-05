@@ -1,16 +1,18 @@
 export default {
 	methods: {
-		initApi(vLi, listItem) {
+		initApi(vLi = '', listItem = {}) {
 			if (vLi && listItem && listItem.li) {
 				let showItem = listItem.li.dt[vLi];
 				let vUr = this.saiGetVal(listItem, showItem, 'ur');
+
+				// 下划线_开头的全部读取APP包里面的本地数据
 				if (vUr === '_') {
 					vUr = vUr + vLi;
-					this.apiData(vLi, vUr);
+					this.appDataRead(vLi, vUr);
 				} else if (vUr.startsWith('_')) {
-					this.apiData(vLi, vUr);
+					this.appDataRead(vLi, vUr);
 				} else if (vUr.startsWith('http')) {
-
+					// 网址链接开头不处理
 				} else {
 					this.apiInit(vLi);
 				}
@@ -18,7 +20,26 @@ export default {
 				this.apiInit(vLi);
 			}
 		},
-		liToFile(vLi, vType) {
+		appDataFile(vFile) {
+			return require('../../' + vFile.replace('.json', '').replace('../../', '') + '.json');
+		},
+		appDataRequire(vLi, vFile) {
+			if (vLi) {
+				this.listCur = this.appDataFile(vFile);
+				this.initList(vLi, this.listCur);
+			} else {
+				this.indexCur = this.appDataFile(vFile);
+				this.initIndex(this.indexCur);
+			}
+		},
+		appDataRead(vLi, vUr) {
+			if (vLi) {
+				this.appDataRequire(vLi, '../../data/co/' + vUr + '/co.json');
+			} else {
+				this.appDataRequire(vLi, '../../data/' + vUr + '/li.json');
+			}
+		},
+		liToFile(vLi, vType = 0) {
 			let vFile = '/' + this.indexSn;
 			if (vLi) {
 				vFile += '/' + vLi;
@@ -36,27 +57,8 @@ export default {
 			}
 			return vFile;
 		},
-		liToUrl(vLi, vType) {
+		liToUrl(vLi, vType = 0) {
 			return this.$config.baseURL + this.liToFile(vLi, vType) + '?' + Date.now();
-		},
-		apiData(vLi, vUr) {
-			if (vLi) {
-				this.requireData(vLi, '../../data/co/' + vUr + '/co.json');
-			} else {
-				this.requireData(vLi, '../../data/' + vUr + '/li.json');
-			}
-		},
-		loadFile(vFile) {
-			return require('../../' + vFile.replace('.json','').replace('../../','') + '.json');
-		},
-		requireData(vLi, vFile) {
-			if (vLi) {
-				this.listCur = this.loadFile(vFile);
-				this.initList(vLi, this.listCur);
-			} else {
-				this.indexCur = this.loadFile(vFile);
-				this.initIndex(this.indexCur);
-			}
 		},
 		initVal(vLi, vVal) {
 			if (vVal && vVal.ver) {
@@ -72,9 +74,9 @@ export default {
 		},
 		apiInit(vLi) {
 			if (this.$config.baseURL.startsWith("/data")) {
-				this.requireData(vLi, '../..' + this.$config.baseURL + this.liToFile(vLi, 0))
+				this.appDataRequire(vLi, '../..' + this.$config.baseURL + this.liToFile(vLi))
 			} else {
-				let vUrl = this.liToUrl(vLi, 0);
+				let vUrl = this.liToUrl(vLi);
 				if (this.$config.apiType === 'down') {
 					this.apiDown(vLi, vUrl);
 				} else {
@@ -103,19 +105,14 @@ export default {
 			this.loadShow({
 				title: '正在缓存...'
 			});
-			uni.request({
-				url: vUrl,
-				timeout: this.$config.time.api,
-				success: res => {
-					let vVal = res.data;
-					if (vVal && typeof vVal === 'string') {
-						vVal = JSON.parse(vVal);
-					}
-					this.initVal(vLi, vVal);
-				},
-				complete: () => {
-					this.loadClose();
-				},
+			this.saiApi(vUrl).then((res) => {
+				let vVal = res.data;
+				if (vVal && typeof vVal === 'string') {
+					vVal = JSON.parse(vVal);
+				}
+				this.initVal(vLi, vVal);
+			}).finally(() => {
+				this.loadClose();
 			});
 		},
 	},

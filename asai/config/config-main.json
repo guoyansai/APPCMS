@@ -15,7 +15,8 @@
 	"baseURL2": "https://guoyansai.gitee.io/asaiappjson/data",
 	"webURL": "https://guoyansai.gitee.io/asaiappjson/data",
 	"auto": {
-		"saveLocal": true
+		"saveLocal": true,
+		"newVerLoad": true
 	},
 	"apiType": "api",
 	"time": {

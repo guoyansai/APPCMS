@@ -82,6 +82,16 @@ export default {
 			this.$global.G.bomb = {
 				clearOn: !this.$global.G.bomb.clearOn
 			};
+		},
+		goHttp(vHttp) {
+			try {
+				plus.runtime.openURL(vHttp, function(res) {
+					console.log(res);
+				});
+			} catch (e) {
+				console.log(e);
+				window.location.href = vHttp;
+			}
 		}
 	},
 };
