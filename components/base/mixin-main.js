@@ -75,7 +75,7 @@ export default {
 		}
 	},
 	methods: {
-		initOnLoad(e, sn) {
+		async initOnLoad(e, sn) {
 			try {
 				if (e.ur) {
 					this.viewSn = '';
@@ -93,7 +93,7 @@ export default {
 					if (gData.indexObj && gData.indexObj.ver) {
 						this.indexCur = gData.indexObj;
 					} else {
-						this.indexCur = this.saiLocalInit('', this.indexSn);
+						this.indexCur = await this.saiGetData('', this.indexSn);
 						gData.indexObj = this.indexCur;
 					}
 					if (this.indexCur.ver) {
@@ -108,7 +108,7 @@ export default {
 						if (gData.listObj && gData.listObj.ver && gData.listObj.sn === this.listSn) {
 							this.listCur = gData.listObj;
 						} else {
-							this.listCur = this.saiLocalInit(this.listSn, this.indexSn);
+							this.listCur = await this.saiGetData(this.listSn, this.indexSn);
 							gData.listObj = this.listCur;
 						}
 						if (this.listCur.ver) {

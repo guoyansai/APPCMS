@@ -1,8 +1,8 @@
 {
 	"pages": [{
-			"path": "pages/web/index",
+			"path": "pages/mags/index",
 			"style": {
-				"navigationBarTitleText": "手机导航",
+				"navigationBarTitleText": "《啾噗》电子杂志",
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
@@ -13,9 +13,9 @@
 			}
 		},
 		{
-			"path": "pages/local/index",
+			"path": "pages/tools/index",
 			"style": {
-				"navigationBarTitleText": "专题与书库",
+				"navigationBarTitleText": "常用工具箱",
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
@@ -26,7 +26,7 @@
 			}
 		},
 		{
-			"path": "pages/ok/index",
+			"path": "pages/love/index",
 			"style": {
 				"navigationBarTitleText": "聊天室",
 				"app-plus": {
@@ -39,9 +39,9 @@
 			}
 		},
 		{
-			"path": "pages/exe/index",
+			"path": "pages/others/index",
 			"style": {
-				"navigationBarTitleText": "应用软件与游戏",
+				"navigationBarTitleText": "推荐软件与游戏",
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
@@ -65,7 +65,7 @@
 			}
 		},
 		{
-			"path": "pages/web/main",
+			"path": "pages/mags/main",
 			"style": {
 				"app-plus": {
 					"titleNView": {
@@ -79,7 +79,7 @@
 			}
 		},
 		{
-			"path": "pages/local/main",
+			"path": "pages/tools/main",
 			"style": {
 				"app-plus": {
 					"titleNView": {
@@ -93,7 +93,7 @@
 			}
 		},
 		{
-			"path": "pages/exe/main",
+			"path": "pages/others/main",
 			"style": {
 				"app-plus": {
 					"titleNView": {
@@ -123,28 +123,28 @@
 		"color": "#999999",
 		"selectedColor": "#1188DD",
 		"list": [{
-				"pagePath": "pages/web/index",
-				"iconPath": "static/ico/ico-web.png",
-				"selectedIconPath": "static/ico/ico-web-cur.png",
-				"text": "网址"
+				"pagePath": "pages/mags/index",
+				"iconPath": "static/ico/ico-mags.png",
+				"selectedIconPath": "static/ico/ico-mags-cur.png",
+				"text": "啾噗"
 			},
 			{
-				"pagePath": "pages/local/index",
-				"iconPath": "static/ico/ico-local.png",
-				"selectedIconPath": "static/ico/ico-local-cur.png",
-				"text": "专题"
+				"pagePath": "pages/tools/index",
+				"iconPath": "static/ico/ico-tools.png",
+				"selectedIconPath": "static/ico/ico-tools-cur.png",
+				"text": "工具"
 			},
 			{
-				"pagePath": "pages/ok/index",
-				"iconPath": "static/ico/ico-ok.png",
-				"selectedIconPath": "static/ico/ico-ok-cur.png",
+				"pagePath": "pages/love/index",
+				"iconPath": "static/ico/ico-love.png",
+				"selectedIconPath": "static/ico/ico-love-cur.png",
 				"text": "聊吧"
 			},
 			{
-				"pagePath": "pages/exe/index",
-				"iconPath": "static/ico/ico-exe.png",
-				"selectedIconPath": "static/ico/ico-exe-cur.png",
-				"text": "应用"
+				"pagePath": "pages/others/index",
+				"iconPath": "static/ico/ico-others.png",
+				"selectedIconPath": "static/ico/ico-others-cur.png",
+				"text": "推荐"
 			},
 			{
 				"pagePath": "pages/user/index",

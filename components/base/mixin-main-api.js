@@ -1,5 +1,25 @@
 export default {
 	methods: {
+		async saiGetData(vLi, ixSn) {
+			let vVal = this.saiLocalRead(this.saiLocalName(vLi, ixSn, ''));
+			if (vVal && vVal.ver) {
+				if (this.$config.auto.newVerLoad) {
+					console.log(666.777888, vLi, this.liToUrl(vLi, 1))
+					// auto fresh data from api
+					await this.apiVer(vLi, this.liToUrl(vLi, 1)).then((res) => {
+						console.log(666.33445566, res);
+						if (res.ver > vVal.ver) {
+							vVal = {}
+						}
+					}).finally(() => {
+						console.log(666.345);
+					});
+					console.log(666.345, vVal);
+				}
+				return vVal;
+			}
+			return {};
+		},
 		initApi(vLi = '', listItem = {}) {
 			if (vLi && listItem && listItem.li) {
 				let showItem = listItem.li.dt[vLi];
@@ -58,7 +78,7 @@ export default {
 			return vFile;
 		},
 		liToUrl(vLi, vType = 0) {
-			return this.$config.baseURL + this.liToFile(vLi, vType) + '?' + Date.now();
+			return this.$config['baseURL' + this.$config.dev] + this.liToFile(vLi, vType) + '?' + Date.now();
 		},
 		initVal(vLi, vVal) {
 			if (vVal && vVal.ver) {
@@ -73,7 +93,7 @@ export default {
 			}
 		},
 		apiInit(vLi) {
-			if (this.$config.baseURL.startsWith("/data")) {
+			if (this.$config['baseURL' + this.$config.dev].startsWith("/data")) {
 				this.appDataRequire(vLi, '../..' + this.$config.baseURL + this.liToFile(vLi))
 			} else {
 				let vUrl = this.liToUrl(vLi);
@@ -113,6 +133,22 @@ export default {
 				this.initVal(vLi, vVal);
 			}).finally(() => {
 				this.loadClose();
+			});
+		},
+		apiVer(vLi, vUrl) {
+			this.loadShow({
+				title: '正在同步服务...'
+			});
+			return new Promise((resolve, reject) => {
+				this.saiApi(vUrl).then((res) => {
+					let vVal = res.data;
+					if (vVal && typeof vVal === 'string') {
+						resolve(JSON.parse(vVal));
+					}
+					resolve(vVal);
+				}).finally(() => {
+					this.loadClose();
+				});
 			});
 		},
 	},

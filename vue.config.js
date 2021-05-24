@@ -5,7 +5,7 @@ module.exports = {
 	devServer: {
 		proxy: {
 			'/dev': {
-				target: ConfigMain.webURL,
+				target: ConfigMain.baseURL,
 				ws: true,
 				changeOrigin: true,
 				pathRewrite: {

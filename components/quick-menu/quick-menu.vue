@@ -6,30 +6,32 @@
 				<view :style="ranColor()" class="s-menu-li" v-for="item in quickMenus" @tap="goQuick(item.url)">
 					{{item.tit}}
 				</view>
+				<view :style="ranColor()" class="s-menu-li">+</view>
 			</view>
+			<view class="s-menu-edit">edit</view>
 		</view>
 	</view>
 </template>
 
 <script>
 	import {
-		RandomColor
+		RandomBgColor
 	} from '../../asai/js/random-color.js';
 	export default {
 		data() {
 			return {
 				quickMenus: [{
 					tit: "网址",
-					url: "/pages/web/index"
+					url: "/pages/mags/index"
 				}, {
 					tit: "专题",
-					url: "/pages/local/index"
+					url: "/pages/tools/index"
 				}, {
 					tit: "聊吧",
-					url: "/pages/ok/index"
+					url: "/pages/love/index"
 				}, {
 					tit: "应用",
-					url: "/pages/exe/index"
+					url: "/pages/others/index"
 				}, {
 					tit: "我的",
 					url: "/pages/user/index"
@@ -47,7 +49,7 @@
 		},
 		methods: {
 			ranColor() {
-				return 'background-color:' + RandomColor() + '';
+				return 'background-color:' + RandomBgColor() + '';
 			},
 			goQuick(url) {
 				if (url.startsWith('http')) {

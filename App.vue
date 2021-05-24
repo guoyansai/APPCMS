@@ -13,7 +13,7 @@
 			}, 1000);
 		},
 		onShow: function() {
-			this.saiApi(this.$config.webURL + "/ver.json").then((res) => {
+			this.saiApi(this.$config['baseURL' + this.$config.dev] + "/ver.json").then((res) => {
 				this.$global.G.ver = res.data.ver;
 			});
 			console.log("App Show");

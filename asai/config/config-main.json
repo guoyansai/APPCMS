@@ -1,6 +1,7 @@
 {
 	"ver": "20210217",
 	"verNewUrl": "http://asaidata.780.pub/data/asai.apk",
+	"dev": "Dev",
 	"name": {
 		"app": {
 			"startsWith": "asai_",
@@ -10,13 +11,12 @@
 			"local": "guoyansailocal"
 		}
 	},
-	"baseURL1": "/dataLocal/data",
-	"baseURL": "/dev",
-	"baseURL2": "https://guoyansai.gitee.io/asaiappjson/data",
-	"webURL": "https://guoyansai.gitee.io/asaiappjson/data",
+	"baseURLData": "/datalocal/data",
+	"baseURLDev": "/dev",
+	"baseURL": "https://guoyansai.gitee.io/asaiappjson/data",
 	"auto": {
 		"saveLocal": true,
-		"newVerLoad": true
+		"newVerLoad": false
 	},
 	"apiType": "api",
 	"time": {

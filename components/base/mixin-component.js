@@ -1,6 +1,7 @@
 import mixinMainList from './mixin-main-list.js';
 import {
-	RandomColor
+	RandomBgColor,
+	RandomFontColor
 } from '../../asai/js/random-color.js';
 
 export default {
@@ -90,7 +91,7 @@ export default {
 	},
 	methods: {
 		ranColor() {
-			return 'background-color:' + RandomColor() + '';
+			return 'background-color:' + RandomBgColor() + ';color:' + RandomFontColor() + ';';
 		},
 		curView(vSn) {
 			let vUrl = '';

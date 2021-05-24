@@ -1,15 +1,5 @@
 export default {
 	methods: {
-		saiLocalInit(vLi, ixSn) {
-			let vVal = this.saiLocalRead(this.saiLocalName(vLi, ixSn, ''));
-			if (vVal && vVal.ver) {
-				if (this.$config.auto.saveLocal) {
-
-				}
-				return vVal;
-			}
-			return {};
-		},
 		saiLocalClear(ixSn) {
 			let localArr = this.asaiLocalArr(ixSn);
 			if (localArr.length) {
