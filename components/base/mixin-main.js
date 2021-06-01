@@ -97,10 +97,14 @@ export default {
 												this.setTopBar('tool', {});
 											} else {
 												this.initList(this.listSn, this.listCur);
+												this.saiPage(this.listCur, e);
+												this.saiSearch(this.listCur, e);
 											}
 										});
 								} else {
 									this.initIndex(this.indexCur);
+									this.saiPage(this.indexCur, e);
+									this.saiSearch(this.indexCur, e);
 								}
 							});
 					}

@@ -8,7 +8,6 @@
 		<list v-else-if="listSn" :ppage="listPage" :gli="listSn" :psearch="listSearch" :gindex="indexCur"
 			:glist="listCur"></list>
 		<list v-else :ppage="listPage" :psearch="listSearch" :gindex="indexCur" :glist="listCur"></list>
-		{{indexCur}}111111111
 	</view>
 </template>
 
