@@ -1,5 +1,5 @@
 <template>
-	<view :class="'index-' + indexSn" v-if="canShow">
+	<view :class="'index-' + indexSn" v-if="indexCur.ver || listCur.ver">
 		<quick-menu v-if="quickMenu" @closemenu="closeMenu()"></quick-menu>
 		<bar :item="topBar"></bar>
 		<web-view v-if="viewUr" :src="viewUr"></web-view>
@@ -17,7 +17,7 @@
 	export default {
 		mixins: [mixinMain],
 		onLoad: function(e) {
-			this.initOnLoad(e, 'exe');
+			this.initOnLoad(e, 'others');
 		}
 	};
 </script>

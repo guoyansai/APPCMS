@@ -86,7 +86,7 @@ export default {
 		if (this.psearch.ss) {
 			this.allList = this.psearch.dr[this.saiSearchKey(this.item)] || [];
 		} else {
-			this.allList = this.item.li.dr;
+			this.allList = this.item?.li?.dr;
 		}
 	},
 	methods: {

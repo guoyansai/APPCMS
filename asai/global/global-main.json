@@ -1,18 +1,19 @@
 {
 	"G": {
 		"ver": "",
-		"datalocal": {
+		"datatools": {
 			"listObj": {},
 			"indexObj": {}
 		},
-		"dataweb": {
+		"datamags": {
 			"listObj": {},
 			"indexObj": {}
 		},
-		"dataexe": {
+		"dataothers": {
 			"listObj": {},
 			"indexObj": {}
 		},
+		"datalove": {},
 		"datauser": {},
 		"bomb": {
 			"clearOn": true

@@ -53,7 +53,7 @@
 		computed: {
 			curList() {
 				const objList = {};
-				if (this.allList.length) {
+				if (this.allList && this.allList.length) {
 					let arrList = this.allList.slice((this.ppage.pc - 1) * this.ppage.ps, this.ppage.pc * this.ppage.ps);
 					arrList.forEach(key => {
 						objList[key] = this.item.li.dt[key];

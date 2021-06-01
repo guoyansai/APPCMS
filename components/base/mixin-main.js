@@ -1,13 +1,11 @@
 import mixinMainList from './mixin-main-list.js';
-import mixinMainLocal from './mixin-main-local.js';
-import mixinMainApi from './mixin-main-api.js';
 import bar from '../bar/bar.vue';
 import list from '../list/list.vue';
 import show from '../show/show.vue';
 import quickMenu from '../quick-menu/quick-menu.vue';
 
 export default {
-	mixins: [mixinMainList, mixinMainLocal, mixinMainApi],
+	mixins: [mixinMainList],
 	components: {
 		bar,
 		list,
@@ -47,17 +45,6 @@ export default {
 			}
 		};
 	},
-	computed: {
-		canShow() {
-			if (this.viewUr && !this.viewUr.startsWith('_')) {
-				return true;
-			} else if (this.listSn) {
-				return this.listCur.ver;
-			} else {
-				return this.indexCur.ver;
-			}
-		}
-	},
 	onShow: function() {
 		uni.$on('clear', res => {
 			this.clear();
@@ -75,7 +62,7 @@ export default {
 		}
 	},
 	methods: {
-		async initOnLoad(e, sn) {
+		initOnLoad(e, sn) {
 			try {
 				if (e.ur) {
 					this.viewSn = '';
@@ -86,53 +73,37 @@ export default {
 					});
 				} else {
 					this.viewUr = '';
-					this.indexSn = sn || 'local';
-					let gData = this.$global.G['data' + this.indexSn];
-
 					// 获取index信息
-					if (gData.indexObj && gData.indexObj.ver) {
-						this.indexCur = gData.indexObj;
-					} else {
-						this.indexCur = await this.saiGetData('', this.indexSn);
-						gData.indexObj = this.indexCur;
+					this.indexSn = sn;
+					if (this.indexSn) {
+						this.$asaidata
+							.get('/' + this.indexSn + '/li', 0)
+							.then((res) => {
+								this.indexCur = res;
+								// 获取index=>list信息
+								this.listSn = e.li || '';
+								if (this.listSn) {
+									this.$asaidata
+										.get('/' + this.indexSn + '/co/' + this.listSn, 0)
+										.then((res) => {
+											this.listCur = res;
+											// 获取index=>list=>view信息
+											if (e.sn) {
+												this.viewSn = e.sn;
+												this.setTopBar('show', {
+													tt: '详情',
+													ur: ''
+												});
+												this.setTopBar('tool', {});
+											} else {
+												this.initList(this.listSn, this.listCur);
+											}
+										});
+								} else {
+									this.initIndex(this.indexCur);
+								}
+							});
 					}
-					if (this.indexCur.ver) {
-						this.initIndex(this.indexCur);
-					} else {
-						this.initApi();
-					}
-
-					// 获取index=>list信息
-					this.listSn = e.li || '';
-					if (this.listSn) {
-						if (gData.listObj && gData.listObj.ver && gData.listObj.sn === this.listSn) {
-							this.listCur = gData.listObj;
-						} else {
-							this.listCur = await this.saiGetData(this.listSn, this.indexSn);
-							gData.listObj = this.listCur;
-						}
-						if (this.listCur.ver) {
-							this.initList(this.listSn, this.listCur);
-						} else {
-							this.initApi(this.listSn, this.indexCur);
-						}
-						this.saiPage(this.listCur, e);
-						this.saiSearch(this.listCur, e);
-					} else {
-						this.saiPage(this.indexCur, e);
-						this.saiSearch(this.indexCur, e);
-					}
-
-					// 获取index=>list=>view信息
-					if (e.sn) {
-						this.viewSn = e.sn;
-						this.setTopBar('show', {
-							tt: '详情',
-							ur: ''
-						});
-					}
-
-					this.setTopBar('tool', {});
 				}
 			} catch (err) {
 				console.log(666.111, err);
@@ -196,22 +167,7 @@ export default {
 			this.quickMenu = false;
 		},
 		clear() {
-			this.loadShow({
-				title: '正在清理...'
-			});
-			this.saiLocalClear(this.indexSn);
-
-			this.$global.G = JSON.parse(JSON.stringify(this.$global.IG));
-
-			this.listSn && (this.listSn = '');
-			this.viewSn && (this.viewSn = '');
-			this.viewUr && (this.viewUr = '');
-			clearTimeout(this.Timer);
-			this.Timer = setTimeout(() => {
-				this.loadClose();
-				this.goTab();
-				clearTimeout(this.Timer);
-			}, this.$config.time.clear);
+			this.$asaidata.clear();
 		},
 	}
 };

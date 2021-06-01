@@ -25,7 +25,7 @@ export default {
 		},
 		saiLocalName(vLi, ixSn, vType = 'sai') {
 			let tTy = vType;
-			if (tTy !== 'local') {
+			if (tTy !== 'tools') {
 				if (vLi && vLi !== 'undefined') {
 					tTy = 'list';
 				} else {
