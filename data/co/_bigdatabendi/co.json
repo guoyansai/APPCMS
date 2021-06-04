@@ -1,3 +1,0 @@
-{
-	"说明": "支持本地json文件读取，但是要按规则来！list的请在data文件夹下使用_开头命名文件夹，如_local/li.json;_local/ver.json；content的请在co文件夹下面以_开头命名，如_gushi/co.json;_gushi/ver.json。"
-}

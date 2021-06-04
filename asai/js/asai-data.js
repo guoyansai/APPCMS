@@ -24,7 +24,10 @@ export default class {
 					this.loadShow({
 						title: '获取服务信息中'
 					});
-					return this.asaiApi(vUrl);
+					this.asaiApi(vUrl).then(res => {
+						this.setRe(vUrl, res.data);
+						resolve(res.data);
+					});
 				} else {
 					let objStorage;
 					objStorage = this.getGlobalObj(vUrl);
@@ -33,7 +36,7 @@ export default class {
 					} else {
 						objStorage = this.asaiStorageRead(vUrl);
 						if (objStorage && objStorage.ver) {
-							if (this.$config.auto.apiVerload) {
+							if (this.$config.auto.apiVerload && this.getVer()) {
 								this.loadShow({
 									title: '正在判断是否为最新信息'
 								});
@@ -46,7 +49,10 @@ export default class {
 											this.loadShow({
 												title: '正在获取最新信息'
 											});
-											return this.getRe(vUrl);
+											this.asaiApi(vUrl).then(res => {
+												this.setRe(vUrl, res.data);
+												resolve(res.data);
+											});
 										} else {
 											this.setRe(vUrl, objStorage);
 											resolve(objStorage);
@@ -60,7 +66,10 @@ export default class {
 							this.loadShow({
 								title: '正在获取服务信息'
 							});
-							return this.getRe(vUrl);
+							this.asaiApi(vUrl).then(res => {
+								this.setRe(vUrl, res.data);
+								resolve(res.data);
+							});
 						}
 					}
 				}
@@ -70,23 +79,18 @@ export default class {
 		});
 	}
 
+	getVer() {
+		return this.$global.G.app.ver;
+	}
+
 	setRe(vUrl, vObj) {
 		this.setGlobalObj(vUrl, vObj);
 		this.asaiStorageSave(vUrl, vObj);
 	}
 
-	getRe(vUrl) {
-		return new Promise((resolve, reject) => {
-			this.asaiApi(vUrl).then(res => {
-				this.setRe(vUrl, res.data);
-				resolve(res.data);
-			});
-		});
-	}
-
 	getGlobalObj(vUrl) {
 		let globalObj = {};
-		const arrUrl = vUrl + '///'.split('/');
+		const arrUrl = (vUrl + '///').split('/');
 		if (arrUrl[2] === 'co') {
 			globalObj = this.$global.G['data' + arrUrl[1]].listObj || {};
 			if (globalObj.sn !== arrUrl[2]) {
@@ -102,7 +106,7 @@ export default class {
 	}
 
 	setGlobalObj(vUrl, vObj) {
-		const arrUrl = vUrl + '///'.split('/');
+		const arrUrl = (vUrl + '///').split('/');
 		if (arrUrl[2] === 'co') {
 			this.$global.G['data' + arrUrl[1]].listObj = vObj;
 		} else if (arrUrl[2] === 'li') {
@@ -131,6 +135,10 @@ export default class {
 					}
 				},
 				fail: (err) => {
+					this.setRe('/app', {
+						"ver": 0,
+						"app": ""
+					});
 					reject(err);
 				},
 				complete: () => {

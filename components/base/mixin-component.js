@@ -63,15 +63,14 @@ export default {
 			type: String,
 			required: false
 		},
+		gur: {
+			type: String,
+			required: false
+		},
 		gsn: {
 			type: String,
 			required: false
 		}
-	},
-	data() {
-		return {
-			allList: []
-		};
 	},
 	computed: {
 		item() {
@@ -81,12 +80,12 @@ export default {
 				return this.gindex;
 			}
 		},
-	},
-	created() {
-		if (this.psearch.ss) {
-			this.allList = this.psearch.dr[this.saiSearchKey(this.item)] || [];
-		} else {
-			this.allList = this.item?.li?.dr;
+		allList() {
+			if (this.psearch.ss) {
+				return this.psearch.dr[this.saiSearchKey(this.item)] || [];
+			} else {
+				return this.item?.li?.dr;
+			}
 		}
 	},
 	methods: {
@@ -99,6 +98,9 @@ export default {
 				vUrl = '?sn=' + vSn + '&li=' + this.gli;
 			} else {
 				vUrl = '?li=' + vSn;
+			}
+			if (this.gur) {
+				vUrl += '&ur=' + this.gur;
 			}
 			if (this.psearch.ss) {
 				vUrl += '&ss=' + this.psearch.ss;

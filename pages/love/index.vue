@@ -1,15 +1,15 @@
 <template>
 	<view class="index-ok" v-if="saiCheckObj(dataLove)">
-		<quick-menu v-if="quickMenu" @closemenu="closeMenu()"></quick-menu>
 		<web-view v-if="dataLove.url" :src="dataLove.url"></web-view>
 	</view>
 </template>
 
 <script>
 	import mixinMain from "../../components/base/mixin-main.js";
+	import mixinMainLoad from '../../components/base/mixin-main-load.js';
 
 	export default {
-		mixins: [mixinMain],
+		mixins: [mixinMain, mixinMainLoad],
 		data() {
 			return {
 				dataLove: null,

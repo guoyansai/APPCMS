@@ -31,6 +31,10 @@
 			gli: {
 				type: String,
 				required: false
+			},
+			gur: {
+				type: String,
+				required: false
 			}
 		},
 		computed: {
@@ -73,8 +77,12 @@
 			},
 			getPageUrl(vPage) {
 				let vUrl = '?page=' + vPage;
+				vUrl = '?page=' + vPage;
 				if (this.gli) {
 					vUrl = vUrl + '&li=' + this.gli;
+				}
+				if (this.gur) {
+					vUrl = vUrl + '&ur=' + this.gur;
 				}
 				if (this.psearch.ss) {
 					vUrl = vUrl + '&ss=' + this.psearch.ss;

@@ -2,7 +2,6 @@ import mixinMainList from './mixin-main-list.js';
 import bar from '../bar/bar.vue';
 import list from '../list/list.vue';
 import show from '../show/show.vue';
-import quickMenu from '../quick-menu/quick-menu.vue';
 
 export default {
 	mixins: [mixinMainList],
@@ -10,11 +9,9 @@ export default {
 		bar,
 		list,
 		show,
-		quickMenu,
 	},
 	data() {
 		return {
-			quickMenu: false,
 			Timer: null,
 			Loader: false,
 
@@ -23,6 +20,7 @@ export default {
 
 			indexSn: '',
 			listSn: '',
+			listUr: '',
 			viewSn: '',
 			viewUr: '',
 			topBar: {
@@ -34,7 +32,8 @@ export default {
 			listPage: {
 				pc: 1,
 				ps: 10,
-				pa: 0
+				pa: 0,
+				ur: ''
 			},
 			listSearch: {
 				dr: {},
@@ -45,26 +44,10 @@ export default {
 			}
 		};
 	},
-	onShow: function() {
-		uni.$on('clear', res => {
-			this.clear();
-		});
-	},
-	onUnload: function() {
-		uni.$off('clear');
-	},
-	onNavigationBarButtonTap(e) {
-		console.log(666.11223, 'menu', e)
-		if (e.type === 'home') {
-			this.goTab();
-		} else if (e.type === 'menu') {
-			this.quickMenu = !this.quickMenu;
-		}
-	},
 	methods: {
 		initOnLoad(e, sn) {
 			try {
-				if (e.ur) {
+				if (e.ur && (e.ur.indexOf('//') !== -1 || e.ur.startsWith('http'))) {
 					this.viewSn = '';
 					this.viewUr = e.ur;
 					this.setTopBar('show', {
@@ -72,21 +55,36 @@ export default {
 						ur: ''
 					});
 				} else {
+					this.listUr = e.ur;
 					this.viewUr = '';
 					// 获取index信息
 					this.indexSn = sn;
 					if (this.indexSn) {
 						this.$asaidata
 							.get('/' + this.indexSn + '/li', 0)
-							.then((res) => {
-								this.indexCur = res;
+							.then((resIndex) => {
+								this.indexCur = resIndex;
+								this.setTopBar('index', {
+									tt: this.indexCur.tt,
+									ur: 'index'
+								});
 								// 获取index=>list信息
 								this.listSn = e.li || '';
 								if (this.listSn) {
+									let listUrl = e.ur || '';
+									let urQurey = '';
+									if (listUrl) {
+										urQurey = '&ur=' + listUrl;
+										listUrl = listUrl + '/';
+									}
 									this.$asaidata
-										.get('/' + this.indexSn + '/co/' + this.listSn, 0)
+										.get('/' + this.indexSn + '/co/' + listUrl + this.listSn + '/co', 0)
 										.then((res) => {
 											this.listCur = res;
+											this.setTopBar('list', {
+												tt: res.tt,
+												ur: '?li=' + this.listSn + urQurey
+											});
 											// 获取index=>list=>view信息
 											if (e.sn) {
 												this.viewSn = e.sn;
@@ -96,49 +94,25 @@ export default {
 												});
 												this.setTopBar('tool', {});
 											} else {
-												this.initList(this.listSn, this.listCur);
-												this.saiPage(this.listCur, e);
-												this.saiSearch(this.listCur, e);
+												this.saiInit(res);
+												this.saiPage(res, e);
+												this.saiSearch(res, e);
 											}
 										});
 								} else {
-									this.initIndex(this.indexCur);
-									this.saiPage(this.indexCur, e);
-									this.saiSearch(this.indexCur, e);
+									this.saiInit(resIndex);
+									this.saiPage(resIndex, e);
+									this.saiSearch(resIndex, e);
 								}
 							});
 					}
 				}
 			} catch (err) {
-				console.log(666.111, err);
 				this.goTab();
 			}
 		},
-
 		setTopBar(vKey, vVal) {
 			this.topBar[vKey] = vVal;
-		},
-		initIndex(vData) {
-			this.saiInit(vData);
-			this.setTopBar('index', {
-				tt: '主页',
-				ur: 'index'
-			});
-		},
-		initList(vLi, vData) {
-			this.saiInit(vData);
-			this.setTopBar('index', {
-				tt: '主页',
-				ur: 'index'
-			});
-			this.setTopBar('list', {
-				tt: '列表',
-				ur: '?li=' + vLi
-			});
-			this.setTopBar('tool', {
-				tt: '下载',
-				ur: '?li=' + vLi
-			});
 		},
 		saiInit(vData) {
 			this.initPage(vData);
@@ -166,12 +140,6 @@ export default {
 				});
 				this.listSearch.ds = searchData;
 			}
-		},
-		closeMenu() {
-			this.quickMenu = false;
-		},
-		clear() {
-			this.$asaidata.clear();
 		},
 	}
 };

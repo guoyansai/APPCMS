@@ -1,6 +1,5 @@
 <template>
 	<view class="index-user" v-if="saiCheckObj(dataUser)">
-		<quick-menu v-if="quickMenu" @closemenu="closeMenu()"></quick-menu>
 		<view class="s-user-edit" v-if="userType === 'edit'">
 			<view class="s-user-top">
 				<view class="s-user-ic"><img :src="dataUser.ic" /></view>
@@ -102,16 +101,17 @@
 		</view>
 		<view class="s-user-des"> 注意：以上信息仅限本地使用。 </view>
 		<view class="s-user-des">{{ jsonTemp }}App Ver {{ $config.ver }}</view>
-		<view class="s-user-des" v-if="hasNewVer" @tap="downNewVer()">点击下载最新版本：{{ $global.G.ver }}</view>
-		<view class="s-user-app"><input type="text" v-model="$config.verNewUrl" /></view>
+		<view class="s-user-des" v-if="hasNewVer" @tap="downNewVer()">点击下载最新版本：{{ $global.G.app.ver }}</view>
+		<view class="s-user-app"><input type="text" v-model="$global.G.app.app" /></view>
 	</view>
 </template>
 
 <script>
 	import mixinMain from "../../components/base/mixin-main.js";
+	import mixinMainLoad from '../../components/base/mixin-main-load.js';
 
 	export default {
-		mixins: [mixinMain],
+		mixins: [mixinMain, mixinMainLoad],
 		data() {
 			return {
 				hasNewVer: false,
@@ -122,17 +122,7 @@
 		},
 		onLoad: function(e) {
 			this.initUser(0);
-			// this.$asaidata.get("/mags/li").then((res) => {
-			// 	console.log(666.789789, res);
-			// });
-			// this.$asaidata.asaiStorageSave("aaaaaaaaaaa", '{"a":"bbbbbb"}');
-			// console.log(
-			// 	666.9001,
-			// 	this.$asaidata,
-			// 	this.$asaidata.asaiStorageRead("aaaaaaaaaaa"),
-			// 	this.$asaidata.asaiStorageName("aaaaaaaaaaa")
-			// );
-			if (this.$global.G.ver !== this.$config.ver) {
+			if (this.$global.G.app.ver !== this.$config.ver) {
 				this.hasNewVer = true;
 			}
 			if (e.type) {

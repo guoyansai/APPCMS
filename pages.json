@@ -65,6 +65,12 @@
 			}
 		},
 		{
+			"path": "pages/map/index",
+			"style": {
+				"navigationBarTitleText": "导航中心"
+			}
+		},
+		{
 			"path": "pages/mags/main",
 			"style": {
 				"app-plus": {

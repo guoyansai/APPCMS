@@ -1,6 +1,6 @@
 <template>
 	<view class="s-area" v-if="item && item.ver">
-		<search :item="psearch" :gli="gli"></search>
+		<search :item="psearch" :gli="gli" :gur="gur"></search>
 		<view :id="$config.ids.search" v-if="item.ty && item.ty.li.startsWith('pic')" class="s-pic">
 			<view class="s-list-li" v-for="(showItem, key, index) in curList" :key="index" @tap="viewGo(showItem, key)">
 				<view class="s-v-img" :style="ranColor()">
@@ -32,7 +32,7 @@
 				</view>
 			</view>
 		</view>
-		<page :item="ppage" :psearch="psearch" :gli="gli"></page>
+		<page :item="ppage" :psearch="psearch" :gli="gli" :gur="gur"></page>
 		<type :item="item"></type>
 	</view>
 </template>
@@ -67,7 +67,7 @@
 				let vUrl = this.curView(vSn);
 				let vUr = this.getValue(this.item, vValue, 'ur');
 				if (vUr && !vUr.startsWith('_')) {
-					vUrl = vUrl + '&ur=' + vUr;
+					vUrl = vUrl + '&ur=' + vUr || '';
 				}
 				this.go(vUrl);
 			}

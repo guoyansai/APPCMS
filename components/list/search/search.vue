@@ -25,6 +25,10 @@
 			gli: {
 				type: String,
 				required: false
+			},
+			gur: {
+				type: String,
+				required: false
 			}
 		},
 		data() {
@@ -48,6 +52,9 @@
 					}
 					if (this.gli) {
 						vUrl = vUrl + '&li=' + this.gli;
+					}
+					if (this.gur) {
+						vUrl = vUrl + '&ur=' + this.gur;
 					}
 					this.go(vUrl);
 				}

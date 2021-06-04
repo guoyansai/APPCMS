@@ -3,7 +3,8 @@
 		<view class="s-menu" @tap.stop="">
 			<view class="s-menu-tit">导航</view>
 			<view :style="ranColor()" class="s-menu-main">
-				<view :style="ranColor()" class="s-menu-li" v-for="item in quickMenus" @tap="goQuick(item.url)">
+				<view :style="ranColor()" class="s-menu-li" v-for="item in quickMenus" @tap="goQuick(item.url)"
+					:key="item.tit">
 					{{item.tit}}
 				</view>
 				<view :style="ranColor()" class="s-menu-li">+</view>
@@ -57,7 +58,6 @@
 				} else {
 					this.goTab(url);
 				}
-				console.log(666.111, url);
 			},
 			closeMenu() {
 				this.$emit('closemenu');

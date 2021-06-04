@@ -1,7 +1,6 @@
 {
 	"ver": "20210217",
-	"verNewUrl": "http://asaidata.780.pub/data/asai.apk",
-	"dev": "dev",
+	"dev": "asai",
 	"name": {
 		"app": {
 			"startsWith": "asai_",

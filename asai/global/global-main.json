@@ -1,6 +1,9 @@
 {
 	"G": {
-		"ver": "",
+		"app": {
+			"ver": 0,
+			"app": ""
+		},
 		"datatools": {
 			"listObj": {},
 			"indexObj": {}
