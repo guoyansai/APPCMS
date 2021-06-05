@@ -1,4 +1,10 @@
 {
+	"topWindow": {
+		"path": "windows/top-window.vue",
+		"style": {
+			"height": "60px"
+		}
+	},
 	"pages": [{
 			"path": "pages/mags/index",
 			"style": {
@@ -52,9 +58,9 @@
 			}
 		},
 		{
-			"path": "pages/user/index",
+			"path": "pages/setting/index",
 			"style": {
-				"navigationBarTitleText": "用户中心",
+				"navigationBarTitleText": "设置中心",
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
@@ -62,6 +68,12 @@
 						}]
 					}
 				}
+			}
+		},
+		{
+			"path": "pages/user/index",
+			"style": {
+				"navigationBarTitleText": "用户中心"
 			}
 		},
 		{
@@ -121,7 +133,17 @@
 		"pageOrientation": "auto",
 		"animationType": "fade-in",
 		"animationDuration": 120,
-		"enablePullDownRefresh": false
+		"enablePullDownRefresh": false,
+		"backgroundColorTop": "#F4F5F6",
+		"backgroundColorBottom": "#F4F5F6",
+		"mp-360": {
+			"navigationStyle": "custom"
+		},
+		"h5": {
+			"maxWidth": 1190,
+			"navigationBarTextStyle": "black",
+			"navigationBarBackgroundColor": "#F1F1F1"
+		}
 	},
 	"tabBar": {
 		"borderStyle": "#D8D8D8",
@@ -153,10 +175,10 @@
 				"text": "推荐"
 			},
 			{
-				"pagePath": "pages/user/index",
-				"iconPath": "static/ico/ico-user.png",
-				"selectedIconPath": "static/ico/ico-user-cur.png",
-				"text": "我的"
+				"pagePath": "pages/setting/index",
+				"iconPath": "static/ico/ico-setting.png",
+				"selectedIconPath": "static/ico/ico-setting-cur.png",
+				"text": "设置"
 			}
 		]
 	}

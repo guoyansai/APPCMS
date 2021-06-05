@@ -86,6 +86,8 @@ export default {
 												ur: '?li=' + this.listSn + urQurey
 											});
 											// 获取index=>list=>view信息
+											this.saiInit(res);
+											this.saiSearch(res, e);
 											if (e.sn) {
 												this.viewSn = e.sn;
 												this.setTopBar('show', {
@@ -94,9 +96,7 @@ export default {
 												});
 												this.setTopBar('tool', {});
 											} else {
-												this.saiInit(res);
 												this.saiPage(res, e);
-												this.saiSearch(res, e);
 											}
 										});
 								} else {
@@ -123,7 +123,9 @@ export default {
 				vData.li.dr = Object.keys(vData.li.dt);
 				vData.li.pg.pa = vData.li.dr.length;
 			}
-			this.listPage.pa = vData.li.pg.pa;
+			if (this.listPage.pa !== vData.li.pg.pa) {
+				this.listPage.pa = vData.li.pg.pa;
+			}
 		},
 		initSearch(vData) {
 			if (this.saiCheckData(vData) && vData.db.ds.length) {

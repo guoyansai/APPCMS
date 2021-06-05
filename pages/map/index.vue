@@ -1,15 +1,13 @@
 <template>
-	<view class="s-menu-area" @tap="closeMenu()">
+	<view class="s-menu-area" v-if="saiCheckObj(dataMap)">
 		<view class="s-menu" @tap.stop="">
-			<view class="s-menu-tit">导航</view>
 			<view :style="ranColor()" class="s-menu-main">
-				<view :style="ranColor()" class="s-menu-li" v-for="item in quickMenus" @tap="goQuick(item.url)"
+				<view :style="ranColor()" class="s-menu-li" v-for="item in dataMap.map" @tap="goQuick(item.url)"
 					:key="item.tit">
 					{{item.tit}}
 				</view>
-				<view :style="ranColor()" class="s-menu-li">+</view>
+				<view :style="ranColor()" class="s-menu-li">敬请期待...</view>
 			</view>
-			<view class="s-menu-edit">edit</view>
 		</view>
 	</view>
 </template>
@@ -21,34 +19,21 @@
 	export default {
 		data() {
 			return {
-				quickMenus: [{
-					tit: "网址",
-					url: "/pages/mags/index"
-				}, {
-					tit: "专题",
-					url: "/pages/tools/index"
-				}, {
-					tit: "聊吧",
-					url: "/pages/love/index"
-				}, {
-					tit: "应用",
-					url: "/pages/others/index"
-				}, {
-					tit: "我的",
-					url: "/pages/user/index"
-				}, {
-					tit: "试试6",
-					url: "http://www.baidu.com/"
-				}, {
-					tit: "试试7",
-					url: "http://www.baidu.com/"
-				}, {
-					tit: "试试8",
-					url: "http://www.baidu.com/"
-				}]
+				dataMap: {}
 			};
 		},
+		onLoad: function(e) {
+			this.initMap(0);
+		},
 		methods: {
+			initMap(type = 0) {
+				this.$asaidata
+					.get("/map/li", type)
+					.then((res) => {
+						console.log(666.222, res)
+						this.dataMap = res;
+					});
+			},
 			ranColor() {
 				return 'background-color:' + RandomBgColor() + '';
 			},
@@ -59,11 +44,43 @@
 					this.goTab(url);
 				}
 			},
-			closeMenu() {
-				this.$emit('closemenu');
-			},
 		}
 	};
 </script>
 
-<style></style>
+<style scoped>
+	.s-menu-area {
+		height: 100%;
+		width: 100%;
+	}
+
+	.s-menu {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.s-menu-main {
+		border-radius: 0 0 28rpx 28rpx;
+		border-style: solid;
+		border-width: 1rpx;
+		border-color: #EEEEE8;
+		box-shadow: #DDDDD8 1rpx 2rpx 16rpx;
+		width: 100%;
+		display: grid;
+		grid-template-columns: repeat(4, 25%);
+		grid-template-row: repeat(4, 25%);
+	}
+
+	.s-menu-li {
+		overflow: hidden;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 1rpx;
+		font-size: smaller;
+		cursor: pointer;
+		height: 88rpx;
+		line-height: 88rpx;
+	}
+</style>

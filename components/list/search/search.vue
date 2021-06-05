@@ -8,7 +8,7 @@
 					<view class="uni-input">{{ item.ds.length && item.ds[item.ty].tt }}</view>
 				</picker>
 			</view>
-			<view class="s-search-input"><input placeholder="请输入关键词" v-model="item.ss" @confirm="goSearch()" /></view>
+			<view class="s-search-input"><input placeholder="请输入关键词" v-model="searchStr" @confirm="goSearch()" /></view>
 			<view class="s-search-button"><button class="mini-btn" type="primary" size="mini"
 					@tap="goSearch()">搜索</button></view>
 		</view>
@@ -34,7 +34,8 @@
 		data() {
 			return {
 				index: 0,
-				searchStatus: false,
+				searchStatus: true,
+				searchStr: this.item.ss,
 			};
 		},
 		methods: {
@@ -45,8 +46,11 @@
 				}
 			},
 			goSearch() {
-				if (this.item.ss) {
-					let vUrl = '?ss=' + this.item.ss;
+				if (this.item.ss || this.searchStr) {
+					if (this.searchStr) {
+						this.item.ss = this.searchStr;
+					}
+					let vUrl = '?ss=' + this.saiEncode(this.item.ss);
 					if (this.item.ty) {
 						vUrl = vUrl + '&ty=' + this.item.ty;
 					}

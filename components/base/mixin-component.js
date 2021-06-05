@@ -82,7 +82,7 @@ export default {
 		},
 		allList() {
 			if (this.psearch.ss) {
-				return this.psearch.dr[this.saiSearchKey(this.item)] || [];
+				return this.psearch.dr[this.saiSearchKey(this.item, this.psearch)] || [];
 			} else {
 				return this.item?.li?.dr;
 			}
@@ -103,7 +103,7 @@ export default {
 				vUrl += '&ur=' + this.gur;
 			}
 			if (this.psearch.ss) {
-				vUrl += '&ss=' + this.psearch.ss;
+				vUrl += '&ss=' + this.saiEncode(this.psearch.ss);
 			}
 			if (this.psearch.ty) {
 				vUrl += '&ty=' + this.psearch.ty;
@@ -112,6 +112,9 @@ export default {
 		},
 		viewTit(listItem, showItem) {
 			return this.getValue(listItem, showItem, 'tt');
+		},
+		viewNear(listItem, showItem) {
+			return this.getValue(listItem, showItem, 'tt') || this.getValue(listItem, showItem, 'co');
 		},
 		viewTag(listItem, showItem) {
 			const dnArr = [

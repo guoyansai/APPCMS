@@ -3,8 +3,8 @@ export default {
 		saiCheckData(vData) {
 			return vData && vData.li && vData.li.pg;
 		},
-		saiSearchKey(vData) {
-			return 'sai' + vData.ty + vData.ss;
+		saiSearchKey(vData, vSearch) {
+			return 'sai' + vData.sn + vSearch.ty + this.saiToKey(vSearch.ss);
 		},
 		saiSearchCheck(vData, vSearch, vKey) {
 			let checkOk = false;
@@ -33,8 +33,8 @@ export default {
 					this.listSearch.ty = 0;
 				}
 				if (e.ss) {
-					this.listSearch.ss = e.ss;
-					let curKey = this.saiSearchKey(vData);
+					this.listSearch.ss = this.saiDecode(e.ss);
+					let curKey = this.saiSearchKey(vData, this.listSearch);
 					if (!this.listSearch.dr[curKey]) {
 						let curLists = [];
 						Object.keys(vData.li.dt).forEach(key => {

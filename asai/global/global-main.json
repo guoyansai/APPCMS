@@ -16,8 +16,15 @@
 			"listObj": {},
 			"indexObj": {}
 		},
-		"datalove": {},
-		"datauser": {},
+		"datalove": {
+			"indexObj": {}
+		},
+		"datauser": {
+			"indexObj": {}
+		},
+		"datamap": {
+			"indexObj": {}
+		},
 		"bomb": {
 			"clearOn": true
 		}

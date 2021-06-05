@@ -17,5 +17,28 @@ export default {
 			}
 			return vTxt;
 		},
+		saiXSS(str) {
+			return str
+				.replace(/&/g, '')
+				.replace(/%/g, '')
+				.replace(/\*/g, '')
+				.replace(/#/g, '')
+				.replace(/^/g, '')
+				.replace(/ /g, '')
+				.replace(/</g, '')
+				.replace(/>/g, '')
+				.replace(/"/g, '')
+				.replace(/'/g, '')
+				.replace(/\r{0,}\n/g, '')
+		},
+		saiToKey(str) {
+			return this.saiXSS(this.saiEncode(str));
+		},
+		saiEncode(str) {
+			return encodeURIComponent(str);
+		},
+		saiDecode(str) {
+			return decodeURIComponent(str);
+		}
 	},
 };

@@ -12,7 +12,7 @@
 		mixins: [mixinMain, mixinMainLoad],
 		data() {
 			return {
-				dataLove: null,
+				dataLove: {},
 			};
 		},
 		onLoad: function(e) {

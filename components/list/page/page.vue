@@ -85,7 +85,7 @@
 					vUrl = vUrl + '&ur=' + this.gur;
 				}
 				if (this.psearch.ss) {
-					vUrl = vUrl + '&ss=' + this.psearch.ss;
+					vUrl = vUrl + '&ss=' + this.saiEncode(this.psearch.ss);
 				}
 				if (this.psearch.ty) {
 					vUrl = vUrl + '&ty=' + this.psearch.ty;

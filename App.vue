@@ -27,4 +27,10 @@
 <style>
 	/*每个页面公共css */
 	@import url("/static/css/global.css");
+
+	uni-page-body {
+		background-color: #FAFAFA !important;
+		min-height: 100% !important;
+		height: auto !important;
+	}
 </style>

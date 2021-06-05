@@ -47,21 +47,20 @@
 				};
 				if (this.gsn) {
 					let vSn = '';
-					let vArr = this.allList;
-					let vLen = vArr.length;
-					let vIndex = vArr.findIndex(itemVal => itemVal === this.gsn);
+					let vLen = this.allList.length;
+					let vIndex = this.allList.findIndex(itemVal => itemVal === this.gsn);
 					if (vIndex > 0) {
-						vSn = vArr[vIndex - 1];
+						vSn = this.allList[vIndex - 1];
 						if (vSn) {
 							tmpData.left.url = this.curView(vSn);
-							tmpData.left.tit = this.viewTit(this.item, this.item.li.dt[vSn]);
+							tmpData.left.tit = this.viewNear(this.item, this.item.li.dt[vSn]);
 						}
 					}
 					if (vIndex + 1 < vLen) {
-						vSn = vArr[vIndex + 1];
+						vSn = this.allList[vIndex + 1];
 						if (vSn) {
 							tmpData.right.url = this.curView(vSn);
-							tmpData.right.tit = this.viewTit(this.item, this.item.li.dt[vSn]);
+							tmpData.right.tit = this.viewNear(this.item, this.item.li.dt[vSn]);
 						}
 					}
 				}

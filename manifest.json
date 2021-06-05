@@ -1,6 +1,6 @@
 {
     "name" : "啾噗",
-    "appid" : "__UNI__FFAEF2C",
+    "appid" : "__UNI__7E310E7",
     "description" : "《啾噗》电子杂志",
     "versionName" : "1.0.0",
     "versionCode" : "100",
@@ -63,7 +63,12 @@
             },
             "splashscreen" : {
                 "androidStyle" : "default",
-                "iosStyle" : "common"
+                "iosStyle" : "common",
+                "android" : {
+                    "hdpi" : "static/img/banner480.png",
+                    "xhdpi" : "static/img/banner720.png",
+                    "xxhdpi" : "static/img/banner1080.png"
+                }
             }
         },
         "uniStatistics" : {
