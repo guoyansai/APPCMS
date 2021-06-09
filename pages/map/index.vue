@@ -1,12 +1,14 @@
 <template>
-	<view class="s-menu-area" v-if="saiCheckObj(dataMap)">
-		<view class="s-menu" @tap.stop="">
-			<view :style="ranColor()" class="s-menu-main">
-				<view :style="ranColor()" class="s-menu-li" v-for="item in dataMap.map" @tap="goQuick(item.url)"
-					:key="item.tit">
-					{{item.tit}}
+	<view class="s-area">
+		<view class="s-index index-map" v-if="saiCheckObj(dataMap)">
+			<view class="s-menu" @tap.stop="">
+				<view :style="ranColor()" class="s-menu-main">
+					<view :style="ranColor()" class="s-menu-li" v-for="item in dataMap.map" @tap="goQuick(item.url)"
+						:key="item.tit">
+						{{item.tit}}
+					</view>
+					<view :style="ranColor()" class="s-menu-li">敬请期待...</view>
 				</view>
-				<view :style="ranColor()" class="s-menu-li">敬请期待...</view>
 			</view>
 		</view>
 	</view>
@@ -49,7 +51,7 @@
 </script>
 
 <style scoped>
-	.s-menu-area {
+	.index-map {
 		height: 100%;
 		width: 100%;
 	}

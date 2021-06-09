@@ -1,6 +1,8 @@
 <template>
-	<view class="index-ok" v-if="saiCheckObj(dataLove)">
-		<web-view v-if="dataLove.url" :src="dataLove.url"></web-view>
+	<view class="s-area">
+		<view class="s-index index-love" v-if="saiCheckObj(dataLove)">
+			<web-view v-if="dataLove.url" :src="dataLove.url"></web-view>
+		</view>
 	</view>
 </template>
 

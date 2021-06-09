@@ -1,5 +1,5 @@
 <template>
-	<view class="s-area" v-if="item && item.ver">
+	<view v-if="item && item.ver">
 		<search :item="psearch" :gli="gli" :gur="gur"></search>
 		<view :id="$config.ids.search" v-if="item.ty && item.ty.li.startsWith('pic')" class="s-pic">
 			<view class="s-list-li" v-for="(showItem, key, index) in curList" :key="index" @tap="viewGo(showItem, key)">

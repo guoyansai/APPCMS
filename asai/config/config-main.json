@@ -11,13 +11,15 @@
 		}
 	},
 	"baseURL": {
-		"data": "/datalocal/data",
 		"dev": "/dev",
-		"asai": "https://data.909.pub/data"
+		"data": "/datalocal/data",
+		"user": "https://data.909.pub/data",
+		"asai": "https://data.909.pub/data",
+		"asai2": "https://data.909.pub/data",
+		"asai3": "https://data.909.pub/data"
 	},
 	"auto": {
 		"saveLocal": true,
-		"newVerLoad": false,
 		"apiVerload": false,
 		"api": false
 	},

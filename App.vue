@@ -3,17 +3,11 @@
 		onLaunch: function() {
 			this.$asaidata.get("/app").then((res) => {
 				this.$global.G.app = res;
+				if (this.$global.G.app.ver !== this.$config.ver) {
+					this.setTab(4);
+				}
 			});
 			console.log("App Launch");
-			setTimeout(() => {
-				uni.setTabBarBadge({
-					index: 2,
-					text: "31",
-				});
-				uni.showTabBarRedDot({
-					index: 4,
-				});
-			}, 1000);
 		},
 		onShow: function() {
 			console.log("App Show");
@@ -29,7 +23,7 @@
 	@import url("/static/css/global.css");
 
 	uni-page-body {
-		background-color: #FAFAFA !important;
+		background-color: #F5F5F5 !important;
 		min-height: 100% !important;
 		height: auto !important;
 	}

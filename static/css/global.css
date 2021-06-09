@@ -1,11 +1,13 @@
 .s-area {
 	color: #585858;
-	padding-top: 28rpx;
-	padding-bottom: 28rpx;
-	padding-left: 28rpx;
-	padding-right: 28rpx;
-	margin: 0 auto 0 auto;
+	padding-top: 18px;
+	padding-bottom: 18px;
+	padding-left: 18px;
+	padding-right: 18px;
+	background-color: #FFFFFF;
 }
+
+.s-index {}
 
 .s-tap {
 	color: #336699;
@@ -16,8 +18,8 @@
 .s-listmin-li .s-v-des,
 .s-pic .s-v-tit,
 .s-txt .s-list-li,
-.s-fast-left,
 .s-menu-li,
+.s-fast-left,
 .s-fast-right {
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -29,10 +31,14 @@
 .s-bar {
 	background-color: #F5F5F5;
 	color: #585858;
-	padding-left: 28rpx;
-	padding-right: 28rpx;
-	padding-top: 12rpx;
-	padding-bottom: 12rpx;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	margin-bottom: 18px;
 }
 
 .s-bar-li {
@@ -47,6 +53,157 @@
 .s-bar-lis {
 	display: inline;
 	float: right;
+}
+
+/*------------type*/
+.s-type {
+	color: #888888;
+	font-size: smaller;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 18px;
+	margin-bottom: 0px;
+}
+
+/*------------fast*/
+.s-fast {
+	margin-top: 28rpx;
+	margin-bottom: 28rpx;
+	display: flex;
+	justify-content: space-between;
+}
+
+.s-fast-left {
+	width: 280rpx;
+	text-align: left;
+}
+
+.s-fast-right {
+	width: 280rpx;
+	text-align: right;
+}
+
+.s-fast-input {
+	text-align: left;
+}
+
+.s-picker {
+	border-color: #D8D8D8;
+	border-width: 1px;
+	border-style: solid;
+	display: inline-block;
+	color: #888888;
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/*------------search*/
+.s-search {
+	position: relative;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.s-search-off,
+.s-search-on {
+	position: absolute;
+	top: -18px;
+	left: -18px;
+	width: 24px;
+	height: 24px;
+	line-height: 24px;
+	text-align: center;
+	z-index: 888;
+	font-size: small;
+	color: #888888;
+	background-color: #F8F8F8;
+	border-color: #D8D8D8;
+	border-width: 1px;
+	border-style: solid;
+	cursor: pointer;
+	opacity: 0.2;
+}
+
+.s-search-off:hover,
+.s-search-on:hover {
+	opacity: 0.8;
+}
+
+.s-search-show {
+	display: flex;
+	font-size: smaller;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	margin-bottom: 18px;
+}
+
+.s-search-picker *,
+.s-search-input *,
+.s-search-button * {
+	font-size: small;
+}
+
+.s-search-picker {
+	width: 66px;
+	border-color: #D8D8D8;
+	border-width: 1px;
+	border-style: solid;
+	color: #888888;
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.s-search-input {
+	flex-grow: 1;
+	text-align: center;
+	border-color: #D8D8D8;
+	border-width: 0;
+	border-bottom-width: 1px;
+	border-style: solid;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 6px;
+	padding-bottom: 0px;
+	margin-left: 8px;
+	margin-right: 8px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.s-search-button {
+	width: 66px;
+}
+
+.s-search-button button {
+	width: 66px;
+	background-color: #0066CC;
+	color: #FFFFFF;
+	border-radius: 8px;
 }
 
 /*------------list*/
@@ -270,66 +427,6 @@
 	border-color: #0066CC;
 }
 
-/*------------search*/
-.s-search {
-	position: relative;
-}
-
-.s-search-off,
-.s-search-on {
-	position: absolute;
-	top: -32rpx;
-	left: -27rpx;
-	width: 24rpx;
-	z-index: 888;
-	font-size: small;
-	color: #888888;
-	text-align: center;
-	background-color: #F8F8F8;
-	border-color: #D8D8D8;
-	border-width: 1rpx;
-	border-style: solid;
-	cursor: pointer;
-	opacity: 0.2;
-}
-
-.s-search-off:hover,
-.s-search-on:hover {
-	opacity: 0.8;
-}
-
-.s-search-show {
-	display: flex;
-	height: 44rpx;
-	padding-bottom: 28rpx;
-}
-
-.s-search-picker *,
-.s-search-input *,
-.s-search-button * {
-	font-size: small;
-}
-
-.s-search-picker {
-	border-color: #D8D8D8;
-	border-width: 1rpx;
-	border-style: solid;
-	color: #888888;
-	padding: 0rpx 12rpx 0rpx 12rpx;
-}
-
-.s-search-input {
-	flex-grow: 1;
-	border-color: #D8D8D8;
-	border-width: 0;
-	border-bottom-width: 1rpx;
-	border-style: solid;
-	margin-left: 28rpx;
-	margin-right: 28rpx;
-}
-
-.s-search-button {}
-
 /*------------show*/
 .s-show {
 	color: #585858;
@@ -379,123 +476,4 @@
 	padding-bottom: 12rpx;
 	padding-left: 22rpx;
 	padding-right: 22rpx;
-}
-
-/*------------user*/
-.s-fast {
-	margin-top: 28rpx;
-	margin-bottom: 28rpx;
-	display: flex;
-	justify-content: space-between;
-}
-
-.s-fast-left {
-	width: 280rpx;
-	text-align: left;
-}
-
-.s-fast-right {
-	width: 280rpx;
-	text-align: right;
-}
-
-.s-fast-input {
-	text-align: left;
-}
-
-/*------------user*/
-.s-user-top {
-	display: flex;
-	align-items: center;
-	padding-top: 28rpx;
-	padding-bottom: 28rpx;
-	padding-left: 28rpx;
-	padding-right: 28rpx;
-	background-color: #F5F5F5;
-}
-
-.s-user-ic {
-	width: 108rpx;
-	height: 108rpx;
-	padding-right: 28rpx;
-}
-
-.s-user-ic img {
-	width: 108rpx;
-	height: 108rpx;
-	border-radius: 50%;
-}
-
-.s-user-tt {
-	flex-grow: 1;
-}
-
-.s-user-to {
-	color: #888888;
-	font-size: small;
-}
-
-.s-user-lim,
-.s-user-li {
-	color: #666666;
-	padding-top: 28rpx;
-	padding-bottom: 28rpx;
-	padding-left: 28rpx;
-	padding-right: 28rpx;
-	margin-left: 28rpx;
-	margin-right: 28rpx;
-	border-color: #D8D8D8;
-	border-width: 0;
-	border-bottom-width: 1rpx;
-	border-style: solid;
-}
-
-.s-user-show .s-user-li {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
-.s-user-show .s-user-li::after {
-	color: #D8D8D8;
-	content: '>';
-}
-
-.s-user-edit .s-user-li,
-.s-user-edit .s-user-lis {
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-}
-
-.s-user-input {
-	width: 200rpx;
-}
-
-.s-user-lis {
-	color: #888888;
-	font-size: small;
-}
-
-.s-user-button {
-	text-align: center;
-	padding-top: 28rpx;
-}
-
-.s-user-button .mini-btn {
-	margin-left: 12rpx;
-	margin-right: 12rpx;
-}
-
-.s-user-des {
-	color: #D8D8D8;
-	font-size: small;
-	text-align: center;
-	padding-top: 28rpx;
-	padding-bottom: 28rpx;
-}
-
-.s-user-app {
-	text-align: center;
-	color: #888888;
 }

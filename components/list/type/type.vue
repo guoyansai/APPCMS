@@ -2,12 +2,12 @@
 	<view class="s-type">
 		<view class="s-fast">
 			<view class="s-fast-left">
-				<picker @change="bindPickerChange" :value="index" :range="typeArr" range-key="label">
+				<picker class="s-picker" @change="bindPickerChange" :value="index" :range="typeArr" range-key="label">
 					<view :key="index" class="uni-input">{{ typeArr[index].label }}</view>
 				</picker>
 			</view>
 			<view class="s-fast-right">
-				<picker @change="doCmd" :value="indexBug" :range="bugArr" range-key="label">
+				<picker class="s-picker" @change="doCmd" :value="indexBug" :range="bugArr" range-key="label">
 					<view :key="indexBug" class="uni-input">{{ bugArr[indexBug].label }}</view>
 				</picker>
 			</view>

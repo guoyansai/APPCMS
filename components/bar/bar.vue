@@ -1,5 +1,5 @@
 <template>
-	<view v-if="saiCheckObj(item.list)" class="s-bar">
+	<view class="s-bar" v-if="saiCheckObj(item.list)">
 		<view class="s-bar-li s-tap" open-type="switchTab" @tap="goTab()">{{ item.index.tt }}</view>
 		<view v-if="saiCheckObj(item.list)" class="s-bar-li s-tap" @tap="go(item.list.ur)">{{ item.list.tt }}</view>
 		<view v-if="saiCheckObj(item.show)" class="s-bar-li s-tap" @tap="go(item.show.ur)">{{ item.show.tt }}</view>

@@ -92,6 +92,19 @@ export default {
 				console.log(e);
 				window.location.href = vHttp;
 			}
-		}
+		},
+		setTab(index, text = '') {
+			if (text && index) {
+				uni.setTabBarBadge({
+					index: index,
+					text: text,
+				});
+			} else if (index) {
+				uni.showTabBarRedDot({
+					index: index,
+				});
+
+			}
+		},
 	},
 };

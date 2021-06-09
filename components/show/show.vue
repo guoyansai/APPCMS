@@ -1,5 +1,5 @@
 <template>
-	<view class="s-area">
+	<view class="s-show-area">
 		<view :id="$config.ids.search" class="s-show">
 			<view class="s-v-tit" v-if="viewTit(item, showItem)">{{ viewTit(item, showItem) }}</view>
 			<view class="s-v-tag" v-if="viewTag(item, showItem)">{{ viewTag(item, showItem) }}</view>
@@ -70,4 +70,5 @@
 	};
 </script>
 
-<style></style>
+<style>
+</style>
