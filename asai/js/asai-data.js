@@ -20,19 +20,27 @@ export default class {
 	get(vUrl, type = 0) {
 		return new Promise((resolve, reject) => {
 			if (vUrl) {
-				if (vUrl.endsWith('/ver') || this.$config.auto.api || type === 1) {
-					this.loadShow({
-						title: '获取服务信息中'
-					});
-					this.asaiApi(vUrl).then(res => {
-						this.setRe(vUrl, res.data);
-						resolve(res.data);
-					});
+				let objStorage;
+				objStorage = this.getGlobalObj(vUrl);
+				if (objStorage && objStorage.ver) {
+					resolve(objStorage);
 				} else {
-					let objStorage;
-					objStorage = this.getGlobalObj(vUrl);
-					if (objStorage && objStorage.ver) {
-						resolve(objStorage);
+					if (vUrl.startsWith(this.$config.baseURL.data) || this.$config.dev === 'data') {
+						this.loadShow({
+							title: '请稍等...'
+						});
+						this.asaiApi(vUrl).then(res => {
+							this.setGlobalObj(vUrl, res.data);
+							resolve(res.data);
+						});
+					} else if (vUrl.endsWith('/ver') || this.$config.auto.api || type === 1) {
+						this.loadShow({
+							title: '获取服务信息中'
+						});
+						this.asaiApi(vUrl).then(res => {
+							this.setGlobalObj(vUrl, res.data);
+							resolve(res.data);
+						});
 					} else {
 						objStorage = this.asaiStorageRead(vUrl);
 						if (objStorage && objStorage.ver) {
@@ -90,34 +98,49 @@ export default class {
 
 	getGlobalObj(vUrl) {
 		let globalObj = {};
-		const arrUrl = (vUrl + '///').split('/');
-		if (arrUrl[2] === 'co') {
-			globalObj = this.$global.G['data' + arrUrl[1]].listObj || {};
-			if (globalObj.sn !== arrUrl[2]) {
-				globalObj = {};
-			}
-		} else if (arrUrl[2] === 'li') {
-			globalObj = this.$global.G['data' + arrUrl[1]].indexObj || {};
-			if (globalObj.sn !== arrUrl[1]) {
-				globalObj = {};
+		const arrUrl = (vUrl).split('/');
+		if (arrUrl[2]) {
+			if (arrUrl[2] === 'co') {
+				globalObj = this.$global.G['data' + arrUrl[1]].listObj;
+				if (globalObj.sn !== arrUrl[arrUrl.length - 2]) {
+					globalObj = {};
+				}
+			} else if (arrUrl[2] === 'li') {
+				globalObj = this.$global.G['data' + arrUrl[1]].indexObj || {};
+				if (globalObj.sn !== arrUrl[1]) {
+					globalObj = {};
+				}
 			}
 		}
 		return globalObj;
 	}
 
 	setGlobalObj(vUrl, vObj) {
-		const arrUrl = (vUrl + '///').split('/');
-		if (arrUrl[2] === 'co') {
-			this.$global.G['data' + arrUrl[1]].listObj = vObj;
-		} else if (arrUrl[2] === 'li') {
-			this.$global.G['data' + arrUrl[1]].indexObj = vObj;
+		const arrUrl = (vUrl).split('/');
+		if (arrUrl[2]) {
+			if (arrUrl[2] === 'co') {
+				this.$global.G['data' + arrUrl[1]].listObj = vObj;
+			} else if (arrUrl[2] === 'li') {
+				this.$global.G['data' + arrUrl[1]].indexObj = vObj;
+			}
 		}
 	}
 
 	asaiApi(vUrl, vData = {}, vHead = {}) {
 		return new Promise((resolve, reject) => {
+			let apiUrl = '';
+			if (vUrl === '/app') {
+				apiUrl = this.$config.baseURL.asai + vUrl + '.json?' + Date.now();
+			} else if (vUrl.startsWith(this.$config.baseURL.data)) {
+				apiUrl = "../../static" + vUrl + ".json";
+			} else if (this.$config.dev === 'data') {
+				apiUrl = "../../static" + this.$config.baseURL.data + vUrl + ".json";
+			} else {
+				apiUrl = this.$config.baseURL[this.$config.dev] + vUrl + '.json?' + Date.now();
+			}
+			console.log(666.777, apiUrl);
 			uni.request({
-				url: this.$config.baseURL[this.$config.dev] + vUrl + '.json?' + Date.now(),
+				url: apiUrl,
 				data: vData,
 				header: vHead,
 				timeout: this.$config.time.api,

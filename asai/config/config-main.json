@@ -12,8 +12,8 @@
 	},
 	"baseURL": {
 		"dev": "/dev",
-		"data": "/datalocal/data",
-		"user": "https://data.909.pub/data",
+		"data": "/datalocal/data/docs/data",
+		"user": "http://localhost:999/data",
 		"asai": "https://data.909.pub/data",
 		"asai2": "https://data.909.pub/data",
 		"asai3": "https://data.909.pub/data"

@@ -1,7 +1,7 @@
 <script>
 	export default {
 		onLaunch: function() {
-			this.$asaidata.get("/app").then((res) => {
+			this.$asaidata.get("/app", 1).then((res) => {
 				this.$global.G.app = res;
 				if (this.$global.G.app.ver !== this.$config.ver) {
 					this.setTab(4);

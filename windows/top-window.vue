@@ -23,7 +23,6 @@
 				this.$asaidata
 					.get("/map/li", type)
 					.then((res) => {
-						console.log(666.222, res)
 						this.dataMap = res;
 					});
 			},
