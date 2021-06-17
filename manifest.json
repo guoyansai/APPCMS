@@ -73,7 +73,8 @@
         },
         "uniStatistics" : {
             "enable" : true
-        }
+        },
+        "nvueLaunchMode" : ""
     },
     /* SDK配置 */
     "quickapp" : {},

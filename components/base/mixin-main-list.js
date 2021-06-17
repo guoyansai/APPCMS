@@ -23,7 +23,10 @@ export default {
 		saiSearchCheckOne(vData, vSearch, vKey, vType) {
 			let vIndex = vData.db.dn.findIndex(itemVal => itemVal === vType);
 			let vVal = vData.li.dt[vKey][vIndex];
-			return vVal.indexOf(vSearch.ss) !== -1;
+			if (vVal) {
+				return vVal.indexOf(vSearch.ss) !== -1;
+			}
+			return false;
 		},
 		saiSearch(vData, e) {
 			if (this.saiCheckData(vData)) {

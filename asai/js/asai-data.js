@@ -25,14 +25,20 @@ export default class {
 				if (objStorage && objStorage.ver) {
 					resolve(objStorage);
 				} else {
-					if (vUrl.startsWith(this.$config.baseURL.data) || this.$config.dev === 'data') {
+					if (vUrl.indexOf(this.$config.baseURL.local) !== -1) {
+						// DataLocal.tools.miyu
+						// 如上格式书写（标识.一级.二级）
 						this.loadShow({
 							title: '请稍等...'
 						});
-						this.asaiApi(vUrl).then(res => {
-							this.setGlobalObj(vUrl, res.data);
-							resolve(res.data);
-						});
+						let arrUrl = vUrl.split(this.$config.baseURL.local);
+						arrUrl = arrUrl[1].split('/')[0];
+						let vUrls = this.$config.baseURL.local + arrUrl;
+						arrUrl = vUrls.split('.');
+						const valTmp = this.$global[arrUrl[0]][arrUrl[1]][arrUrl[2]];
+						this.setGlobalObj(vUrl, valTmp);
+						this.loadClose();
+						resolve(valTmp);
 					} else if (vUrl.endsWith('/ver') || this.$config.auto.api || type === 1) {
 						this.loadShow({
 							title: '获取服务信息中'
@@ -131,14 +137,9 @@ export default class {
 			let apiUrl = '';
 			if (vUrl === '/app') {
 				apiUrl = this.$config.baseURL.asai + vUrl + '.json?' + Date.now();
-			} else if (vUrl.startsWith(this.$config.baseURL.data)) {
-				apiUrl = "../../static" + vUrl + ".json";
-			} else if (this.$config.dev === 'data') {
-				apiUrl = "../../static" + this.$config.baseURL.data + vUrl + ".json";
 			} else {
 				apiUrl = this.$config.baseURL[this.$config.dev] + vUrl + '.json?' + Date.now();
 			}
-			console.log(666.777, apiUrl);
 			uni.request({
 				url: apiUrl,
 				data: vData,

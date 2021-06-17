@@ -7,4 +7,9 @@ const GlobalConst = {
 export default {
 	...GlobalConst,
 	...GlobalMain,
+	DataLocal: {
+		tools: {
+			miyu: require('../../static/datalocal/data/docs/data/tools/co/study/g-miyu/co.json'),
+		}
+	}
 }

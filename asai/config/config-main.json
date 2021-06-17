@@ -1,5 +1,6 @@
 {
 	"ver": "20210217",
+	"html": false,
 	"dev": "asai",
 	"name": {
 		"app": {
@@ -12,11 +13,11 @@
 	},
 	"baseURL": {
 		"dev": "/dev",
-		"data": "/datalocal/data/docs/data",
+		"local": "DataLocal.",
 		"user": "http://localhost:999/data",
 		"asai": "https://data.909.pub/data",
 		"asai2": "https://data.909.pub/data",
-		"asai3": "https://data.909.pub/data"
+		"asai3": "https://static-b7f56627-2a99-436b-a103-e2ea41574239.bspapp.com/json/data/docs/data"
 	},
 	"auto": {
 		"saveLocal": true,
