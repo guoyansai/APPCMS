@@ -9,7 +9,7 @@ export default {
 	...GlobalMain,
 	DataLocal: {
 		tools: {
-			miyu: require('../../static/datalocal/data/docs/data/tools/co/study/g-miyu/co.json'),
+			README: '通过require()加载数据文件，调用方式DataLocal.tools.README',
 		}
 	}
 }
