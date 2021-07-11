@@ -14,10 +14,25 @@ export default {
 				uni.hideLoading();
 			}
 		},
+		isOnePages(vUrl) {
+			let isOne = false;
+			this.$config.onePages.forEach(item => {
+				if (!isOne) {
+					if (vUrl.includes(item)) {
+						isOne = true;
+					}
+				}
+			});
+			return isOne;
+		},
 		go(vUrl) {
 			let goStr = vUrl;
 			if (goStr && goStr.startsWith('?')) {
-				goStr = 'main' + goStr;
+				if (this.isOnePages(goStr)) {
+					goStr = 'index' + goStr;
+				} else {
+					goStr = 'main' + goStr;
+				}
 			}
 			this.goUrl(goStr);
 		},

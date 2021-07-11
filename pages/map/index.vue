@@ -42,7 +42,7 @@
 				if (url.startsWith('http')) {
 					this.goHttp(url);
 				} else {
-					this.goTab(url);
+					this.goUrl(url);
 				}
 			},
 		}

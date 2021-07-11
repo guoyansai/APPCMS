@@ -33,7 +33,7 @@
 			</view>
 		</view>
 		<page :item="ppage" :psearch="psearch" :gli="gli" :gur="gur"></page>
-		<type :item="item"></type>
+		<type :item="item" :apiUrl="apiUrl"></type>
 	</view>
 </template>
 

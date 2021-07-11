@@ -19,6 +19,10 @@
 <script>
 	export default {
 		props: {
+			apiUrl: {
+				type: String,
+				required: false
+			},
 			item: {
 				type: Object,
 				required: false
@@ -78,6 +82,10 @@
 						label: '清空数据',
 						value: 'clear'
 					},
+					{
+						label: '无理强拉',
+						value: 'pull'
+					},
 				],
 				index: 0,
 				indexBug: 0,
@@ -90,6 +98,7 @@
 				if (e.detail.value) {
 					this.index = e.detail.value;
 					this.item.ty.li = this.typeArr[this.index].value;
+					this.$asaidata.setRe(this.apiUrl, this.item)
 				}
 			},
 			doCmd(e) {
@@ -101,14 +110,17 @@
 					} else if (bugType === 'close') {
 						this.reportStr = '';
 					} else if (bugType === 'checknet') {
-						this.reportStr = this.$global.G.ver;
+						this.reportStr = this.$global.G.app.ver;
 					} else if (bugType === 'showglobal') {
 						this.reportStr = JSON.stringify(this.$global);
 					} else if (bugType === 'cleanglobal') {
 						this.$global.G = JSON.parse(JSON.stringify(this.$global.IG));
 					} else if (bugType === 'clear') {
 						this.indexBug = 0;
-						uni.$emit('clear', 'doing');
+						uni.$emit('clear', 'do');
+					} else if (bugType === 'clear') {
+						this.indexBug = 0;
+						uni.$emit('clear', this.apiUrl);
 					}
 				}
 			}

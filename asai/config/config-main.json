@@ -14,14 +14,14 @@
 	"baseURL": {
 		"dev": "/dev",
 		"local": "DataLocal.",
-		"user": "http://localhost:999/data",
-		"asai": "http://app-data.909.pub/data",
-		"asai2": "https://data.909.pub/data",
+		"user": "http://localhost:9909/data",
+		"asai": "https://data.909.pub/data",
+		"asai2": "http://app-data.909.pub/data",
 		"asai3": "https://static-b7f56627-2a99-436b-a103-e2ea41574239.bspapp.com/json/data/docs/data"
 	},
 	"auto": {
 		"saveLocal": true,
-		"apiVerload": false,
+		"apiVerload": true,
 		"api": false
 	},
 	"apiType": "api",
@@ -32,5 +32,6 @@
 	},
 	"ids": {
 		"search": "asaiSearchDom"
-	}
+	},
+	"onePages": ["h5"]
 }

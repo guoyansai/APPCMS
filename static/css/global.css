@@ -448,6 +448,10 @@
 	text-align: center;
 }
 
+.s-show img {
+	max-width: 100%;
+}
+
 .s-show .s-v-img-show {
 	max-width: 100%;
 }

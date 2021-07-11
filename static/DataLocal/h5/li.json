@@ -1,0 +1,93 @@
+{
+	"tt": "H5合集",
+	"sn": "h5",
+	"ver": 20210320222758,
+	"ty": {
+		"li": "listmin",
+		"co": "show"
+	},
+	"db": {
+		"mb": {
+			"dn": ["id", "sn", "tt", "co", "mo", "ic", "us", "ur", "cd", "rd", "xy"],
+			"dc": ["编号", "编码", "标题", "内容", "备注", "图标", "用户", "网址", "创建", "更新", "状态"]
+		},
+		"dn": ["sn", "tt", "co", "ic", "ur", "xy"],
+		"dc": ["编号", "标题", "简介", "标志", "链接", "等级"],
+		"ds": ["tt", "co", "ur"],
+		"dz": []
+	},
+	"li": {
+		"pg": {
+			"pc": 1,
+			"ps": 18,
+			"pa": 0
+		},
+		"dr": [],
+		"dt": {
+			"htmlqingwa": [
+				"htmlqingwa",
+				"青蛙吃蚊子",
+				"青蛙吃蚊子",
+				"",
+				"h5.htmlqingwa",
+				5
+			],
+			"htmldadishu": [
+				"htmldadishu",
+				"打地鼠",
+				"打地鼠",
+				"",
+				"h5.htmldadishu",
+				5
+			],
+			"htmlbaoweidiqiu": [
+				"htmlbaoweidiqiu",
+				"保卫地球",
+				"保卫地球",
+				"",
+				"h5.htmlbaoweidiqiu",
+				5
+			],
+			"htmlhuaban": [
+				"htmlhuaban",
+				"涂鸦画板",
+				"涂鸦画板",
+				"",
+				"h5.htmlhuaban",
+				5
+			],
+			"htmlkousuan": [
+				"htmlkousuan",
+				"口算题",
+				"口算题",
+				"",
+				"h5.htmlkousuan",
+				5
+			],
+			"gshuicai": [
+				"gshuicai",
+				"水彩画板",
+				"水彩画板",
+				"",
+				"h5.gshuicai",
+				5
+			],
+			"gpintu": [
+				"gpintu",
+				"拼图",
+				"拼图",
+				"",
+				"h5.gpintu",
+				5
+			],
+			"html2048": [
+				"html2048",
+				"2048",
+				"2048",
+				"",
+				"h5.html2048",
+				5
+			]
+		}
+	}
+}

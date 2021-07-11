@@ -15,6 +15,8 @@ export default {
 			Timer: null,
 			Loader: false,
 
+			apiUrl: '',
+
 			listCur: {},
 			indexCur: {},
 
@@ -60,49 +62,61 @@ export default {
 					// 获取index信息
 					this.indexSn = sn;
 					if (this.indexSn) {
+						this.apiUrl = '/' + this.indexSn + '/li';
 						this.$asaidata
-							.get('/' + this.indexSn + '/li', 0)
+							.get(this.apiUrl, 0)
 							.then((resIndex) => {
 								this.indexCur = resIndex;
 								this.setTopBar('index', {
 									tt: this.indexCur.tt,
 									ur: 'index'
 								});
-								// 获取index=>list信息
-								this.listSn = e.li || '';
-								if (this.listSn) {
-									let listUrl = e.ur || '';
-									let urQurey = '';
-									if (listUrl) {
-										urQurey = '&ur=' + listUrl;
-										listUrl = listUrl + '/';
-									}
-									this.$asaidata
-										.get('/' + this.indexSn + '/co/' + listUrl + this.listSn + '/co', 0)
-										.then((res) => {
-											this.listCur = res;
-											this.setTopBar('list', {
-												tt: res.tt,
-												ur: '?li=' + this.listSn + urQurey
-											});
-											// 获取index=>list=>view信息
-											this.saiInit(res);
-											this.saiSearch(res, e);
-											if (e.sn) {
-												this.viewSn = e.sn;
-												this.setTopBar('show', {
-													tt: '详情',
-													ur: ''
-												});
-												this.setTopBar('tool', {});
-											} else {
-												this.saiPage(res, e);
-											}
-										});
+
+								if (e.li && sn === 'mags') {
+									this.viewSn = e.li;
+									this.setTopBar('show', {
+										tt: '详情',
+										ur: ''
+									});
+									this.setTopBar('tool', {});
 								} else {
-									this.saiInit(resIndex);
-									this.saiPage(resIndex, e);
-									this.saiSearch(resIndex, e);
+									// 获取index=>list信息
+									this.listSn = e.li || '';
+									if (this.listSn) {
+										let listUrl = e.ur || '';
+										let urQurey = '';
+										if (listUrl) {
+											urQurey = '&ur=' + listUrl;
+											listUrl = listUrl + '/';
+										}
+										this.apiUrl = '/' + this.indexSn + '/co/' + listUrl + this.listSn + '/co';
+										this.$asaidata
+											.get(this.apiUrl, 0)
+											.then((res) => {
+												this.listCur = res;
+												this.setTopBar('list', {
+													tt: res.tt,
+													ur: '?li=' + this.listSn + urQurey
+												});
+												// 获取index=>list=>view信息
+												this.saiInit(res);
+												this.saiSearch(res, e);
+												if (e.sn) {
+													this.viewSn = e.sn;
+													this.setTopBar('show', {
+														tt: '详情',
+														ur: ''
+													});
+													this.setTopBar('tool', {});
+												} else {
+													this.saiPage(res, e);
+												}
+											});
+									} else {
+										this.saiInit(resIndex);
+										this.saiPage(resIndex, e);
+										this.saiSearch(resIndex, e);
+									}
 								}
 							});
 					}

@@ -27,10 +27,7 @@
             "ios" : {},
             /* ios打包配置 */
             "sdkConfigs" : {
-                "ad" : {
-                    "gdt" : {},
-                    "ks-content" : {}
-                }
+                "ad" : {}
             },
             "icons" : {
                 "android" : {

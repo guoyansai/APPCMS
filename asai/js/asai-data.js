@@ -41,7 +41,7 @@ export default class {
 						resolve(valTmp);
 					} else if (vUrl.endsWith('/ver') || this.$config.auto.api || type === 1) {
 						this.loadShow({
-							title: '获取服务信息中'
+							title: '服务更新中'
 						});
 						this.asaiApi(vUrl).then(res => {
 							this.setGlobalObj(vUrl, res.data);
@@ -52,7 +52,7 @@ export default class {
 						if (objStorage && objStorage.ver) {
 							if (this.$config.auto.apiVerload && this.getVer()) {
 								this.loadShow({
-									title: '正在判断是否为最新信息'
+									title: '正在信息校验'
 								});
 								let vUrlArr = vUrl.split('/');
 								this.asaiApi(vUrl.replace(vUrlArr[vUrlArr.length - 1], 'ver')).then(
@@ -61,7 +61,7 @@ export default class {
 											objStorage = {};
 											this.loadClose();
 											this.loadShow({
-												title: '正在获取最新信息'
+												title: '正在获取信息'
 											});
 											this.asaiApi(vUrl).then(res => {
 												this.setRe(vUrl, res.data);
@@ -78,7 +78,7 @@ export default class {
 							}
 						} else {
 							this.loadShow({
-								title: '正在获取服务信息'
+								title: '正在拉取服务'
 							});
 							this.asaiApi(vUrl).then(res => {
 								this.setRe(vUrl, res.data);
@@ -163,6 +163,7 @@ export default class {
 						"ver": 0,
 						"app": ""
 					});
+					this.msgShow('请检查网络');
 					reject(err);
 				},
 				complete: () => {
@@ -225,5 +226,16 @@ export default class {
 
 	loadClose() {
 		uni.hideLoading();
+	}
+
+	msgShow(title, duration = 2000) {
+		uni.showToast({
+			title,
+			duration
+		});
+	}
+
+	msgClose() {
+		uni.hideToast();
 	}
 }

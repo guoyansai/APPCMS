@@ -58,6 +58,19 @@
 			}
 		},
 		{
+			"path": "pages/h5/index",
+			"style": {
+				"navigationBarTitleText": "H5合集",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"type": "menu"
+						}]
+					}
+				}
+			}
+		},
+		{
 			"path": "pages/setting/index",
 			"style": {
 				"navigationBarTitleText": "设置中心",
@@ -73,7 +86,14 @@
 		{
 			"path": "pages/user/index",
 			"style": {
-				"navigationBarTitleText": "用户中心"
+				"navigationBarTitleText": "用户中心",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"type": "menu"
+						}]
+					}
+				}
 			}
 		},
 		{

@@ -7,8 +7,8 @@
 				:glist="listCur">
 			</show>
 			<list v-else-if="listSn" :ppage="listPage" :gli="listSn" :gur="listUr" :psearch="listSearch"
-				:gindex="indexCur" :glist="listCur"></list>
-			<list v-else :ppage="listPage" :psearch="listSearch" :gindex="indexCur" :glist="listCur"></list>
+				:gindex="indexCur" :glist="listCur" :apiUrl="apiUrl"></list>
+			<list v-else :ppage="listPage" :psearch="listSearch" :gindex="indexCur" :glist="listCur" :apiUrl="apiUrl"></list>
 		</view>
 	</view>
 </template>

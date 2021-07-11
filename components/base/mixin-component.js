@@ -70,7 +70,11 @@ export default {
 		gsn: {
 			type: String,
 			required: false
-		}
+		},
+		apiUrl: {
+			type: String,
+			required: false
+		},
 	},
 	computed: {
 		item() {
