@@ -10,6 +10,7 @@ export default {
 		},
 		saiHtml2Txt(vHtml, len) {
 			let vTxt = vHtml;
+			vTxt = vTxt.replace(/　/g, "");
 			vTxt = vTxt.replace(/<[^>]+>/g, "");
 			vTxt = vTxt.replace(/(^\s+)|(\s+$)/g, "");
 			if (len > 0) {

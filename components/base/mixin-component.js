@@ -121,14 +121,7 @@ export default {
 			return this.getValue(listItem, showItem, 'tt') || this.getValue(listItem, showItem, 'co');
 		},
 		viewTag(listItem, showItem) {
-			const dnArr = [
-				"us",
-				"ur",
-				"cd",
-				"rd",
-				"xy"
-			];
-			return this.getValArr(listItem, showItem, dnArr, 1);
+			return this.getValArr(listItem, showItem, this.$config.listTag, 1);
 		},
 		viewImg(listItem, showItem) {
 			return this.getValue(listItem, showItem, 'ic');

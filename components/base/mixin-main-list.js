@@ -77,7 +77,11 @@ export default {
 			let vIndex = listItem.db.dn.findIndex(itemVal => itemVal === vKey);
 			if (vIndex > -1 && showItem[vIndex]) {
 				if (vType === 1) {
-					return listItem.db.dc[vIndex] + '：' + showItem[vIndex];
+					if (vKey === 'xy') {
+						return listItem.db.dc[vIndex] + '：' + this.$config.view.xy[showItem[vIndex]];
+					} else {
+						return listItem.db.dc[vIndex] + '：' + showItem[vIndex];
+					}
 				} else {
 					return showItem[vIndex];
 				}

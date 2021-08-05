@@ -99,7 +99,8 @@
     "h5" : {
         "uniStatistics" : {
             "enable" : true
-        }
+        },
+        "domain" : "www.909.pub"
     },
     "mp-alipay" : {
         "uniStatistics" : {

@@ -1,5 +1,5 @@
 <template>
-	<view class="s-type">
+	<view class="s-type" v-if="isAdmin">
 		<view class="s-fast">
 			<view class="s-fast-left">
 				<picker class="s-picker" @change="bindPickerChange" :value="index" :range="typeArr" range-key="label">
@@ -92,6 +92,11 @@
 				reportStr: '',
 				cmdStr: ''
 			};
+		},
+		computed: {
+			isAdmin() {
+				return this.$global.G.datauser.indexObj.tt === this.$config.asaiName;
+			}
 		},
 		methods: {
 			bindPickerChange(e) {

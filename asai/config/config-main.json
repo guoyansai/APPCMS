@@ -17,7 +17,7 @@
 		"user": "http://localhost:9909/data",
 		"asai": "https://data.909.pub/data",
 		"asai2": "http://app-data.909.pub/data",
-		"asai3": "https://static-b7f56627-2a99-436b-a103-e2ea41574239.bspapp.com/json/data/docs/data"
+		"asai3": "http://www.909.pub/data"
 	},
 	"auto": {
 		"saveLocal": true,

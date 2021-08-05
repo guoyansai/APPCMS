@@ -5,18 +5,25 @@
 				<view class="s-user-top">
 					<view class="s-user-ic"><img :src="dataUser.ic" /></view>
 					<view class="s-user-tt">
-						{{ dataUser.tt }}
-						<view class="s-user-to">{{ dataUser.to }}</view>
+						<input type="text" class="user-input" v-model="dataUser.tt" />
+						<view class="s-user-to"><input type="text" class="user-input" v-model="dataUser.to" /></view>
 					</view>
 				</view>
-				<view class="s-user-li">性别：{{ dataUser.sx === 1 ? "男" : "女" }}</view>
+				<view class="s-user-li">性别：
+					<label @tap="dataUser.sx = 1">
+						<radio value="1" :checked="dataUser.sx === 1" /><text>男</text>
+					</label>
+					<label @tap="dataUser.sx = 0">
+						<radio value="0" :checked="dataUser.sx === 0" /><text>女</text>
+					</label>
+				</view>
 				<view class="s-user-li">
 					生日：
-					<input type="text" v-model="dataUser.cd" />
+					<input type="text" class="user-input" v-model="dataUser.cd" />
 				</view>
 				<view class="s-user-li">
 					电话：
-					<input type="text" v-model="dataUser.dh" />
+					<input type="text" class="user-input" v-model="dataUser.dh" />
 				</view>
 				<view class="s-user-li">
 					现居：
@@ -45,16 +52,16 @@
 				</view>
 				<view class="s-user-li">
 					公司：
-					<input type="text" v-model="dataUser.zg" />
+					<input type="text" class="user-input" v-model="dataUser.zg" />
 				</view>
 				<view class="s-user-li">
 					月薪：
-					<input type="text" v-model="dataUser.zs" />
+					<input type="text" class="user-input" v-model="dataUser.zs" />
 					元/月
 				</view>
 				<view class="s-user-li">
 					爱好：
-					<input type="text" v-model="dataUser.lv" />
+					<input type="text" class="user-input" v-model="dataUser.lv" />
 				</view>
 				<view class="s-user-lim">
 					备注：
@@ -103,7 +110,7 @@
 			<view class="s-user-des"> 注意：以上信息仅限本地使用。 </view>
 			<view class="s-user-des">{{ jsonTemp }}App Ver {{ $config.ver }}</view>
 			<view class="s-user-des" v-if="hasNewVer" @tap="downNewVer()">点击下载最新版本：{{ $global.G.app.ver }}</view>
-			<view class="s-user-app"><input type="text" v-model="$global.G.app.app" /></view>
+			<view class="s-user-app"><input type="text" class="user-input" v-model="$global.G.app.app" /></view>
 		</view>
 	</view>
 </template>
@@ -137,6 +144,7 @@
 					.get("/user/li", type)
 					.then((res) => {
 						this.dataUser = res;
+						this.$global.G.datauser.indexObj = this.dataUser;
 					});
 			},
 			editUser() {
@@ -220,8 +228,23 @@
 		align-items: center;
 	}
 
+	.user-input,
 	.s-user-input {
-		width: 200rpx;
+		padding-top: 3rpx;
+		padding-bottom: 3rpx;
+		padding-left: 8rpx;
+		padding-right: 8rpx;
+		margin-top: 0;
+		margin-bottom: 0;
+		margin-left: 3rpx;
+		margin-right: 3rpx;
+		border: 1rpx #D8D8D8 solid;
+		color: #888888;
+		font-size: small;
+	}
+
+	.s-user-input {
+		width: 160rpx;
 	}
 
 	.s-user-lis {

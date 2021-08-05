@@ -17,7 +17,7 @@
 		data() {
 			return {
 				level: 3,
-				url: 'http://cdn.test.lfwellness.cn/pintu/xinpin.jpg',
+				url: 'http://h5.909.pub/pic/p2.jpg',
 				timeOut: -1,
 				levelArray: [],
 				startText: '开始游戏',

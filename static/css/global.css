@@ -225,6 +225,10 @@
 	box-shadow: #D8D8D8 1rpx 2rpx 16rpx;
 }
 
+.s-list .s-list-li:hover {
+	box-shadow: #D8D8D8 6rpx 12rpx 16rpx;
+}
+
 .s-list .s-list-li>div {
 	display: flex;
 	align-items: center;
@@ -238,13 +242,14 @@
 	font-size: large;
 }
 
-.s-list .s-v-img {
+.s-pic .s-v-img {
 	max-height: 288rpx;
 	overflow: hidden;
 }
 
-.s-list .s-v-img-show {
-	width: 100%;
+.s-list .s-v-img-show,
+.s-v-des img {
+	max-width: 100%;
 }
 
 .s-list .s-v-tag {
@@ -273,7 +278,7 @@
 /*------------list------------listmin*/
 .s-list .s-listmin-li {
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 }
 
 .s-listmin-li .s-v-img {
@@ -284,24 +289,27 @@
 	width: 202rpx;
 	height: 202rpx;
 	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #F5F5F5;
 }
 
 .s-listmin-li .s-v-img-show {
-	height: 100%;
-	width: auto;
+	max-height: 90%;
+	max-width: 90%;
 }
 
 .s-listmin-li .s-v-tit {}
 
 .s-listmin-li .s-list-txt {
 	flex-grow: 1;
-	min-height: 202rpx;
 	max-height: 202rpx;
-	height: 202rpx;
 	overflow: hidden;
 }
 
 .s-listmin-li .s-v-tag {
+	font-size: small;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
@@ -342,8 +350,8 @@
 }
 
 .s-pic .s-v-img-show {
-	max-width: 106rpx;
-	max-height: 106rpx;
+	max-height: 90%;
+	max-width: 90%;
 }
 
 .s-pic .s-v-tit {
