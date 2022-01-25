@@ -10,6 +10,7 @@
 					<view :style="ranColor()" class="s-menu-li">敬请期待...</view>
 				</view>
 			</view>
+			<update></update>
 		</view>
 	</view>
 </template>
@@ -18,11 +19,16 @@
 	import {
 		RandomBgColor
 	} from '../../asai/js/random-color.js';
+	import update from '../../components/update/update.vue';
+
 	export default {
 		data() {
 			return {
 				dataMap: {}
 			};
+		},
+		components: {
+			update
 		},
 		onLoad: function(e) {
 			this.initMap(0);
@@ -62,15 +68,17 @@
 	}
 
 	.s-menu-main {
-		border-radius: 0 0 28rpx 28rpx;
+		border-radius: 28rpx;
 		border-style: solid;
 		border-width: 1rpx;
 		border-color: #EEEEE8;
+		padding-top: 28rpx;
+		padding-bottom: 28rpx;
 		box-shadow: #DDDDD8 1rpx 2rpx 16rpx;
 		width: 100%;
 		display: grid;
-		grid-template-columns: repeat(4, 25%);
-		grid-template-row: repeat(4, 25%);
+		justify-content: center;
+		grid-template-columns: repeat(auto-fill, 200rpx);
 	}
 
 	.s-menu-li {

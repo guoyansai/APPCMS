@@ -64,7 +64,7 @@
 						// 获取index信息
 						this.indexSn = sn;
 						if (this.indexSn) {
-							this.apiUrl = 'DataLocal.h5.def';
+							this.apiUrl = '/h5/li';
 							this.$asaidata
 								.get(this.apiUrl, type)
 								.then((resIndex) => {

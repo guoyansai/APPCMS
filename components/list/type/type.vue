@@ -95,7 +95,8 @@
 		},
 		computed: {
 			isAdmin() {
-				return this.$global.G.datauser.indexObj.tt === this.$config.asaiName;
+				return this.$global && this.$global.G && this.$global.G.datauser && this.$global.G.datauser.indexObj &&
+					this.$global.G.datauser.indexObj.tt === this.$config.asaiName;
 			}
 		},
 		methods: {
@@ -122,10 +123,16 @@
 						this.$global.G = JSON.parse(JSON.stringify(this.$global.IG));
 					} else if (bugType === 'clear') {
 						this.indexBug = 0;
-						uni.$emit('clear', 'do');
-					} else if (bugType === 'clear') {
+						uni.$emit('fetch', {
+							type: 'clear',
+							val: ''
+						});
+					} else if (bugType === 'pull') {
 						this.indexBug = 0;
-						uni.$emit('clear', this.apiUrl);
+						uni.$emit('fetch', {
+							type: 'pull',
+							val: this.apiUrl
+						});
 					}
 				}
 			}

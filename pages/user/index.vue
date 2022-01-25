@@ -3,7 +3,7 @@
 		<view class="s-index index-user" v-if="saiCheckObj(dataUser)">
 			<view class="s-user-edit" v-if="userType === 'edit'">
 				<view class="s-user-top">
-					<view class="s-user-ic"><img :src="dataUser.ic" /></view>
+					<view class="s-user-ic"><img :src="userIco" /></view>
 					<view class="s-user-tt">
 						<input type="text" class="user-input" v-model="dataUser.tt" />
 						<view class="s-user-to"><input type="text" class="user-input" v-model="dataUser.to" /></view>
@@ -78,7 +78,7 @@
 			</view>
 			<view class="s-user-show" v-else>
 				<view class="s-user-top">
-					<view class="s-user-ic"><img :src="dataUser.ic" /></view>
+					<view class="s-user-ic"><img :src="userIco" /></view>
 					<view class="s-user-tt">
 						{{ dataUser.tt }}
 						<view class="s-user-to">{{ dataUser.to }}</view>
@@ -108,9 +108,7 @@
 					</button></view>
 			</view>
 			<view class="s-user-des"> 注意：以上信息仅限本地使用。 </view>
-			<view class="s-user-des">{{ jsonTemp }}App Ver {{ $config.ver }}</view>
-			<view class="s-user-des" v-if="hasNewVer" @tap="downNewVer()">点击下载最新版本：{{ $global.G.app.ver }}</view>
-			<view class="s-user-app"><input type="text" class="user-input" v-model="$global.G.app.app" /></view>
+			<update></update>
 		</view>
 	</view>
 </template>
@@ -118,22 +116,27 @@
 <script>
 	import mixinMain from "../../components/base/mixin-main.js";
 	import mixinMainLoad from '../../components/base/mixin-main-load.js';
+	import update from '../../components/update/update.vue';
 
 	export default {
 		mixins: [mixinMain, mixinMainLoad],
 		data() {
 			return {
-				hasNewVer: false,
 				jsonTemp: "",
 				userType: "show",
 				dataUser: {},
 			};
 		},
+		components: {
+			update
+		},
+		computed: {
+			userIco() {
+				return "http://x.asai.cc/js/tx/" + this.dataUser.ic + ".jpg";
+			}
+		},
 		onLoad: function(e) {
 			this.initUser(0);
-			if (this.$global.G.app.ver !== this.$config.ver) {
-				this.hasNewVer = true;
-			}
 			if (e.type) {
 				this.userType = e.type;
 			}
@@ -156,14 +159,13 @@
 			resetUser() {
 				this.initUser(1);
 			},
-			downNewVer() {
-				this.goHttp(this.$config.verNewUrl);
-			},
 		},
 	};
 </script>
 
 <style scoped>
+	.index-user {}
+
 	.s-user-top {
 		display: flex;
 		align-items: center;

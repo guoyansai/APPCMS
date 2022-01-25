@@ -13,7 +13,6 @@
 	},
 	"baseURL": {
 		"dev": "/dev",
-		"local": "DataLocal.",
 		"user": "http://localhost:9909/data",
 		"asai": "https://data.909.pub/data",
 		"asai2": "http://app-data.909.pub/data",

@@ -49,6 +49,9 @@ export default {
 	methods: {
 		initOnLoad(e, sn) {
 			try {
+				// 获取index信息
+				this.indexSn = sn;
+				this.apiUrl = '/' + this.indexSn + '/li';
 				if (e.ur && (e.ur.indexOf('//') !== -1 || e.ur.startsWith('http'))) {
 					this.viewSn = '';
 					this.viewUr = e.ur;
@@ -59,10 +62,7 @@ export default {
 				} else {
 					this.listUr = e.ur;
 					this.viewUr = '';
-					// 获取index信息
-					this.indexSn = sn;
 					if (this.indexSn) {
-						this.apiUrl = '/' + this.indexSn + '/li';
 						this.$asaidata
 							.get(this.apiUrl, 0)
 							.then((resIndex) => {

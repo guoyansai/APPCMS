@@ -37,18 +37,6 @@
 					<switch :checked="$config.auto.api" @tap="checkApi()" />
 				</view>
 			</view>
-			<view class="s-setting-li">
-				<view class="label">当前版本：</view>
-				<view class="form">
-					{{ $config.ver }}
-				</view>
-			</view>
-			<view class="s-setting-li" v-if="hasNewVer">
-				<view class="label">有新版本：</view>
-				<view class="form s-setting-new">
-					{{ $global.G.app.ver }} [ <span @tap="downNewVer()">更新</span> ]
-				</view>
-			</view>
 		</view>
 	</view>
 </template>
@@ -62,15 +50,11 @@
 		data() {
 			return {
 				index: 0,
-				hasNewVer: false,
 				lineTypes: [],
 			};
 		},
 		onLoad: function(e) {
 			this.lineTypes = Object.keys(this.$config.baseURL);
-			if (this.$global.G.app.ver !== this.$config.ver) {
-				this.hasNewVer = true;
-			}
 		},
 		methods: {
 			bindPickerChange(e) {
@@ -88,28 +72,31 @@
 			checkApi() {
 				this.$config.auto.api = !this.$config.auto.api;
 			},
-			downNewVer() {
-				this.goHttp(this.$global.G.app.app);
-			},
 		},
 	};
 </script>
 
-<style>
+<style scoped>
+	.index-setting {
+		border-color: #D8D8D8;
+		border-width: 1rpx;
+		border-bottom-width: 0;
+		border-style: solid;
+	}
+
 	.s-setting-li {
 		font-size: smaller;
 		color: #666666;
 		padding-top: 8px;
 		padding-bottom: 8px;
-		padding-left: 8px;
-		padding-right: 8px;
-		margin-left: 8px;
-		margin-right: 8px;
+		padding-left: 18px;
+		padding-right: 18px;
 		border-color: #D8D8D8;
 		border-width: 0;
 		border-bottom-width: 1px;
 		border-style: solid;
 		display: flex;
+		align-items: center;
 	}
 
 	.s-setting-li .label {
@@ -118,9 +105,5 @@
 
 	.s-setting-li .form {
 		flex-grow: 1;
-	}
-
-	.s-setting-new {
-		color: #DD0000;
 	}
 </style>

@@ -6,7 +6,10 @@
 			<view class="s-list-li" v-for="(showItem, key, index) in curList" :key="index" @tap="viewGo(showItem, key)">
 				<view class="s-v-img" :style="ranColor()">
 					<img class="s-v-img-show" v-if="viewImg(item, showItem)" :src="viewImg(item, showItem)" />
-					<text v-else-if="viewDes(item, showItem)">{{ viewDes(item, showItem).substr(0,1) }}</text>
+					<template v-else-if="viewDes(item, showItem)">
+						<text class="s-v-img-txt">{{ viewTit(item, showItem).substr(0,4) }}</text>
+						<text class="s-v-img-des">{{ saiHtml2Txt(viewDes(item, showItem), 200) }}</text>
+					</template>
 				</view>
 				<view class="s-v-tit" v-if="viewTit(item, showItem)">{{ viewTit(item, showItem) }}</view>
 			</view>
@@ -33,6 +36,7 @@
 					<view class="s-v-des" v-else-if="viewDes(item, showItem)">
 						{{ saiHtml2Txt(viewDes(item, showItem), 200) }}
 					</view>
+					<view class="s-v-des" v-else></view>
 				</view>
 			</view>
 		</view>

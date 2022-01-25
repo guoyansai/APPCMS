@@ -9,6 +9,7 @@
 			"path": "pages/mags/index",
 			"style": {
 				"navigationBarTitleText": "《啾噗》电子杂志",
+				"enablePullDownRefresh": true,
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
@@ -22,6 +23,21 @@
 			"path": "pages/tools/index",
 			"style": {
 				"navigationBarTitleText": "常用工具箱",
+				"enablePullDownRefresh": true,
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"type": "menu"
+						}]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/muzu/index",
+			"style": {
+				"navigationBarTitleText": "墓族",
+				"enablePullDownRefresh": true,
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
@@ -48,6 +64,7 @@
 			"path": "pages/others/index",
 			"style": {
 				"navigationBarTitleText": "推荐软件与游戏",
+				"enablePullDownRefresh": true,
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
@@ -84,6 +101,19 @@
 			}
 		},
 		{
+			"path": "pages/novel/index",
+			"style": {
+				"navigationBarTitleText": "我的小说",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"type": "menu"
+						}]
+					}
+				}
+			}
+		},
+		{
 			"path": "pages/user/index",
 			"style": {
 				"navigationBarTitleText": "用户中心",
@@ -94,6 +124,12 @@
 						}]
 					}
 				}
+			}
+		},
+		{
+			"path": "pages/data/index",
+			"style": {
+				"navigationBarTitleText": "数据管理"
 			}
 		},
 		{
@@ -118,6 +154,20 @@
 		},
 		{
 			"path": "pages/tools/main",
+			"style": {
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"type": "menu"
+						}, {
+							"type": "home"
+						}]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/muzu/main",
 			"style": {
 				"app-plus": {
 					"titleNView": {
@@ -195,10 +245,10 @@
 				"text": "推荐"
 			},
 			{
-				"pagePath": "pages/setting/index",
+				"pagePath": "pages/map/index",
 				"iconPath": "static/ico/ico-setting.png",
 				"selectedIconPath": "static/ico/ico-setting-cur.png",
-				"text": "设置"
+				"text": "更多"
 			}
 		]
 	}

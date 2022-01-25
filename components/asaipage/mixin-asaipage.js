@@ -11,5 +11,8 @@ export default {
 		this.$nextTick(function() {
 			_this.$refs.asaipage.initAsaiPage(e);
 		});
-	}
+	},
+	onPullDownRefresh() {
+		this.$refs.asaipage.reloadData();
+	},
 }

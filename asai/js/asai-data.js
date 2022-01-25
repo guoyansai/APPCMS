@@ -1,241 +1,262 @@
 export default class {
-	constructor(config, global) {
-		this.$config = config;
-		this.$global = global;
-	}
+  constructor(config, global) {
+    this.$config = config;
+    this.$global = global;
+  }
 
-	clear(level = 3) {
-		if (level === 3) {
-			let sArr = (uni.getStorageSync(this.asaiStorageName(this.$config.name.app.local)) || ',').split(',');
-			if (sArr.length > 0) {
-				sArr.forEach(iUrl => {
-					iUrl && this.asaiStorageDel(iUrl);
-				});
-			}
-			this.asaiStorageDel(this.$config.name.app.local);
-			this.$global.G = JSON.parse(JSON.stringify(this.$global.IG));
-		}
-	}
+  clear(level = 3) {
+    if (level === 3) {
+      let sArr = (
+        uni.getStorageSync(this.asaiStorageName(this.$config.name.app.local)) ||
+        ","
+      ).split(",");
+      if (sArr.length > 0) {
+        sArr.forEach((iUrl) => {
+          iUrl && this.asaiStorageDel(iUrl);
+        });
+      }
+      this.asaiStorageDel(this.$config.name.app.local);
+      this.$global.G = JSON.parse(JSON.stringify(this.$global.IG));
+    }
+  }
 
-	get(vUrl, type = 0) {
-		return new Promise((resolve, reject) => {
-			if (vUrl) {
-				let objStorage;
-				objStorage = this.getGlobalObj(vUrl);
-				if (objStorage && objStorage.ver) {
-					resolve(objStorage);
-				} else {
-					if (vUrl.indexOf(this.$config.baseURL.local) !== -1) {
-						// DataLocal.tools.miyu
-						// 如上格式书写（标识.一级.二级）
-						this.loadShow({
-							title: '本地加载文件'
-						});
-						let arrUrl = vUrl.split(this.$config.baseURL.local);
-						arrUrl = arrUrl[1].split('/')[0];
-						let vUrls = this.$config.baseURL.local + arrUrl;
-						arrUrl = vUrls.split('.');
-						const valTmp = this.$global[arrUrl[0]][arrUrl[1]][arrUrl[2]];
-						this.setGlobalObj(vUrl, valTmp);
-						this.loadClose();
-						resolve(valTmp);
-					} else if (vUrl.endsWith('/ver') || this.$config.auto.api || type === 1) {
-						this.loadShow({
-							title: '远程服务获取'
-						});
-						this.asaiApi(vUrl).then(res => {
-							this.setGlobalObj(vUrl, res.data);
-							resolve(res.data);
-						});
-					} else {
-						objStorage = this.asaiStorageRead(vUrl);
-						if (objStorage && objStorage.ver) {
-							if (this.$config.auto.apiVerload && this.getVer()) {
-								this.loadShow({
-									title: '远程更新核验'
-								});
-								let vUrlArr = vUrl.split('/');
-								this.asaiApi(vUrl.replace(vUrlArr[vUrlArr.length - 1], 'ver')).then(
-									res => {
-										if (res.data.ver > objStorage.ver) {
-											objStorage = {};
-											this.loadClose();
-											this.loadShow({
-												title: '正在远程更新'
-											});
-											this.asaiApi(vUrl).then(res => {
-												this.setRe(vUrl, res.data);
-												resolve(res.data);
-											});
-										} else {
-											this.setRe(vUrl, objStorage);
-											resolve(objStorage);
-										}
-									});
-							} else {
-								this.setRe(vUrl, objStorage);
-								resolve(objStorage);
-							}
-						} else {
-							this.loadShow({
-								title: '远程服务保存'
-							});
-							this.asaiApi(vUrl).then(res => {
-								this.setRe(vUrl, res.data);
-								resolve(res.data);
-							});
-						}
-					}
-				}
-			} else {
-				reject('error:params is null!');
-			}
-		});
-	}
+  saiLocalUrl(vUrl) {
+    try {
+      return require("../../static/DataLocal" + vUrl + ".json");
+    } catch (e) {
+      return null;
+    }
+  }
 
-	getVer() {
-		return this.$global.G.app.ver;
-	}
+  get(vUrl, type = 0) {
+    return new Promise((resolve, reject) => {
+      if (vUrl) {
+        let objStorage;
+        objStorage = this.getGlobalObj(vUrl);
+        if (objStorage && objStorage.ver && type < 10) {
+          resolve(objStorage);
+        } else {
+          const valTmp = this.saiLocalUrl(vUrl);
+          if (valTmp && type < 10) {
+            this.loadShow({
+              title: "本地数据加载中",
+            });
+            this.setGlobalObj(vUrl, valTmp);
+            this.loadClose();
+            resolve(valTmp);
+          } else if (
+            vUrl.endsWith("/ver") ||
+            this.$config.auto.api ||
+            type > 0
+          ) {
+            this.loadShow({
+              title: "获取远程数据中",
+            });
+            this.asaiApi(vUrl).then((res) => {
+              this.setGlobalObj(vUrl, res.data);
+              resolve(res.data);
+            });
+          } else {
+            objStorage = this.asaiStorageRead(vUrl);
+            if (objStorage && objStorage.ver) {
+              if (this.$config.auto.apiVerload && this.getVer()) {
+                this.loadShow({
+                  title: "本地数据核验中",
+                });
+                let vUrlArr = vUrl.split("/");
+                this.asaiApi(
+                  vUrl.replace(vUrlArr[vUrlArr.length - 1], "ver")
+                ).then((res) => {
+                  if (res.data.ver > objStorage.ver) {
+                    objStorage = {};
+                    this.loadClose();
+                    this.loadShow({
+                      title: "更新本地数据中",
+                    });
+                    this.asaiApi(vUrl).then((res) => {
+                      this.setRe(vUrl, res.data);
+                      resolve(res.data);
+                    });
+                  } else {
+                    this.setRe(vUrl, objStorage);
+                    resolve(objStorage);
+                  }
+                });
+              } else {
+                this.setRe(vUrl, objStorage);
+                resolve(objStorage);
+              }
+            } else {
+              this.loadShow({
+                title: "远程数据本地化",
+              });
+              this.asaiApi(vUrl).then((res) => {
+                this.setRe(vUrl, res.data);
+                resolve(res.data);
+              });
+            }
+          }
+        }
+      } else {
+        reject("error:params is null!");
+      }
+    });
+  }
 
-	setRe(vUrl, vObj) {
-		this.setGlobalObj(vUrl, vObj);
-		this.asaiStorageSave(vUrl, vObj);
-	}
+  getVer() {
+    return this.$global.G.app.ver;
+  }
 
-	getGlobalObj(vUrl) {
-		let globalObj = {};
-		const arrUrl = (vUrl).split('/');
-		if (arrUrl[2]) {
-			if (arrUrl[2] === 'co') {
-				globalObj = this.$global.G['data' + arrUrl[1]].listObj;
-				if (globalObj.sn !== arrUrl[arrUrl.length - 2]) {
-					globalObj = {};
-				}
-			} else if (arrUrl[2] === 'li') {
-				globalObj = this.$global.G['data' + arrUrl[1]].indexObj || {};
-				if (globalObj.sn !== arrUrl[1]) {
-					globalObj = {};
-				}
-			}
-		}
-		return globalObj;
-	}
+  setRe(vUrl, vObj) {
+    this.setGlobalObj(vUrl, vObj);
+    this.asaiStorageSave(vUrl, vObj);
+  }
 
-	setGlobalObj(vUrl, vObj) {
-		const arrUrl = (vUrl).split('/');
-		if (arrUrl[2]) {
-			if (arrUrl[2] === 'co') {
-				this.$global.G['data' + arrUrl[1]].listObj = vObj;
-			} else if (arrUrl[2] === 'li') {
-				this.$global.G['data' + arrUrl[1]].indexObj = vObj;
-			}
-		}
-	}
+  getGlobalObj(vUrl) {
+    let globalObj = {};
+    const arrUrl = vUrl.split("/");
+    if (arrUrl[2]) {
+      if (arrUrl[2] === "co") {
+        const obj1 = this.$global.G["data" + arrUrl[1]] || {};
+        globalObj = obj1.listObj || {};
+        if (globalObj.sn !== arrUrl[arrUrl.length - 2]) {
+          globalObj = {};
+        }
+      } else if (arrUrl[2] === "li") {
+        const obj2 = this.$global.G["data" + arrUrl[1]] || {};
+        globalObj = obj2.indexObj || {};
+        if (globalObj.sn !== arrUrl[1]) {
+          globalObj = {};
+        }
+      }
+    }
+    return globalObj;
+  }
 
-	asaiApi(vUrl, vData = {}, vHead = {}) {
-		return new Promise((resolve, reject) => {
-			let apiUrl = '';
-			if (vUrl === '/app') {
-				apiUrl = this.$config.baseURL.asai + vUrl + '.json?' + Date.now();
-			} else {
-				apiUrl = this.$config.baseURL[this.$config.dev] + vUrl + '.json?' + Date.now();
-			}
-			uni.request({
-				url: apiUrl,
-				data: vData,
-				header: vHead,
-				timeout: this.$config.time.api,
-				success: (res) => {
-					if (res && res.data) {
-						resolve({
-							...res
-						});
-					} else {
-						resolve({
-							data: {
-								...res
-							}
-						});
-					}
-				},
-				fail: (err) => {
-					this.setRe('/app', {
-						"ver": 0,
-						"app": ""
-					});
-					this.msgShow('请检查网络');
-					reject(err);
-				},
-				complete: () => {
-					this.loadClose();
-				}
-			});
-		});
-	}
+  setGlobalObj(vUrl, vObj) {
+    const arrUrl = vUrl.split("/");
+    if (arrUrl[2]) {
+      if (arrUrl[2] === "co") {
+        this.$global.G["data" + arrUrl[1]].listObj = vObj;
+      } else if (arrUrl[2] === "li") {
+        this.$global.G["data" + arrUrl[1]].indexObj = vObj;
+      }
+    }
+  }
 
-	asaiStorageRead(vUrl) {
-		try {
-			let vVal = uni.getStorageSync(this.asaiStorageName(vUrl));
-			if (vVal) {
-				if (typeof vVal === 'string') {
-					return JSON.parse(vVal);
-				} else {
-					return vVal;
-				}
-			} else {
-				return null;
-			}
-		} catch (e) {
-			return null;
-		}
-	}
+  asaiApi(vUrl, vData = {}, vHead = {}) {
+    return new Promise((resolve, reject) => {
+      let apiUrl = "";
+      if (vUrl === "/app") {
+        apiUrl = this.$config.baseURL.asai + vUrl + ".json?" + Date.now();
+      } else {
+        apiUrl =
+          this.$config.baseURL[this.$config.dev] + vUrl + ".json?" + Date.now();
+      }
+      uni.request({
+        url: apiUrl,
+        data: vData,
+        header: vHead,
+        timeout: this.$config.time.api,
+        success: (res) => {
+          if (res && res.data) {
+            resolve({
+              ...res,
+            });
+          } else {
+            resolve({
+              data: {
+                ...res,
+              },
+            });
+          }
+        },
+        fail: (err) => {
+          this.setRe("/app", {
+            ver: 0,
+            app: "",
+          });
+          this.msgShow("请检查网络");
+          reject(err);
+        },
+        complete: () => {
+          this.loadClose();
+        },
+      });
+    });
+  }
 
-	asaiStorageSave(vUrl, vVal) {
-		try {
-			let vStr;
-			if (typeof vVal === 'string') {
-				vStr = vVal;
-			} else {
-				vStr = JSON.stringify(vVal);
-			}
-			let localList = uni.getStorageSync(this.asaiStorageName(this.$config.name.app.local)) ||
-				''
-			localList = localList.replace(',' + vUrl, '') + ',' + vUrl;
-			uni.setStorageSync(this.asaiStorageName(this.$config.name.app.local), localList);
-			uni.setStorageSync(this.asaiStorageName(vUrl), vStr);
-		} catch (e) {}
-	}
+  asaiStorageRead(vUrl) {
+    try {
+      let vVal = uni.getStorageSync(this.asaiStorageName(vUrl));
+      if (vVal) {
+        if (typeof vVal === "string") {
+          return JSON.parse(vVal);
+        } else {
+          return vVal;
+        }
+      } else {
+        return null;
+      }
+    } catch (e) {
+      return null;
+    }
+  }
 
-	asaiStorageDel(vUrl) {
-		try {
-			uni.removeStorageSync(this.asaiStorageName(vUrl));
-		} catch (e) {}
-	}
+  asaiStorageSave(vUrl, vVal) {
+    try {
+      let vStr;
+      if (typeof vVal === "string") {
+        vStr = vVal;
+      } else {
+        vStr = JSON.stringify(vVal);
+      }
+      let localList =
+        uni.getStorageSync(this.asaiStorageName(this.$config.name.app.local)) ||
+        "";
+      localList = localList.replace("," + vUrl, "") + "," + vUrl;
+      uni.setStorageSync(
+        this.asaiStorageName(this.$config.name.app.local),
+        localList
+      );
+      uni.setStorageSync(this.asaiStorageName(vUrl), vStr);
+    } catch (e) {}
+  }
 
-	getStorageName(vUrl) {
-		return vUrl.split('/').join('-');
-	}
+  asaiStorageDel(vUrl) {
+    try {
+      uni.removeStorageSync(this.asaiStorageName(vUrl));
+    } catch (e) {}
+  }
 
-	asaiStorageName(vUrl) {
-		return this.$config.name.app.startsWith + this.getStorageName(vUrl) + this.$config.name.app.endsWith;
-	}
+  getStorageName(vUrl) {
+    return vUrl.split("/").join("-");
+  }
 
-	loadShow(obj) {
-		uni.showLoading(obj);
-	}
+  asaiStorageName(vUrl) {
+    return (
+      this.$config.name.app.startsWith +
+      this.getStorageName(vUrl) +
+      this.$config.name.app.endsWith
+    );
+  }
 
-	loadClose() {
-		uni.hideLoading();
-	}
+  loadShow(obj) {
+    uni.showLoading(obj);
+  }
 
-	msgShow(title, duration = 2000) {
-		uni.showToast({
-			title,
-			duration
-		});
-	}
+  loadClose() {
+    uni.hideLoading();
+  }
 
-	msgClose() {
-		uni.hideToast();
-	}
+  msgShow(title, duration = 2000) {
+    uni.showToast({
+      title,
+      duration,
+    });
+  }
+
+  msgClose() {
+    uni.hideToast();
+  }
 }

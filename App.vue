@@ -8,6 +8,9 @@
 				}
 			});
 			console.log("App Launch");
+			console.log('%c 阿赛工作室 ',
+				'font-size:28px;color:#DD0000;background-color:#ffD0ff;text-shadow:1px 2px 2px #888888;font-weight:bold;'
+				);
 		},
 		onShow: function() {
 			console.log("App Show");
@@ -23,8 +26,16 @@
 	@import url("/static/css/global.css");
 
 	uni-page-body {
-		background-color: #F5F5F5 !important;
+		background-color: #FFFFFF !important;
 		min-height: 100% !important;
 		height: auto !important;
+	}
+
+	.uni-page-head {
+		box-shadow: 0 1rpx 1rpx #D8D8D8;
+	}
+
+	.uni-tabbar {
+		box-shadow: 0 -1rpx 1rpx #D8D8D8;
 	}
 </style>

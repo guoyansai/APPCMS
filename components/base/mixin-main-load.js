@@ -1,15 +1,17 @@
 export default {
 	onShow: function() {
-		uni.$on('clear', res => {
-			if (res === 'do') {
+		uni.$on('fetch', res => {
+			if (res.type === 'clear') {
 				this.clear();
+			} else if (res.type === 'pull') {
+				this.$asaidata.get(res.val, 1);
 			} else {
-				this.$asaidata.get(res, 1);
+				this.$asaidata.get(res.val, 1);
 			}
 		});
 	},
 	onUnload: function() {
-		uni.$off('clear');
+		uni.$off('fetch');
 	},
 	onNavigationBarButtonTap(e) {
 		if (e.type === 'home') {

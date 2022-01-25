@@ -1,7 +1,5 @@
 <template>
 	<view class="s-search">
-		<view class="s-search-off" v-if="!searchStatus" @tap="searchStatus = true">≚</view>
-		<view class="s-search-on" v-if="searchStatus" @tap="searchStatus = false">≙</view>
 		<view class="s-search-show" v-if="searchStatus">
 			<view class="s-search-picker">
 				<picker @change="bindPickerChange" :value="index" :range="item.ds" range-key="tt">

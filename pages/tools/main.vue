@@ -3,7 +3,6 @@
 </template>
 
 <script>
-	import asaipage from '../../components/asaipage/asaipage.vue';
 	import mixinAsaipage from '../../components/asaipage/mixin-asaipage.js';
 
 	export default {

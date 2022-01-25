@@ -8,6 +8,10 @@
 			"listObj": {},
 			"indexObj": {}
 		},
+		"datamuzu": {
+			"listObj": {},
+			"indexObj": {}
+		},
 		"datamags": {
 			"listObj": {},
 			"indexObj": {}
@@ -23,6 +27,9 @@
 			"indexObj": {}
 		},
 		"datamap": {
+			"indexObj": {}
+		},
+		"datah5": {
 			"indexObj": {}
 		},
 		"bomb": {

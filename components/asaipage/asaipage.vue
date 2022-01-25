@@ -8,7 +8,8 @@
 			</show>
 			<list v-else-if="listSn" :ppage="listPage" :gli="listSn" :gur="listUr" :psearch="listSearch"
 				:gindex="indexCur" :glist="listCur" :apiUrl="apiUrl"></list>
-			<list v-else :ppage="listPage" :psearch="listSearch" :gindex="indexCur" :glist="listCur" :apiUrl="apiUrl"></list>
+			<list v-else :ppage="listPage" :psearch="listSearch" :gindex="indexCur" :glist="listCur" :apiUrl="apiUrl">
+			</list>
 		</view>
 	</view>
 </template>
@@ -40,6 +41,18 @@
 			}
 		},
 		methods: {
+			reloadData() {
+				this.$asaidata
+					.get(this.apiUrl, 1)
+					.then((res) => {
+						uni.showToast({
+							title: '更新成功',
+							duration: 2000
+						});
+						uni.stopPullDownRefresh();
+						this.goUrl('/pages/' + this.indexSn + '/index');
+					});
+			},
 			initAsaiPage(e) {
 				this.initOnLoad(e, this.gsn);
 			}

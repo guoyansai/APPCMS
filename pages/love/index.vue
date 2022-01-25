@@ -22,8 +22,9 @@
 		},
 		methods: {
 			initLove(type = 0) {
+				this.apiUrl = '/love/li';
 				this.$asaidata
-					.get("/love/li", type)
+					.get(this.apiUrl, type)
 					.then((res) => {
 						this.dataLove = res;
 					});

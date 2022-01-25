@@ -24,68 +24,28 @@
 		},
 		"dr": [],
 		"dt": {
-			"htmlqingwa": [
-				"htmlqingwa",
-				"青蛙吃蚊子",
-				"青蛙吃蚊子",
+			"apptest": [
+				"apptest",
+				"测试app-test",
+				"测试app-test",
 				"",
-				"h5.htmlqingwa",
+				"h5.test",
 				5
 			],
-			"htmldadishu": [
-				"htmldadishu",
-				"打地鼠",
-				"打地鼠",
+			"apptest2": [
+				"apptest2",
+				"测试app-test2",
+				"测试app-test2",
 				"",
-				"h5.htmldadishu",
+				"h5.test2",
 				5
 			],
-			"htmlbaoweidiqiu": [
-				"htmlbaoweidiqiu",
-				"保卫地球",
-				"保卫地球",
+			"apptest111": [
+				"apptest111",
+				"测试app-test111",
+				"测试app-test111",
 				"",
-				"h5.htmlbaoweidiqiu",
-				5
-			],
-			"htmlhuaban": [
-				"htmlhuaban",
-				"涂鸦画板",
-				"涂鸦画板",
-				"",
-				"h5.htmlhuaban",
-				5
-			],
-			"htmlkousuan": [
-				"htmlkousuan",
-				"口算题",
-				"口算题",
-				"",
-				"h5.htmlkousuan",
-				5
-			],
-			"htmlshuicai": [
-				"htmlshuicai",
-				"水彩画板",
-				"水彩画板",
-				"",
-				"h5.htmlshuicai",
-				5
-			],
-			"gpintu": [
-				"gpintu",
-				"拼图",
-				"拼图",
-				"",
-				"h5.gpintu",
-				5
-			],
-			"html2048": [
-				"html2048",
-				"2048",
-				"2048",
-				"",
-				"h5.html2048",
+				"h5.test2",
 				5
 			]
 		}
