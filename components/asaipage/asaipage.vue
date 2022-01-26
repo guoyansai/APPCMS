@@ -3,8 +3,7 @@
 		<view class="s-index" :class="'index-' + indexSn" v-if="canShow">
 			<bar :item="topBar"></bar>
 			<web-view v-if="viewUr" :src="viewUr"></web-view>
-			<show v-else-if="viewSn" :gsn="viewSn" :gli="listSn" :gur="listUr" :psearch="listSearch" :gindex="indexCur"
-				:glist="listCur">
+			<show v-else-if="viewSn" :gsn="viewSn" :gli="listSn" :gur="listUr" :psearch="listSearch" :gindex="indexCur" :glist="listCur">
 			</show>
 			<list v-else-if="listSn" :ppage="listPage" :gli="listSn" :gur="listUr" :psearch="listSearch"
 				:gindex="indexCur" :glist="listCur" :apiUrl="apiUrl"></list>

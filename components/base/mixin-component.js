@@ -118,7 +118,11 @@ export default {
 			return this.getValue(listItem, showItem, 'tt');
 		},
 		viewNear(listItem, showItem) {
-			return this.getValue(listItem, showItem, 'tt') || this.getValue(listItem, showItem, 'co');
+			let tmp = this.getValue(listItem, showItem, 'tt') || this.getValue(listItem, showItem, 'co');
+			if (listItem.ty.co.startsWith('novel')) {
+				tmp = '第' + this.getValue(listItem, showItem, 'sn') + '章 ' + tmp;
+			}
+			return tmp;
 		},
 		viewTag(listItem, showItem) {
 			return this.getValArr(listItem, showItem, this.$config.listTag, 1);

@@ -3,8 +3,8 @@
   "sn": "mg5-tusen",
   "ver": 202106121212,
   "ty": {
-    "li": "list",
-    "co": "show"
+    "li": "novel",
+    "co": "novel"
   },
   "db": {
     "mb": {
@@ -23,15 +23,15 @@
         "状态"
       ]
     },
-    "dn": ["sn", "tt", "mo", "co", "ur", "cd", "rd", "xy"],
+    "dn": ["sn", "tt", "mo", "co", "us", "cd", "rd", "xy"],
     "dc": ["章节", "标题", "简介", "内容", "目录", "创建", "更新", "状态"],
-    "ds": ["tt", "co", "mo", "sn", "ur"],
+    "ds": ["tt", "co", "mo", "sn", "us"],
     "dz": [
       "cc_id",
       "cc_bt",
       "cc_nr",
       "cc_cc",
-      "cc_ur",
+      "cc_us",
       "cc_cd",
       "cc_rd",
       "cc_xy"

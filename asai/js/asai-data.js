@@ -64,9 +64,8 @@ export default class {
                   title: "本地数据核验中",
                 });
                 let vUrlArr = vUrl.split("/");
-                this.asaiApi(
-                  vUrl.replace(vUrlArr[vUrlArr.length - 1], "ver")
-                ).then((res) => {
+				vUrlArr.pop();
+                this.asaiApi(vUrlArr.join('/')+"/ver").then((res) => {
                   if (res.data.ver > objStorage.ver) {
                     objStorage = {};
                     this.loadClose();

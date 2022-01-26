@@ -21,7 +21,25 @@
 				{{ viewTit(item, showItem) }}
 			</view>
 		</view>
-
+		
+		<view v-else-if="item.ty && item.ty.li.startsWith('novel')" class="s-list">
+			<view class="s-list-li" v-for="(showItem, key, index) in curList" :key="index" @tap="viewGo(showItem, key)">
+				<view class="s-list-txt">
+					<view class="s-v-tit" v-if="viewTit(item, showItem)">{{ '第'+getValue(item, showItem, 'sn')+'章 '+viewTit(item, showItem) }}</view>
+					<view class="s-v-tag" v-if="viewTag(item, showItem)">{{ viewTag(item, showItem) }}</view>
+					<rich-text class="s-v-des" v-if="viewDes(item, showItem)&&item.ty.li === 'novelmax'"
+						:nodes="viewDes(item, showItem)"></rich-text>
+					<view class="s-v-des" v-else-if="viewMore(item, showItem)">
+						{{ viewMore(item, showItem) }}
+					</view>
+					<view class="s-v-des" v-else-if="viewDes(item, showItem)">
+						{{ saiHtml2Txt(viewDes(item, showItem), 200) }}
+					</view>
+					<view class="s-v-des" v-else></view>
+				</view>
+			</view>
+		</view>
+		
 		<view :id="$config.ids.search" v-else class="s-list">
 			<view :class="{ 's-listmin-li': item.ty.li === 'listmin' }" class="s-list-li"
 				v-for="(showItem, key, index) in curList" :key="index" @tap="viewGo(showItem, key)">

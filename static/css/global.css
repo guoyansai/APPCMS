@@ -83,12 +83,12 @@
 }
 
 .s-fast-left {
-	width: 280rpx;
+	max-width: 49%;
 	text-align: left;
 }
 
 .s-fast-right {
-	width: 280rpx;
+	max-width: 49%;
 	text-align: right;
 }
 
@@ -480,6 +480,7 @@
 
 .s-show .s-v-des>div {
 	line-height: 180%;
+	white-space: pre-wrap;
 }
 
 .s-show .s-v-more {
